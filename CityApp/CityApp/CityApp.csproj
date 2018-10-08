@@ -95,6 +95,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\Company.cs" />
+    <Compile Include="DataModel\LeaveOfAbsence.cs" />
+    <Compile Include="DataModel\Location.cs" />
+    <Compile Include="DataModel\OpeningHours.cs" />
+    <Compile Include="DataModel\SocialMedia.cs" />
+    <Compile Include="DataModel\User.cs" />
+    <Compile Include="DataModel\Owner.cs" />
+    <Compile Include="DataModel\Promotion.cs" />
+    <Compile Include="DataModel\UserType.cs" />
+    <Compile Include="DataModel\Visitor.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -133,7 +143,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataModel\" />
     <Folder Include="Helpers\" />
     <Folder Include="Services\" />
     <Folder Include="Styles\" />
