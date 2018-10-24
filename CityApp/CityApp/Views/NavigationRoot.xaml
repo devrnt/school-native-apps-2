@@ -1,0 +1,61 @@
+﻿<!--
+Explanation TAGS
+    * mc: Ignorable="d" === This a predefined namespace in WPF to be used in design-time,r but will be ignored when actually compiled and executed. It will display your design-time choices but has no effect on the actual layout. 
+    * xmlns:FCU=... === Custom namespace (FCU: Fall Ceators Update) 
+    * xmlns:appmodel"using:Windows.ApplicationModel" === Provides an app with access to core system functionality and run-time information about its app package, and handles suspend operations. 
+    * Loaded="Page_Loaded" === Occurs when a FrameworkElement has been constructed and added to the object tree, and is ready for interaction. Event Page_Loaded fired in NavigationRoot.xaml.cs
+
+    == NOTES ==: FCU namespace must be used because NavigationView is still in Preview    
+-->
+<Page
+    x:Class="CityApp.Views.NavigationRoot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:FCU="using:Windows.UI.Xaml.Controls?IsApiContractPresent(Windows.Foundation.UniversalApiContract,5)"
+    xmlns:appmodel="using:Windows.ApplicationModel"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    >
+
+    <Grid x:Name="NavRootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Rectangle x:Name="BorderRect" x:Load="False" 
+                   Fill="{StaticResource NavigationViewDefaultPaneBackground}" 
+                   HorizontalAlignment="Left" Height="1000" Width="48"/>
+
+        <FCU:NavigationView IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="Navview_ItemInvoked">
+            <FCU:NavigationView.MenuItems>
+                <FCU:NavigationViewItem Content="Lokale handelaars" IsSelected="True">
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE707;" ></FontIcon>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
+                <FCU:NavigationViewItem Content="Menu item 2" >
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;"/>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
+                <FCU:NavigationViewItem Content="Menu item 3" >
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon x:Name="MenuItem3" FontFamily="Segoe MDL2 Assets" Glyph="&#xE728;" ></FontIcon>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
+                <FCU:NavigationViewItem Content="Menu item 4" >
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon x:Name="MenuItem4" FontFamily="Segoe MDL2 Assets" Glyph="&#xECFC;" ></FontIcon>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
+                <FCU:NavigationViewItem Content="Menu item 5" >
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon x:Name="MenutItem5" FontFamily="Segoe MDL2 Assets" Glyph="&#xE896;" ></FontIcon>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
+            </FCU:NavigationView.MenuItems>
+            <Frame x:Name="appNavFrame" Navigated="AppNavFrame_Navigated">
+            </Frame>
+        </FCU:NavigationView>
+        <!-- Uncomment this later <TextBlock x:Name="windowTitle" Style="{ThemeResource CaptionTextBlockStyle}" Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}" animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}"></TextBlock> -->
+    </Grid>
+</Page>
