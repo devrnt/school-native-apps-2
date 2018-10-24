@@ -12,3 +12,7 @@ This repo is only ment for experimental purposes.
 * Sam Dhondt
 * Yanis Ouahab
 * Jonas De Vrient
+
+## Development
+#### Icons
+https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font
