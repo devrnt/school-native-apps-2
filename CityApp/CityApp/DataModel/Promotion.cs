@@ -1,4 +1,6 @@
-﻿namespace CityApp.DataModel {
-	public class Promotion {
-	}
+﻿namespace CityApp.DataModel
+{
+    public class Promotion
+    {
+    }
 }
