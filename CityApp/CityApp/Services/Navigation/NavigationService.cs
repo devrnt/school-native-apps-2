@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Autofac;
+using CityApp.Views;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI.Xaml.Controls;
 
@@ -93,6 +91,11 @@ namespace CityApp.Services.Navigation
             {
                 Frame.Navigate(typeof(TPage), parameter: parameter);
             });
+        }
+
+        public Task NavigateToCompaniesAsync()
+        {
+            return NavigateToPage<Companies>();
         }
         #endregion
     }

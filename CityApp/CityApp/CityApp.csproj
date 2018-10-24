@@ -114,8 +114,13 @@
     <Compile Include="Services\Navigation\FrameAdapter.cs" />
     <Compile Include="Services\Navigation\IFrameAdapter.cs" />
     <Compile Include="Services\Navigation\INavigationService.cs" />
+    <Compile Include="Services\Navigation\IPageWithViewModel.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\ViewModeService.cs" />
+    <Compile Include="ViewModels\CompaniesViewModel.cs" />
+    <Compile Include="Views\Companies.xaml.cs">
+      <DependentUpon>Companies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NavigationRoot.xaml.cs">
       <DependentUpon>NavigationRoot.xaml</DependentUpon>
     </Compile>
@@ -146,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Companies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NavigationRoot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,7 +182,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Themes\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

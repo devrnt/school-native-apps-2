@@ -25,7 +25,7 @@ Explanation TAGS
                    Fill="{StaticResource NavigationViewDefaultPaneBackground}" 
                    HorizontalAlignment="Left" Height="1000" Width="48"/>
 
-        <FCU:NavigationView IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="Navview_ItemInvoked">
+        <FCU:NavigationView IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="MenuItem_Invoked">
             <FCU:NavigationView.MenuItems>
                 <FCU:NavigationViewItem Content="Lokale handelaars" IsSelected="True">
                     <FCU:NavigationViewItem.Icon>

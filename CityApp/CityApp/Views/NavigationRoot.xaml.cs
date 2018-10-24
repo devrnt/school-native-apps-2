@@ -99,24 +99,12 @@
 
         private void AppNavFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            //switch (e.SourcePageType)
-            //{
-            //    case Type c when e.SourcePageType == typeof(Home):
-            //        ((NavigationViewItem)navview.MenuItems[0]).IsSelected = true;
-            //        break;
-            //    case Type c when e.SourcePageType == typeof(Player):
-            //        ((NavigationViewItem)navview.MenuItems[1]).IsSelected = true;
-            //        break;
-            //    case Type c when e.SourcePageType == typeof(Favorites):
-            //        ((NavigationViewItem)navview.MenuItems[2]).IsSelected = true;
-            //        break;
-            //    case Type c when e.SourcePageType == typeof(Notes):
-            //        ((NavigationViewItem)navview.MenuItems[3]).IsSelected = true;
-            //        break;
-            //    case Type c when e.SourcePageType == typeof(Downloads):
-            //        ((NavigationViewItem)navview.MenuItems[4]).IsSelected = true;
-            //        break;
-            //}
+            switch (e.SourcePageType)
+            {
+                case Type c when e.SourcePageType == typeof(Companies):
+                    ((NavigationViewItem)navview.MenuItems[0]).IsSelected = true;
+                    break;
+            }
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -126,7 +114,7 @@
             // there is already a page loaded
             if (!hasLoadedPreviously)
             {
-               // _navigationService.NavigateToPodcastsAsync();
+                // _navigationService.NavigateToPodcastsAsync();
                 hasLoadedPreviously = true;
             }
 
@@ -139,35 +127,26 @@
             }
         }
 
-        private void Navview_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        private void MenuItem_Invoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
             if (args.IsSettingsInvoked)
             {
-                //_navigationService.NavigateToSettingsAsync();
-                return;
+                // TODO 
+                // _navigationService.NavigateToSettingsAsync();
+                // return;
             }
 
-            //switch (args.InvokedItem as string)
-            //{
-            //    case "Browse videos":
-            //        _navigationService.NavigateToPodcastsAsync();
-            //        break;
-            //    case "Now playing":
-            //        _navigationService.NavigateToNowPlayingAsync();
-            //        break;
-            //    case "Favorites":
-            //        _navigationService.NavigateToFavoritesAsync();
-            //        break;
-            //    case "Notes":
-            //        _navigationService.NavigateToNotesAsync();
-            //        break;
-            //    case "Downloads":
-            //        _navigationService.NavigateToDownloadsAsync();
-            //        break;
-            //}
+            // This is not safe
+            // Looking for an alternitive to get a String in the resources
+            switch (args.InvokedItem as string)
+            {
+                case "Lokale handelaars":
+                    _navigationService.NavigateToCompaniesAsync();
+                    break;
+            }
         }
 
-        #region Binding Helpers
+        #region === Binding Helpers ===
         public static string GetIcon(string kind)
         {
             switch (kind)

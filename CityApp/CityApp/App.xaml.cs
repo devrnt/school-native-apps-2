@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Autofac;
 using CityApp.Services;
 using CityApp.Services.Navigation;
+using CityApp.ViewModels;
 using CityApp.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -147,11 +148,11 @@ namespace CityApp
                        .AsImplementedInterfaces();
 
                 // Register the view models to the builder 
+                builder.RegisterType<CompaniesViewModel>();
 
                 builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()
                         .SingleInstance();
-
 
                 _container = builder.Build();
                 _rootPage.InitializeNavigationService(_container.Resolve<INavigationService>());

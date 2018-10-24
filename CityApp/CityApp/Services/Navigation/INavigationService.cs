@@ -14,7 +14,7 @@ namespace CityApp.Services
         bool IsNavigating { get;}
 
         // Add Tasks to handle navigation menu
-        // Example: Task NavigateToCompanies();
+        Task NavigateToCompaniesAsync();
 
         Task GoBackAsync();
 
