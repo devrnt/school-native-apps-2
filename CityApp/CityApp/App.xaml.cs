@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using Autofac;
+using CityApp.Services;
+using CityApp.Services.Navigation;
+using CityApp.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.ApplicationModel.AppService;
+using Windows.ApplicationModel.Background;
+using Windows.System.Profile;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace CityApp
@@ -20,57 +19,160 @@ namespace CityApp
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    public sealed partial class App : Application
     {
+        #region === Fields ===
+        private IContainer _container;
+        private BackgroundTaskDeferral _appServiceDeferral;
+        private NavigationRoot _rootPage;
+        #endregion
+
+        #region === Properties ===
+        public static AppServiceConnection Connection { get; set; }
+        #endregion
+
+        #region === Constructor ===
         /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
+        /// Initializes a new instance of the <see cref="App"/> class.
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            // Sets supported mouse mode
+            this.RequiresPointerMode = ApplicationRequiresPointerMode.WhenRequested;
+        }
+        #endregion
+
+        #region === Methods ===
+        /// <summary>
+        /// Gets the visual root of the application windows.
+        /// depends on the <see cref="Window.Current.Content"/>.
+        /// </summary>
+        /// <exception cref="Exception">
+        /// Thrown when windows content is of unknown type
+        /// </exception>
+        public NavigationRoot GetNavigationRoot()
+        {
+            if (Window.Current.Content is NavigationRoot)
+            {
+                return Window.Current.Content as NavigationRoot;
+            }
+            else if (Window.Current.Content is Frame)
+            {
+                return ((Frame)Window.Current.Content).Content as NavigationRoot;
+            }
+
+            throw new Exception("Window content is unknown type");
+        }
+
+        public Frame GetFrame()
+        {
+            var root = GetNavigationRoot();
+            return root.AppFrame;
         }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
-        /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        /// <param name="args">Details about the launch request and process.</param>
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            // XBOX support
+            if (AnalyticsInfo.VersionInfo.DeviceFamily == "Windows.Xbox")
+            {
+                ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+                bool result = ApplicationViewScaling.TrySetDisableLayoutScaling(true);
+            }
+
+            await InitializeAsync();
+            InitWindow(skipWindowCreation: args.PrelaunchActivated);
+
+            // Tasks after activation
+            await StartupAsync();
+        }
+
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
+            await InitializeAsync();
+            InitWindow(skipWindowCreation: false);
+
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                Window.Current.Activate();
+
+                // Tasks after activation
+                await StartupAsync();
+            }
+        }
+
+        private void OnRequestReceived(AppServiceConnection sender, AppServiceRequestReceivedEventArgs args)
+        {
+            var deferral = args.GetDeferral();
+            Console.WriteLine(args.Request.Message);
+            deferral.Complete();
+            _appServiceDeferral.Complete();
+        }
+
+        private void OnAppServicesCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
+        {
+            _appServiceDeferral.Complete();
+        }
+
+        private void AppServiceConnection_ServiceClosed(AppServiceConnection sender, AppServiceClosedEventArgs args)
+        {
+            _appServiceDeferral.Complete();
+        }
+
+        private void InitWindow(bool skipWindowCreation)
+        {
+            var builder = new ContainerBuilder();
+
+            _rootPage = Window.Current.Content as NavigationRoot;
+            bool initApp = _rootPage == null && !skipWindowCreation;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
-            if (rootFrame == null)
+            if (initApp)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                _rootPage = new NavigationRoot();
 
-                rootFrame.NavigationFailed += OnNavigationFailed;
+                FrameAdapter adapter = new FrameAdapter(_rootPage.AppFrame);
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
+                builder.RegisterInstance(adapter)
+                       .AsImplementedInterfaces();
+
+                // Register the view models to the builder 
+
+                builder.RegisterType<NavigationService>()
+                        .AsImplementedInterfaces()
+                        .SingleInstance();
+
+
+                _container = builder.Build();
+                _rootPage.InitializeNavigationService(_container.Resolve<INavigationService>());
+
+                adapter.NavigationFailed += OnNavigationFailed;
 
                 // Place the frame in the current Window
-                Window.Current.Content = rootFrame;
-            }
+                Window.Current.Content = _rootPage;
 
-            if (e.PrelaunchActivated == false)
-            {
-                if (rootFrame.Content == null)
-                {
-                    // When the navigation stack isn't restored navigate to the first page,
-                    // configuring the new page by passing required information as a navigation
-                    // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                }
-                // Ensure the current window is active
                 Window.Current.Activate();
             }
+        }
+
+        private async Task InitializeAsync()
+        {
+            await Task.CompletedTask;
+        }
+
+        private async Task StartupAsync()
+        {
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -78,7 +180,7 @@ namespace CityApp
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }
@@ -93,8 +195,9 @@ namespace CityApp
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+
             deferral.Complete();
         }
+        #endregion
     }
 }
