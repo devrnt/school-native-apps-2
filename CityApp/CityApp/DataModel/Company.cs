@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace CityApp.DataModel
 {
+    // can be shops, cafes, restaurants, schools...
     public class Company
     {
         #region Fields and Properties
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public ICollection<string> KeyWords { get; set; }
-        // Use Category model
-        public ICollection<string> Categories { get; set; }
+        // Use Category enum
+        public Categories Categorie { get; set; }
         public Owner Owner { get; set; }
-        public Location Location { get; set; }
+        public ICollection<Location> Locations { get; set; }
         public OpeningHours OpeningHours { get; set; }
-        public LeaveOfAbsence leaveOfAbsence { get; set; }
+        public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
         public bool HasPromotions

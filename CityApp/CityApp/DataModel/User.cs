@@ -33,5 +33,10 @@ namespace CityApp.DataModel
             Password = password;
             TypeOfUser = typeOfUser;
         }
+
+        protected User()
+        {
+
+        }
     }
 }
