@@ -149,6 +149,7 @@ namespace CityApp
 
                 // Register the view models to the builder 
                 builder.RegisterType<CompaniesViewModel>();
+                builder.RegisterType<AccountViewModel>();
 
                 builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()

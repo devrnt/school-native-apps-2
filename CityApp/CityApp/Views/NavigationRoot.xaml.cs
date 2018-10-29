@@ -143,6 +143,9 @@
                 case "Lokale handelaars":
                     _navigationService.NavigateToCompaniesAsync();
                     break;
+                case "Account":
+                    _navigationService.NavigateToAccountAsync();
+                    break;
             }
         }
 

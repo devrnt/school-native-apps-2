@@ -117,7 +117,11 @@
     <Compile Include="Services\Navigation\IPageWithViewModel.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\ViewModeService.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\CompaniesViewModel.cs" />
+    <Compile Include="Views\Account.xaml.cs">
+      <DependentUpon>Account.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Companies.xaml.cs">
       <DependentUpon>Companies.xaml</DependentUpon>
     </Compile>
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Styles\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Account.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

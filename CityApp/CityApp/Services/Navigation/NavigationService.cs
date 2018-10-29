@@ -79,11 +79,11 @@ namespace CityApp.Services.Navigation
 
         private async Task NavigateToPage<TPage>(object parameter)
         {
-            // Early out if already in the middle of a Navigation
-            if (_isNavigating)
-            {
-                return;
-            }
+            //// Early out if already in the middle of a Navigation
+            //if (_isNavigating)
+            //{
+            //    return;
+            //}
 
             _isNavigating = true;
 
@@ -96,6 +96,11 @@ namespace CityApp.Services.Navigation
         public Task NavigateToCompaniesAsync()
         {
             return NavigateToPage<Companies>();
+        }
+
+        public Task NavigateToAccountAsync()
+        {
+            return NavigateToPage<Account>();
         }
         #endregion
     }
