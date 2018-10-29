@@ -5,10 +5,25 @@
     xmlns:local="using:CityApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:CityApp.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid HorizontalAlignment="Stretch" Height="720" Margin="0,0,0,0" VerticalAlignment="Bottom">
-        <TextBlock HorizontalAlignment="Left" Margin="208,0,0,0" Text="Dit is de handelaars pagina" TextWrapping="Wrap" VerticalAlignment="Center" Width="179"/>
-    </Grid>
+    <Page.DataContext>
+        <vm:CompaniesViewModel/>
+    </Page.DataContext>
+    <ScrollViewer>
+        <StackPanel>
+        <GridView ItemsSource="{Binding Companies}">
+                <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="{Binding Name}" FontSize="48"/>
+                        <TextBlock Text="{Binding Categorie}" FontSize="24"/>
+                        <TextBlock Text="{Binding Description}" FontSize="20"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        </StackPanel>
+    </ScrollViewer>
 </Page>

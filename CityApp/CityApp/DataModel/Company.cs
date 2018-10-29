@@ -29,6 +29,23 @@ namespace CityApp.DataModel
                 return Promotions.Count != 0;
             }
         }
+
+        public Company(int id, string name, string description, ICollection<string> keyWords, Categories categorie, Owner owner, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            KeyWords = keyWords;
+            Categorie = categorie;
+            Owner = owner;
+            Locations = locations;
+            OpeningHours = openingHours;
+            LeaveOfAbsence = leaveOfAbsence;
+            SocialMedia = socialMedia;
+            Promotions = promotions;
+        }
         #endregion
+
+
     }
 }
