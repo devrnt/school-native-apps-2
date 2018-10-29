@@ -102,6 +102,11 @@ namespace CityApp.Services.Navigation
         {
             return NavigateToPage<Account>();
         }
+
+        public Task NavigateToSettingsAsync()
+        {
+            return NavigateToPage<SettingsPage>();
+        }
         #endregion
     }
 }

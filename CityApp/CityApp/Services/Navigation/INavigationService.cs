@@ -16,7 +16,7 @@ namespace CityApp.Services
         // Add Tasks to handle navigation menu
         Task NavigateToCompaniesAsync();
         Task NavigateToAccountAsync();
-
+        Task NavigateToSettingsAsync();
         Task GoBackAsync();
     }
 }

@@ -129,11 +129,11 @@
 
         private void MenuItem_Invoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
+            // If settings is clicked in navigation view
             if (args.IsSettingsInvoked)
             {
-                // TODO 
-                // _navigationService.NavigateToSettingsAsync();
-                // return;
+                _navigationService.NavigateToSettingsAsync();
+                return;
             }
 
             // This is not safe
