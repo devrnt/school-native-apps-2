@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Input;
+using CityApp.DataModel;
+using CityApp.Helpers;
+using CityApp.Services;
 using Windows.ApplicationModel;
 
 namespace CityApp.ViewModels
@@ -9,11 +13,29 @@ namespace CityApp.ViewModels
 
     {
         private string _versionDescription;
+        private Themes _elementTheme = ThemeSelectorService.Theme;
+        private ICommand _switchThemeCommand;
+
+        public Themes Theme
+        {
+            get
+            {
+                return _elementTheme;
+            }
+
+            set
+            {
+                if (_elementTheme != value)
+                {
+                    _elementTheme = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(VersionDescription)));
+                }
+            }
+        }
 
         public SettingsViewModel()
         {
-            // _versionDescription = GetVersionDescription();
-            _versionDescription = "pre-v0.0.0";
+            _versionDescription = GetVersionDescription();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,6 +56,7 @@ namespace CityApp.ViewModels
                 }
             }
         }
+
         public void Initialize()
         {
             VersionDescription = GetVersionDescription();
@@ -45,7 +68,21 @@ namespace CityApp.ViewModels
             var packageId = package.Id;
             var version = packageId.Version;
 
-            return $"{package.DisplayName} - {version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+            return $"prebuild-{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
+        }
+
+
+
+        public ICommand SwitchThemeCommand
+        {
+            get
+            {
+                return _switchThemeCommand ?? (_switchThemeCommand = new RelayCommand<Themes>(
+                        async (param) =>
+                        {
+                            await ThemeSelectorService.SetThemeAsync(param);
+                        }));
+            }
         }
     }
 }

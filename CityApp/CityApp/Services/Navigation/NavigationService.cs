@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
+using CityApp.ViewModels;
 using CityApp.Views;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace CityApp.Services.Navigation
 {
@@ -11,6 +14,10 @@ namespace CityApp.Services.Navigation
     {
         #region === Fields === 
         private bool _isNavigating;
+
+        private delegate Task NavigatedToViewModelDelegate(object page, object parameter, NavigationEventArgs navigationArgs);
+
+        private Dictionary<Type, NavigatedToViewModelDelegate> PageViewModels { get; }
         #endregion
 
         #region === Properties === 
@@ -51,8 +58,11 @@ namespace CityApp.Services.Navigation
             AutofacDepedencyResolver = iocResolver;
 
             // register viewmodels here
-            // PageViewModels = new Dictionary<Type, NavigatedToViewModelDelegate>();
-            // RegisterPageViewModel<Home, HomeViewModel>();
+            PageViewModels = new Dictionary<Type, NavigatedToViewModelDelegate>();
+            RegisterPageViewModel<Companies, CompaniesViewModel>();
+            RegisterPageViewModel<SettingsPage, SettingsViewModel>();
+
+            Frame.Navigated += Frame_Navigated;
 
         }
         #endregion
@@ -107,6 +117,44 @@ namespace CityApp.Services.Navigation
         {
             return NavigateToPage<SettingsPage>();
         }
+
+        private void RegisterPageViewModel<TPage, TViewModel>()
+           where TViewModel : class
+        {
+            NavigatedToViewModelDelegate navigatedTo = async (page, parameter, navArgs) =>
+            {
+                if (page is IPageWithViewModel<TViewModel> pageWithVM)
+                {
+                    pageWithVM.ViewModel = AutofacDepedencyResolver.Resolve<TViewModel>();
+
+                    if (pageWithVM.ViewModel is INavigableTo navVM)
+                    {
+                        await navVM.NavigatedTo(navArgs.NavigationMode, parameter);
+                    }
+
+                    // Async loading
+                    //pageWithVM.UpdateBindings();
+                }
+            };
+
+            PageViewModels[typeof(TPage)] = navigatedTo;
+        }
+
+        /// <summary>
+        /// The Navigated event. This event is raised BEFORE <see cref="Windows.UI.Xaml.Controls.Page.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)"/>
+        /// </summary>
+        /// <param name="sender">The frame</param>
+        /// <param name="e">The args coming from the frame</param>
+        private void Frame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            IsNavigating = false;
+            if (PageViewModels.ContainsKey(e.SourcePageType))
+            {
+                var loadViewModelDelegate = PageViewModels[e.SourcePageType];
+                var ignoredTask = loadViewModelDelegate(e.Content, e.Parameter, e);
+            }
+        }
+
         #endregion
     }
 }

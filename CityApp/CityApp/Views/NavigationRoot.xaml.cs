@@ -19,7 +19,7 @@
         public NavigationRoot()
         {
             _instance = this;
-            this.InitializeComponent();
+            InitializeComponent();
 
             var nav = SystemNavigationManager.GetForCurrentView();
 

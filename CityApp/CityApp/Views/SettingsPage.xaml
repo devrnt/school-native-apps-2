@@ -2,11 +2,15 @@
     x:Class="CityApp.Views.SettingsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CityApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helper="using:CityApp.Helpers"
+    xmlns:datamodel="using:CityApp.DataModel"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <helper:EnumToBooleanConverter x:Key="ThemeEnumConverter" EnumType="datamodel:Themes" />
+    </Page.Resources>
 
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
@@ -33,26 +37,41 @@
 
                 <StackPanel Margin="{StaticResource EightTopMargin}">
                     <RadioButton 
-                            x:Uid="Settings_Theme_Default"
+                            x:Uid="Settings_Theme_Light" 
+                            GroupName="AppTheme" 
+                            IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource ThemeEnumConverter}, ConverterParameter=Light, Mode=TwoWay}"
+                            Command="{x:Bind ViewModel.SwitchThemeCommand}">
+                        <RadioButton.CommandParameter>
+                            <datamodel:Themes>Light</datamodel:Themes>
+                        </RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton 
+                            x:Uid="Settings_Theme_Dark" 
                             GroupName="AppTheme"
-                            IsChecked="True">Light
+                            IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource ThemeEnumConverter}, ConverterParameter=Dark, Mode=TwoWay}"
+                            Command="{x:Bind ViewModel. SwitchThemeCommand}">
+                        <RadioButton.CommandParameter>
+                            <datamodel:Themes>Dark</datamodel:Themes>
+                        </RadioButton.CommandParameter>
                     </RadioButton>
                     <RadioButton 
                             x:Uid="Settings_Theme_Default"
                             GroupName="AppTheme"
-                            IsChecked="True">Dark
+                            IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource ThemeEnumConverter}, ConverterParameter=Default, Mode=TwoWay}"
+                            Command="{x:Bind ViewModel. SwitchThemeCommand}">
+                        <RadioButton.CommandParameter>
+                            <datamodel:Themes>Default</datamodel:Themes>
+                        </RadioButton.CommandParameter>
                     </RadioButton>
                     <RadioButton 
-                            x:Uid="Settings_Theme_Default"
+                            x:Uid="Settings_Theme_Custom"
                             GroupName="AppTheme"
-                            IsChecked="True">Windows default
+                            IsChecked="{x:Bind ViewModel.Theme, Converter={StaticResource ThemeEnumConverter}, ConverterParameter=Custom, Mode=TwoWay}"
+                            Command="{x:Bind ViewModel.SwitchThemeCommand}">
+                        <RadioButton.CommandParameter>
+                            <datamodel:Themes>Custom</datamodel:Themes>
+                        </RadioButton.CommandParameter>
                     </RadioButton>
-                    <RadioButton 
-                            x:Uid="Settings_Theme_Default"
-                            GroupName="AppTheme"
-                            IsChecked="True">Custom
-                    </RadioButton>
-
                 </StackPanel>
             </StackPanel>
 

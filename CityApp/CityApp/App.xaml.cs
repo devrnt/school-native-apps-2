@@ -150,6 +150,7 @@ namespace CityApp
                 // Register the view models to the builder 
                 builder.RegisterType<CompaniesViewModel>();
                 builder.RegisterType<AccountViewModel>();
+                builder.RegisterType<SettingsViewModel>();
 
                 builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()
@@ -169,11 +170,15 @@ namespace CityApp
 
         private async Task InitializeAsync()
         {
+            // checks what theme was selected previous time
+            await ThemeSelectorService.InitializeAsync();
             await Task.CompletedTask;
         }
 
         private async Task StartupAsync()
         {
+            // sets the theme that was fetched in method above
+            ThemeSelectorService.SetRequestedTheme();
             await Task.CompletedTask;
         }
 

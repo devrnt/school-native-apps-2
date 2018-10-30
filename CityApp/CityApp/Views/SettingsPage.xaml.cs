@@ -22,10 +22,15 @@ namespace CityApp.Views
     public sealed partial class SettingsPage : Page, IPageWithViewModel<SettingsViewModel>
     {
         public SettingsViewModel ViewModel { get; set; }
+
         public SettingsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
+        public void UpdateBindings()
+        {
+            ViewModel.Initialize();
+        }
     }
 }

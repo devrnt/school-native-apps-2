@@ -17,8 +17,7 @@ Explanation TAGS
     xmlns:appmodel="using:Windows.ApplicationModel"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     mc:Ignorable="d"
-    Loaded="Page_Loaded"
-    >
+    Loaded="Page_Loaded">
 
     <Grid x:Name="NavRootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Rectangle x:Name="BorderRect" x:Load="False" 
@@ -29,15 +28,15 @@ Explanation TAGS
             <FCU:NavigationView.MenuItems>
                 <FCU:NavigationViewItem Content="Lokale handelaars" IsSelected="True">
                     <FCU:NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE707;" ></FontIcon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE707;"></FontIcon>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="Menu item 3" >
+                <FCU:NavigationViewItem Content="Menu item 3">
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon x:Name="MenuItem3" FontFamily="Segoe MDL2 Assets" Glyph="&#xE728;" ></FontIcon>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="Menu item 4" >
+                <FCU:NavigationViewItem Content="Menu item 4">
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon x:Name="MenuItem4" FontFamily="Segoe MDL2 Assets" Glyph="&#xECFC;" ></FontIcon>
                     </FCU:NavigationViewItem.Icon>
@@ -56,6 +55,12 @@ Explanation TAGS
             <Frame x:Name="appNavFrame" Navigated="AppNavFrame_Navigated">
             </Frame>
         </FCU:NavigationView>
-        <!-- Uncomment this later <TextBlock x:Name="windowTitle" Style="{ThemeResource CaptionTextBlockStyle}" Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}" animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}"></TextBlock> -->
+        <TextBlock 
+            x:Name="windowTitle"
+            Style="{ThemeResource CaptionTextBlockStyle}"
+            Visibility="{x:Bind TitleHelper.TitleVisibility, Mode=OneWay}" 
+            Margin="{x:Bind TitleHelper.TitlePosition, Mode=OneWay}" 
+            VerticalAlignment="Top" Text="{x:Bind appmodel:Package.Current.DisplayName}" 
+            animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}"/>
     </Grid>
 </Page>
