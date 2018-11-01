@@ -1,7 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using CityApp.DataModel;
+using CityApp.Helpers;
 using CityApp.Services;
+using CityApp.Services.Navigation;
 
 namespace CityApp.ViewModels
 {
@@ -9,33 +12,24 @@ namespace CityApp.ViewModels
     {
         #region === Fields ===
         private INavigationService _navigationService;
-        private ObservableCollection<Company> _companies;
-        public ObservableCollection<Company> Companies { get => _companies; set => _companies = value; }
+        public ObservableCollection<Company> Companies { get; set ; }
         // add the list of companies here in future
         // IQueryable<Company> _companies;
         #endregion
 
         #region === Properties ===
         public event PropertyChangedEventHandler PropertyChanged;
+        public RelayCommand CompanyDetailsCommand { get; set; }
+
         #endregion
 
         #region === Constructor ===
         public CompaniesViewModel() {
-            Companies = new ObservableCollection<Company>();
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null));
-            Companies.Add(new Company(5, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null));
-
+            Companies = new ObservableCollection<Company>(DummyDataSource.Companies);
+            CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
+            _navigationService = NavigationService.ns;
         }
+
         public CompaniesViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -47,6 +41,11 @@ namespace CityApp.ViewModels
         // Then:
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
+        private void ShowCompanyDetails(Company p)
+        {
+            _navigationService.NavigateToCompanyDetailsAsync(p);
+        }
+        
         #endregion
     }
 }

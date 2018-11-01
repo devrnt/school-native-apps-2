@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
+using CityApp.DataModel;
 using CityApp.ViewModels;
 using CityApp.Views;
 using Microsoft.Toolkit.Uwp.Helpers;
@@ -14,7 +15,7 @@ namespace CityApp.Services.Navigation
     {
         #region === Fields === 
         private bool _isNavigating;
-
+        public static NavigationService ns;
         private delegate Task NavigatedToViewModelDelegate(object page, object parameter, NavigationEventArgs navigationArgs);
 
         private Dictionary<Type, NavigatedToViewModelDelegate> PageViewModels { get; }
@@ -63,7 +64,7 @@ namespace CityApp.Services.Navigation
             RegisterPageViewModel<SettingsPage, SettingsViewModel>();
 
             Frame.Navigated += Frame_Navigated;
-
+            ns = this;
         }
         #endregion
 
@@ -84,7 +85,7 @@ namespace CityApp.Services.Navigation
 
         private Task NavigateToPage<TPage>()
         {
-            return NavigateToPage<TPage>(parameter: null);
+            return NavigateToPage<TPage>(null);
         }
 
         private async Task NavigateToPage<TPage>(object parameter)
@@ -106,6 +107,11 @@ namespace CityApp.Services.Navigation
         public Task NavigateToCompaniesAsync()
         {
             return NavigateToPage<Companies>();
+        }
+
+        public Task NavigateToCompanyDetailsAsync(Company c)
+        {
+            return NavigateToPage<CompanyDetails>(c);
         }
 
         public Task NavigateToAccountAsync()

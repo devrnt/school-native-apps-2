@@ -1,24 +1,17 @@
 ﻿using CityApp.DataModel;
+using CityApp.Services;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 namespace CityApp.Views
 {
-    public sealed partial class Companies : Page, IPageWithViewModel<CompaniesViewModel>
+    public sealed partial class Companies : Page
     {
-        public CompaniesViewModel ViewModel { get; set; }
-
+        private INavigationService _navigationService;
         public Companies()
         {
             this.InitializeComponent();
-        }
-
-        private void CompaniesGrid_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var selectedCompany = e.ClickedItem as Company;
-            // navigate to details screen
-            // ViewModel.NavigateToCompanyDetails(selectedCompany);
         }
     }
 }

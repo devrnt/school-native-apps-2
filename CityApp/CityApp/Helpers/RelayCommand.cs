@@ -5,29 +5,38 @@ namespace CityApp.Helpers
 {
     public class RelayCommand : ICommand
     {
-        private readonly Action _execute;
-
-        private readonly Func<bool> _canExecute;
-
-        public RelayCommand(Action execute)
-            : this(execute, null)
-        {
-        }
-
-        public RelayCommand(Action execute, Func<bool> canExecute)
-        {
-            _execute = execute ?? throw new ArgumentNullException(nameof(execute));
-            _canExecute = canExecute;
-        }
-
         public event EventHandler CanExecuteChanged;
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        }
 
-        public bool CanExecute(object parameter) => _canExecute == null || _canExecute();
+        private Action<object> execute;
+        private Func<object, bool> canExecute = (_) => true;
 
-        public void Execute(object parameter) => _execute();
+        public RelayCommand(Action<object> action)
+        {
+            execute = action;
+        }
 
-        public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public RelayCommand(Action<object> action, Func<object, bool> test)
+        {
+            execute = action;
+            canExecute = test;
+        }
+
+
+        public bool CanExecute(object parameter)
+        {
+            return canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            execute(parameter);
+        }
     }
+
 
 #pragma warning disable SA1402 // File may only contain a single class
     public class RelayCommand<T> : ICommand
@@ -56,4 +65,5 @@ namespace CityApp.Helpers
 
         public void OnCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
+
 }

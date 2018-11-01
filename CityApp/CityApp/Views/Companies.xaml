@@ -7,27 +7,29 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:CityApp.ViewModels"
     xmlns:datamodel="using:CityApp.DataModel"
+    xmlns:helpers="using:CityApp.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
         <vm:CompaniesViewModel/>
     </Page.DataContext>
-    <ScrollViewer>
-        <StackPanel>
-        <GridView 
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Text="Companies" FontSize="48" HorizontalAlignment="Center"/>
+                <GridView 
             ItemsSource="{Binding Companies}" 
-            IsItemClickEnabled="True" 
-            ItemClick="CompaniesGrid_ItemClick">
-                <GridView.ItemTemplate>
-                <DataTemplate x:DataType="datamodel:Company">
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding Name}" FontSize="48"/>
-                        <TextBlock Text="{Binding Categorie}" FontSize="24"/>
-                        <TextBlock Text="{Binding Description}" FontSize="20"/>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-        </StackPanel>
-    </ScrollViewer>
+            IsItemClickEnabled="True"
+            helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="5">
+                                <TextBlock Text="{Binding Name}" FontSize="48"/>
+                                <TextBlock Text="{Binding Categorie}" FontSize="24"/>
+                                <TextBlock Text="{Binding Description}" FontSize="20"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </StackPanel>
+        </ScrollViewer>
 </Page>
