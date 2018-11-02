@@ -25,7 +25,6 @@
                             <StackPanel Margin="5">
                                 <TextBlock Text="{Binding Name}" FontSize="48"/>
                                 <TextBlock Text="{Binding Categorie}" FontSize="24"/>
-                                <TextBlock Text="{Binding Description}" FontSize="20"/>
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>

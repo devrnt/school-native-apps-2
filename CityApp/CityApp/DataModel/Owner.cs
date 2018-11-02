@@ -14,6 +14,10 @@ namespace CityApp.DataModel
         {
             Companies = companies;
         }
+
+        public Owner(string name, string firstName, DateTime birthDate, String email, String password, UserType typeOfUser) : base(name, firstName, birthDate, email, password, typeOfUser)
+        {
+        }
         #endregion
 
         #region Methods

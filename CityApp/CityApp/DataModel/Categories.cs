@@ -28,6 +28,7 @@ namespace CityApp.DataModel
         Restaurant,
         Park,
         Moskee,
-        Juweelier
+        Juweelier,
+        Wasserij
     }
 }
