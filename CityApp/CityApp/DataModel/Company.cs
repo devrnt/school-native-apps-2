@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CityApp.DataModel
 {
     // can be shops, cafes, restaurants, schools...
     public class Company
     {
-        #region Fields and Properties
+        #region === Fields and Properties === 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -29,7 +25,9 @@ namespace CityApp.DataModel
                 return Promotions.Count != 0;
             }
         }
+        #endregion
 
+        #region === Constructor ===
         public Company(int id, string name, string description, ICollection<string> keyWords, Categories categorie, Owner owner, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
         {
             Id = id;
@@ -44,8 +42,11 @@ namespace CityApp.DataModel
             SocialMedia = socialMedia;
             Promotions = promotions;
         }
+
+        public Company()
+        {
+
+        }
         #endregion
-
-
     }
 }

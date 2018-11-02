@@ -62,6 +62,7 @@ namespace CityApp.Services.Navigation
             PageViewModels = new Dictionary<Type, NavigatedToViewModelDelegate>();
             RegisterPageViewModel<Companies, CompaniesViewModel>();
             RegisterPageViewModel<SettingsPage, SettingsViewModel>();
+            RegisterPageViewModel<CompanyDetails, CompanyDetailsViewModel>();
 
             Frame.Navigated += Frame_Navigated;
             ns = this;
@@ -90,11 +91,11 @@ namespace CityApp.Services.Navigation
 
         private async Task NavigateToPage<TPage>(object parameter)
         {
-            //// Early out if already in the middle of a Navigation
-            //if (_isNavigating)
-            //{
-            //    return;
-            //}
+            // Early out if already in the middle of a Navigation
+            if (_isNavigating)
+            {
+                return;
+            }
 
             _isNavigating = true;
 
