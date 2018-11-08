@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace CityApp.DataModel
 {
     public enum Categories
-    {
+    {  
+        All,
         Accounting,
         Vliegveld,
         Aquarium,
@@ -21,7 +22,8 @@ namespace CityApp.DataModel
         CarWash,
         Tandarts,
         Brandweer,
-        Firness, Winkel, 
+        Fitness,
+        Winkel, 
         Zoo,
         Café,
         School,

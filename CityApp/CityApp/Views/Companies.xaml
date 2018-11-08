@@ -10,14 +10,15 @@
     xmlns:helpers="using:CityApp.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.DataContext>
-        <vm:CompaniesViewModel/>
-    </Page.DataContext>
+    <StackPanel>
+        <TextBlock Text="Companies" FontSize="48" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <ComboBox x:Name="fCat" PlaceholderText="Category" SelectionChanged="fCat_SelectionChanged"  ItemsSource="{Binding AllCategories}" Margin="5"/>
+            <Button Content="Reset" Click="Reset_Filters" Margin="5"/>
+        </StackPanel>
         <ScrollViewer>
-            <StackPanel>
-                <TextBlock Text="Companies" FontSize="48" HorizontalAlignment="Center"/>
-                <GridView 
-            ItemsSource="{Binding Companies}" 
+            <GridView Name="gv"
+            ItemsSource="{Binding Companies, Mode=OneWay}" 
             IsItemClickEnabled="True"
             helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
                     <GridView.ItemTemplate>
@@ -29,6 +30,6 @@
                         </DataTemplate>
                     </GridView.ItemTemplate>
                 </GridView>
-            </StackPanel>
         </ScrollViewer>
+    </StackPanel>
 </Page>
