@@ -146,6 +146,11 @@
                 case "Account":
                     _navigationService.NavigateToAccountAsync();
                     break;
+                case "[Tijdelijk] bedrijf toevoegen":
+                    _navigationService.NavigateToAddCompanyAsync();
+                    break;
+
+
             }
         }
 

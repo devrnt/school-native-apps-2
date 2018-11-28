@@ -5,6 +5,7 @@ using Autofac;
 using CityApp.DataModel;
 using CityApp.ViewModels;
 using CityApp.Views;
+using CityApp.Views.Companies;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -118,6 +119,11 @@ namespace CityApp.Services.Navigation
         public Task NavigateToAccountAsync()
         {
             return NavigateToPage<Account>();
+        }
+
+        public Task NavigateToAddCompany()
+        {
+            return NavigateToPage<AddCompany>();
         }
 
         public Task NavigateToSettingsAsync()

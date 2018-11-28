@@ -51,6 +51,11 @@ Explanation TAGS
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
+                <FCU:NavigationViewItem Content="[Tijdelijk] bedrijf toevoegen" >
+                    <FCU:NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>
+                    </FCU:NavigationViewItem.Icon>
+                </FCU:NavigationViewItem>
             </FCU:NavigationView.MenuItems>
             <Frame x:Name="appNavFrame" Navigated="AppNavFrame_Navigated">
             </Frame>

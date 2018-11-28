@@ -19,6 +19,7 @@ namespace CityApp.Services
         Task NavigateToCompanyDetailsAsync(Company c);
         Task NavigateToAccountAsync();
         Task NavigateToSettingsAsync();
+        Task NavigateToAddCompanyAsync()
         Task GoBackAsync();
     }
 }
