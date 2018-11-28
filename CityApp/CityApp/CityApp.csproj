@@ -134,13 +134,16 @@
     <Compile Include="Views\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Companies\CompanyDetails.xaml.cs">
+    <Compile Include="Views\Company\AddCompany.xaml.cs">
+      <DependentUpon>AddCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Company\CompanyDetails.xaml.cs">
       <DependentUpon>CompanyDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Companies\Companies.xaml.cs">
+    <Compile Include="Views\Company\Companies.xaml.cs">
       <DependentUpon>Companies.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NavigationRoot.xaml.cs">
@@ -189,7 +192,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Companies\CompanyDetails.xaml">
+    <Page Include="Views\Company\AddCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Company\CompanyDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,7 +204,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Companies\Companies.xaml">
+    <Page Include="Views\Company\Companies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

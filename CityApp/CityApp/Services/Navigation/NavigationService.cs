@@ -122,8 +122,9 @@ namespace CityApp.Services.Navigation
 
         public Task NavigateToAddCompanyAsync()
         {
-            return NavigateToPage<Account>();
+            return NavigateToPage<AddCompany>();
         }
+
         public Task NavigateToSettingsAsync()
         {
             return NavigateToPage<SettingsPage>();
@@ -165,6 +166,9 @@ namespace CityApp.Services.Navigation
                 var ignoredTask = loadViewModelDelegate(e.Content, e.Parameter, e);
             }
         }
-       #endregion
+
+      
+
+        #endregion
     }
 }

@@ -1,0 +1,109 @@
+﻿<Page
+    x:Class="CityApp.Views.AddCompany"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CityApp.Views.Companies"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helper="using:CityApp.Helpers"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+            Grid.Row="0"
+            x:Uid="AddCompany_Title"
+            x:Name="TitlePage"
+            FontWeight="Light"
+            Style="{StaticResource PageTitleStyle}"/>
+
+            <StackPanel Grid.Row="1">
+                <StackPanel Margin="{StaticResource SettingsSubheaderMargin}" HorizontalAlignment="Left">
+                    <TextBlock
+                    Text="Onderneming"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+
+                    <TextBox Width="450"
+                         Name="CompanyName_Input"
+                         Header="Naam"
+                          Margin="0,12,0,12"
+                         PlaceholderText="Typ de naam van de onderneming hier"/>
+
+                    <TextBox Width="450"
+                         Name="CompanyDescription_Input"
+                         Header="Omschrijving"
+                         TextWrapping="Wrap"
+                          Margin="0,12,0,12"
+                         MaxHeight="170"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         PlaceholderText="Typ de omschrijving van de onderneming hier"/>
+
+                    <TextBox Width="450"
+                         Name="CompanyKeywords"
+                          Margin="0,12,0,12"
+                         Header="Zoekwoorden"
+                         PlaceholderText="Typ de zoekwoorden hier">
+                        <ToolTipService.ToolTip>
+                            <ToolTip Content="Gebruik een ',' om de woorden te scheiden" HorizontalOffset="100" VerticalOffset="-80"/>
+                        </ToolTipService.ToolTip>
+                    </TextBox>
+
+                    <ComboBox Header="Categorie"
+                          Margin="0,0,0,24"
+                          x:Name="CategoryComboBox"
+                          PlaceholderText="Categorie" SelectionChanged="CategoryComboBox_SelectionChanged"
+                          ItemsSource="{Binding AvailableCategories}"/>
+
+                    <TextBlock
+                    Text="Locatie"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+
+                    <TextBox Width="450"
+                         Name="CompanyCity"
+                          Margin="0,24,0,12"
+                         Header="Stad"
+                         PlaceholderText="Typ hier de stad waar uw onderneming"/>
+
+
+                    <TextBox Width="450"
+                         Name="CompanyPostal"
+                          Margin="0,12,0,12"
+                         Header="Postcode"
+                         PlaceholderText="Typ de postcode hier"/>
+
+
+                    <TextBox Width="450"
+                         Name="CompanyStreet"
+                          Margin="0,12,0,12"
+                         Header="Straat"
+                         PlaceholderText="Typ de straat hier"/>
+
+                    <TextBox Width="450"
+                         Name="CompanyNumber"
+                          Margin="0,12,0,12"
+                         Header="Nummer"
+                         PlaceholderText="Typ het huisnummer hier"/>
+
+
+                    <StackPanel Margin="{StaticResource EightTopMargin}">
+
+
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
+                    <TextBlock
+                        x:Uid="Settings_About"
+                        Style="{StaticResource SubtitleTextBlockStyle}"/>
+
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

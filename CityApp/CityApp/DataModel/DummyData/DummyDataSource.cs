@@ -17,7 +17,7 @@ namespace CityApp.DataModel
                 new List<string>() { "was", "laundry", "Swashy" },
                 Categories.Wasserij,
                 new Owner("van Gestel", "Gerry", new DateTime(1995, 3, 5), "GerryvanGestel@teleworm.be", "gerrygerry", UserType.Owner),
-                new List<Location>() { new Location("Belgium", "Gent", 9000, "Grensstraat", 12, 51.076190, 3.710630) },
+                new List<Location>() { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },
                 null, null, null, null);
 
             company.Promotions = new List<Promotion>() { new Promotion("Dit is een promotie!"), new Promotion("Nog een promotie zeg") };
