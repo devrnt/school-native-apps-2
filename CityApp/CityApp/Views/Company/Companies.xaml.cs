@@ -1,18 +1,21 @@
 ﻿using CityApp.DataModel;
+using CityApp.Helpers;
 using CityApp.Services;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
 using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace CityApp.Views
 {
     public sealed partial class Companies : Page, IPageWithViewModel<CompaniesViewModel>
     {
-        private INavigationService _navigationService;
         private CompaniesViewModel _cv;
-
+        private NullableBooleanToBooleanConverter _boolConverter;
         public CompaniesViewModel ViewModel { get; set; }
+        private Categories cat { get { return fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem; } }
+        private bool promo { get { return fPromo.IsChecked == null ? false : fPromo.IsChecked == false ? false : true; } }
 
         public Companies()
         {
@@ -24,14 +27,18 @@ namespace CityApp.Views
         private void fCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Categories cat = fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem;
-            gv.ItemsSource = _cv.UpdateFilter(cat, "");
+            gv.ItemsSource = _cv.UpdateFilter(cat, promo);
         }
 
         private void Reset_Filters(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             fCat.SelectedIndex = -1;
-            gotPromotionsComboBox.SelectedIndex = -1;
+            fPromo.IsChecked = false;
             gv.ItemsSource = _cv.ResetFilter();
+        }
+        private void Update_Filters(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            gv.ItemsSource = _cv.UpdateFilter(cat, promo);
         }
 
         private void Search_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -48,17 +55,6 @@ namespace CityApp.Views
         private void Search_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             ViewModel.ShowCompanyDetails(args.SelectedItem as Company);
-        }
-
-        private void GotPromotionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            string selectedItem = comboBox.SelectedItem.ToString();
-
-            Categories cat = fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem;
-
-
-            gv.ItemsSource = _cv.UpdateFilter(cat, selectedItem);
         }
     }
 }
