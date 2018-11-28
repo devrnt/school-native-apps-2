@@ -5,7 +5,6 @@ using Autofac;
 using CityApp.DataModel;
 using CityApp.ViewModels;
 using CityApp.Views;
-using CityApp.Views.Companies;
 using Microsoft.Toolkit.Uwp.Helpers;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -123,7 +122,7 @@ namespace CityApp.Services.Navigation
 
         public Task NavigateToAddCompany()
         {
-            return NavigateToPage<AddCompany>();
+            return NavigateToPage<Account>();
         }
 
         public Task NavigateToSettingsAsync()
@@ -166,6 +165,11 @@ namespace CityApp.Services.Navigation
                 var loadViewModelDelegate = PageViewModels[e.SourcePageType];
                 var ignoredTask = loadViewModelDelegate(e.Content, e.Parameter, e);
             }
+        }
+
+        public Task NavigateToAddCompanyAsync()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

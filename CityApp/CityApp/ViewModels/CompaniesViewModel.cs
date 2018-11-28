@@ -39,7 +39,7 @@ namespace CityApp.ViewModels
                 AllCategories.Add(cat);
             }
             CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
-            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, ""));
+            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, false));
 
             _navigationService = NavigationService.ns;
         }
@@ -64,26 +64,20 @@ namespace CityApp.ViewModels
             _navigationService.NavigateToCompanyDetailsAsync(p);
         }
 
-        public ObservableCollection<Company> UpdateFilter(Categories cat, string promotions)
+        public ObservableCollection<Company> UpdateFilter(Categories cat, bool promo)
         {
             List<Company> fCompanies = DummyDataSource.Companies;
             if (cat != Categories.All)
             {
                 fCompanies = fCompanies.Where(p => p.Categorie == cat).ToList();
             }
-            if (promotions == "Ja")
+            if (promo)
             {
                 Console.WriteLine((fCompanies[0].Promotions));
                 fCompanies= fCompanies
                     .TakeWhile(c => c.Promotions != null)
                     .Where(c => c.Promotions.Count > 0)
                     .ToList();
-            }
-            else if (promotions == "Nee")
-            {
-                fCompanies = fCompanies
-                                    .Where(c => c.Promotions.Count == 0)
-                                    .ToList();
             }
             return new ObservableCollection<Company>(fCompanies);
         }
