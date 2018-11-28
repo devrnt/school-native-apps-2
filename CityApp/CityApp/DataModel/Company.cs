@@ -48,5 +48,12 @@ namespace CityApp.DataModel
 
         }
         #endregion
+
+        #region === Methods === 
+        public override string ToString()
+        {
+            return string.Format("{0}", Name);
+        }
+        #endregion
     }
 }

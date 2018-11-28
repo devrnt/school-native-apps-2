@@ -2,14 +2,17 @@
 using CityApp.Services;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 
 namespace CityApp.Views
 {
-    public sealed partial class Companies : Page
+    public sealed partial class Companies : Page, IPageWithViewModel<CompaniesViewModel>
     {
         private INavigationService _navigationService;
         private CompaniesViewModel _cv;
+
+        public CompaniesViewModel ViewModel { get; set; }
 
         public Companies()
         {
@@ -28,6 +31,22 @@ namespace CityApp.Views
         {
             fCat.SelectedIndex = -1;
             gv.ItemsSource = _cv.ResetFilter();
+        }
+
+        private void Search_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                // TODO: Fetch all the available companies from a service and get them here in the list
+                var companies = DummyDataSource.Companies;
+                var results = companies.Where(c => c.Name.IndexOf(sender.Text, System.StringComparison.CurrentCultureIgnoreCase) >= 0);
+                sender.ItemsSource = results.ToList();
+            }
+        }
+
+        private void Search_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            ViewModel.ShowCompanyDetails(args.SelectedItem as Company);
         }
     }
 }

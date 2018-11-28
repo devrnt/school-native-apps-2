@@ -44,6 +44,11 @@ namespace CityApp.ViewModels
         {
             _navigationService = navigationService;
         }
+
+        internal void ShowCompanyDetails()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region === Methods ===
@@ -51,7 +56,7 @@ namespace CityApp.ViewModels
         // Then:
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
-        private void ShowCompanyDetails(Company p)
+        public void ShowCompanyDetails(Company p)
         {
             _navigationService.NavigateToCompanyDetailsAsync(p);
         }

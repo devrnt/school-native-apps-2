@@ -5,6 +5,7 @@
     xmlns:local="using:CityApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:vm="using:CityApp.ViewModels"
     xmlns:datamodel="using:CityApp.DataModel"
     xmlns:helpers="using:CityApp.Helpers"
@@ -12,24 +13,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel>
         <TextBlock Text="Companies" FontSize="48" HorizontalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <ComboBox x:Name="fCat" PlaceholderText="Category" SelectionChanged="fCat_SelectionChanged"  ItemsSource="{Binding AllCategories}" Margin="5"/>
             <Button Content="Reset" Click="Reset_Filters" Margin="5"/>
+            <AutoSuggestBox x:Name="Search" PlaceholderText="Zoek bedrijf" QueryIcon="Find"
+                            TextChanged="Search_TextChanged"
+                            SuggestionChosen="Search_SuggestionChosen"
+                        Width="200"
+                            RequestedTheme="Light"
+                            animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}" VerticalAlignment="Center"/>
         </StackPanel>
+       
         <ScrollViewer>
             <GridView Name="gv"
             ItemsSource="{Binding Companies, Mode=OneWay}" 
             IsItemClickEnabled="True"
             helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="5">
-                                <TextBlock Text="{Binding Name}" FontSize="48"/>
-                                <TextBlock Text="{Binding Categorie}" FontSize="24"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="{Binding Name}" FontSize="48"/>
+                            <TextBlock Text="{Binding Categorie}" FontSize="24"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </ScrollViewer>
     </StackPanel>
 </Page>

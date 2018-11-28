@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CityApp.DataModel
 {
-    class DummyDataSource
+    static class DummyDataSource
     {
         public static List<Company> Companies { get; set; } = new List<Company>()
         {
@@ -17,7 +17,7 @@ namespace CityApp.DataModel
                 new Owner("van Gestel", "Gerry", new DateTime(1995, 3, 5), "GerryvanGestel@teleworm.be", "gerrygerry", UserType.Owner),
                 new List<Location> () {new Location("Belgium", "Gent", 9000, "Grensstraat", 12, 51.076190, 3.710630) },
                 null, null, null, null),
-            new Company(2, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null),
+            new Company(2, "De Wasserte", "Beschrijving comp2", null, Categories.Wasserij, null, null, null, null, null, null),
             new Company(3, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null),
             new Company(4, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null),
             new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null)
