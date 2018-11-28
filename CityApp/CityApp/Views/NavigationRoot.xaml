@@ -31,21 +31,6 @@ Explanation TAGS
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE707;"></FontIcon>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="Menu item 3">
-                    <FCU:NavigationViewItem.Icon>
-                        <FontIcon x:Name="MenuItem3" FontFamily="Segoe MDL2 Assets" Glyph="&#xE728;" ></FontIcon>
-                    </FCU:NavigationViewItem.Icon>
-                </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="Menu item 4">
-                    <FCU:NavigationViewItem.Icon>
-                        <FontIcon x:Name="MenuItem4" FontFamily="Segoe MDL2 Assets" Glyph="&#xECFC;" ></FontIcon>
-                    </FCU:NavigationViewItem.Icon>
-                </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="Menu item 5" >
-                    <FCU:NavigationViewItem.Icon>
-                        <FontIcon x:Name="MenutItem5" FontFamily="Segoe MDL2 Assets" Glyph="&#xE896;" ></FontIcon>
-                    </FCU:NavigationViewItem.Icon>
-                </FCU:NavigationViewItem>
                 <FCU:NavigationViewItem Content="Account" >
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>

@@ -120,11 +120,10 @@ namespace CityApp.Services.Navigation
             return NavigateToPage<Account>();
         }
 
-        public Task NavigateToAddCompany()
+        public Task NavigateToAddCompanyAsync()
         {
             return NavigateToPage<Account>();
         }
-
         public Task NavigateToSettingsAsync()
         {
             return NavigateToPage<SettingsPage>();
@@ -166,12 +165,6 @@ namespace CityApp.Services.Navigation
                 var ignoredTask = loadViewModelDelegate(e.Content, e.Parameter, e);
             }
         }
-
-        public Task NavigateToAddCompanyAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        #endregion
+       #endregion
     }
 }

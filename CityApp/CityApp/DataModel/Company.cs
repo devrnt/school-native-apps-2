@@ -18,11 +18,11 @@ namespace CityApp.DataModel
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
-        public bool HasPromotions
+        public bool HasPromotion
         {
             get
             {
-                return Promotions.Count != 0;
+                return Promotions==null?false:Promotions.Count==0?false:true;
             }
         }
         #endregion
