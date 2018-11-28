@@ -16,6 +16,8 @@ namespace CityApp.ViewModels
         private INavigationService _navigationService;
         public ObservableCollection<Company> Companies { get; set; }
         public List<Categories> AllCategories { get; set; }
+
+        public List<string> PromotionsChoices { get; set; }
         // add the list of companies here in future
         // IQueryable<Company> _companies;
         #endregion
@@ -31,12 +33,13 @@ namespace CityApp.ViewModels
         {
             Companies = new ObservableCollection<Company>(DummyDataSource.Companies);
             AllCategories = new List<Categories>();
+            PromotionsChoices = new List<string>() { "Ja", "Nee" };
             foreach (Categories cat in Enum.GetValues(typeof(Categories)))
             {
                 AllCategories.Add(cat);
             }
             CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
-            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p));
+            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, ""));
 
             _navigationService = NavigationService.ns;
         }
@@ -61,13 +64,28 @@ namespace CityApp.ViewModels
             _navigationService.NavigateToCompanyDetailsAsync(p);
         }
 
-        public ObservableCollection<Company> UpdateFilter(Categories cat)
+        public ObservableCollection<Company> UpdateFilter(Categories cat, string promotions)
         {
             List<Company> fCompanies = DummyDataSource.Companies;
-            if (cat != Categories.All) {
-                fCompanies = fCompanies.Where(p => p.Categorie == cat).ToList<Company>();
+            if (cat != Categories.All)
+            {
+                fCompanies = fCompanies.Where(p => p.Categorie == cat).ToList();
             }
-          return new ObservableCollection<Company>(fCompanies);
+            if (promotions == "Ja")
+            {
+                Console.WriteLine((fCompanies[0].Promotions));
+                fCompanies= fCompanies
+                    .TakeWhile(c => c.Promotions != null)
+                    .Where(c => c.Promotions.Count > 0)
+                    .ToList();
+            }
+            else if (promotions == "Nee")
+            {
+                fCompanies = fCompanies
+                                    .Where(c => c.Promotions.Count == 0)
+                                    .ToList();
+            }
+            return new ObservableCollection<Company>(fCompanies);
         }
         public ObservableCollection<Company> ResetFilter()
         {

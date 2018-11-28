@@ -24,10 +24,10 @@ namespace CityApp.DataModel
 
             return new List<Company>() {
                 company,
-                new Company(2, "De Wasserte", "Beschrijving comp2", null, Categories.Wasserij, null, null, null, null, null, null),
-                new Company(3, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null),
-                new Company(4, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, null),
-                new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, null)
+                new Company(2, "De Wasserte", "Beschrijving comp2", null, Categories.Wasserij, null, null, null, null, null, new List<Promotion>()),
+                new Company(3, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, new List<Promotion>()),
+                new Company(4, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, new List<Promotion>()),
+                new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, new List<Promotion>())
             };
         }
     }

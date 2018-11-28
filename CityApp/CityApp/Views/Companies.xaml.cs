@@ -24,12 +24,13 @@ namespace CityApp.Views
         private void fCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Categories cat = fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem;
-            gv.ItemsSource = _cv.UpdateFilter(cat);
+            gv.ItemsSource = _cv.UpdateFilter(cat, "");
         }
 
         private void Reset_Filters(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             fCat.SelectedIndex = -1;
+            gotPromotionsComboBox.SelectedIndex = -1;
             gv.ItemsSource = _cv.ResetFilter();
         }
 
@@ -47,6 +48,17 @@ namespace CityApp.Views
         private void Search_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             ViewModel.ShowCompanyDetails(args.SelectedItem as Company);
+        }
+
+        private void GotPromotionsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            string selectedItem = comboBox.SelectedItem.ToString();
+
+            Categories cat = fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem;
+
+
+            gv.ItemsSource = _cv.UpdateFilter(cat, selectedItem);
         }
     }
 }
