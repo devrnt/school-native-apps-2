@@ -97,7 +97,7 @@
     </Compile>
     <Compile Include="DataModel\Categories.cs" />
     <Compile Include="DataModel\Company.cs" />
-    <Compile Include="DataModel\DummyDataSource.cs" />
+    <Compile Include="DataModel\DummyData\DummyDataSource.cs" />
     <Compile Include="DataModel\LeaveOfAbsence.cs" />
     <Compile Include="DataModel\Location.cs" />
     <Compile Include="DataModel\OpeningHours.cs" />
