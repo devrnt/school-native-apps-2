@@ -8,20 +8,16 @@
         public int Postal { get; set; }
         public string Street { get; set; }
         public int Number { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
         #endregion
 
         #region === Constructor === 
-        public Location(string country, string city, int postal, string street, int number, double latitude, double longitude)
+        public Location(string country, string city, int postal, string street, int number)
         {
             Country = country;
             City = city;
             Postal = postal;
             Street = street;
             Number = number;
-            Latitude = latitude;
-            Longitude = longitude;
         }
         #endregion
     }
