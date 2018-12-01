@@ -8,7 +8,35 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock>FJOjeofjoe</TextBlock>
-    </Grid>
+    <ScrollViewer>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+            Grid.Row="0"
+            Text="Nieuwe promotie"
+            FontWeight="Light"
+            Style="{StaticResource PageTitleStyle}"/>
+
+            <StackPanel Grid.Row="1">
+                <StackPanel Margin="{StaticResource SettingsSubheaderMargin}" HorizontalAlignment="Left">
+                    <TextBlock
+                    Text="Promotie"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+
+                    <TextBox Width="450"
+                         Name="Input_Omschrijving"
+                         Header="Omschrijving"
+                         Margin="0,12,0,12"
+                         PlaceholderText="Typ de omschrijving van de promotie hier"/>
+
+                </StackPanel>
+                <Button Content="Maak" Click="CreatePromotion_Click">
+                    
+                </Button>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>

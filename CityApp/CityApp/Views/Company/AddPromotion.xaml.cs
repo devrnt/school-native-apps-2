@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using CityApp.DataModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,23 @@ namespace CityApp.Views.Company
     /// </summary>
     public sealed partial class AddPromotion : Page
     {
+        // company passed by the previous page to add the promotion
+        public CityApp.DataModel.Company Company { get; set; }
+
         public AddPromotion()
         {
+            // Tijdelijk, zal altijd een valid company zijn
+            Company = DummyDataSource.Companies[0];
             this.InitializeComponent();
+        }
+
+        private void CreatePromotion_Click(object sender, RoutedEventArgs e)
+        {
+            var promotion = new Promotion(Input_Omschrijving.Text);
+
+            Company.Promotions.Add(promotion);
+            // post the new company to the REST api
+            
         }
     }
 }
