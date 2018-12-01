@@ -149,8 +149,9 @@
                 case "[Tijdelijk] bedrijf toevoegen":
                     _navigationService.NavigateToAddCompanyAsync();
                     break;
-
-
+                case "[Tijdelijk] promotie toevoegen":
+                    _navigationService.NavigateToAddPromotionAsync();
+                    break;
             }
         }
 

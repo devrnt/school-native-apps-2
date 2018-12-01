@@ -54,7 +54,7 @@ namespace CityApp.Views
 
         private void Search_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-            ViewModel.ShowCompanyDetails(args.SelectedItem as Company);
+            ViewModel.ShowCompanyDetails(args.SelectedItem as CityApp.DataModel.Company);
         }
     }
 }

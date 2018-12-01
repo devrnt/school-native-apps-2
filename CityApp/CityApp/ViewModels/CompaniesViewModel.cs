@@ -48,10 +48,6 @@ namespace CityApp.ViewModels
             _navigationService = navigationService;
         }
 
-        internal void ShowCompanyDetails()
-        {
-            throw new NotImplementedException();
-        }
         #endregion
 
         #region === Methods ===
