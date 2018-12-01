@@ -1,9 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CityApp.DataModel
 {
     public class OpeningHours
     {
-        // openingsuren van tot inde week etc 
+        public List<Days> Opendagen;
+        public string Van;
+        public string Tot;
+
+        public OpeningHours(List<Days> opendagen, string van, string tot)
+        {
+            Opendagen = opendagen;
+            Van = van;
+            Tot = tot;
+        }
     }
 }

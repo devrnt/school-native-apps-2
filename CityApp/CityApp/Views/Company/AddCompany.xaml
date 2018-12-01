@@ -29,23 +29,23 @@
                     Style="{StaticResource SubtitleTextBlockStyle}" />
 
                     <TextBox Width="450"
-                         Name="CompanyName_Input"
+                         Name="Input_CompanyName"
                          Header="Naam"
-                          Margin="0,12,0,12"
+                         Margin="0,12,0,12"
                          PlaceholderText="Typ de naam van de onderneming hier"/>
 
                     <TextBox Width="450"
-                         Name="CompanyDescription_Input"
+                         Name="Input_CompanyDescription"
                          Header="Omschrijving"
                          TextWrapping="Wrap"
-                          Margin="0,12,0,12"
+                         Margin="0,12,0,12"
                          MaxHeight="170"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          PlaceholderText="Typ de omschrijving van de onderneming hier"/>
 
                     <TextBox Width="450"
-                         Name="CompanyKeywords"
-                          Margin="0,12,0,12"
+                         Name="Input_CompanyKeywords"
+                         Margin="0,12,0,12"
                          Header="Zoekwoorden"
                          PlaceholderText="Typ de zoekwoorden hier">
                         <ToolTipService.ToolTip>
@@ -55,45 +55,82 @@
 
                     <ComboBox Header="Categorie"
                           Margin="0,0,0,24"
-                          x:Name="CategoryComboBox"
+                          Name="Input_CategoryComboBox"
                           PlaceholderText="Categorie" SelectionChanged="CategoryComboBox_SelectionChanged"
-                          ItemsSource="{Binding AvailableCategories}"/>
+                          ItemsSource="{Binding AllCategories}"/>
 
                     <TextBlock
                     Text="Locatie"
                     Style="{StaticResource SubtitleTextBlockStyle}" />
 
                     <TextBox Width="450"
-                         Name="CompanyCity"
-                          Margin="0,24,0,12"
+                         Name="Input_CompanyCity"
+                         Margin="0,24,0,12"
                          Header="Stad"
                          PlaceholderText="Typ hier de stad waar uw onderneming"/>
 
 
                     <TextBox Width="450"
-                         Name="CompanyPostal"
-                          Margin="0,12,0,12"
+                         Name="Input_CompanyPostal"
+                         Margin="0,12,0,12"
                          Header="Postcode"
                          PlaceholderText="Typ de postcode hier"/>
 
 
                     <TextBox Width="450"
-                         Name="CompanyStreet"
-                          Margin="0,12,0,12"
+                         Name="Input_CompanyStreet"
+                         Margin="0,12,0,12"
                          Header="Straat"
                          PlaceholderText="Typ de straat hier"/>
 
                     <TextBox Width="450"
-                         Name="CompanyNumber"
-                          Margin="0,12,0,12"
+                         Name="Input_CompanyNumber"
+                         Margin="0,12,0,12"
                          Header="Nummer"
                          PlaceholderText="Typ het huisnummer hier"/>
-
-
-                    <StackPanel Margin="{StaticResource EightTopMargin}">
-
-
+                    <TextBlock Text="Openingsuren"/>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox x:Name="ou_maandag" Content="Maandag" Margin="5"/>
+                        <CheckBox x:Name="ou_dinsdag" Content="Dinsdag" Margin="5"/>
+                        <CheckBox x:Name="ou_woensdag" Content="Woensdag" Margin="5"/>
+                        <CheckBox x:Name="ou_donderdag" Content="Donderdag" Margin="5"/>
+                        <CheckBox x:Name="ou_vrijdag" Content="Vrijdag" Margin="5"/>
+                        <CheckBox x:Name="ou_zaterdag" Content="Zaterdag" Margin="5"/>
+                        <CheckBox x:Name="ou_zondag" Content="Zondag" Margin="5"/>
                     </StackPanel>
+                    <TextBox Width="450"
+                         Name="ou_van"
+                         Header="Van"
+                         PlaceholderText="08:00"/>
+                    <TextBox Width="450"
+                         Name="ou_tot"
+                         Header="Tot"
+                         PlaceholderText="18:00"/>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="cb_Facebook" Content="Facebook"></CheckBox>
+                        <TextBox Width="450"
+                         Name="sm_Facebook"
+                         PlaceholderText="Facebook Url"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="cb_Twitter" Content="Twitter"></CheckBox>
+                        <TextBox Width="450"
+                         Name="sm_Twitter"
+                         PlaceholderText="Twitter Url"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="cb_Youtube" Content="Youtube"></CheckBox>
+                        <TextBox Width="450"
+                         Name="sm_Youtube"
+                         PlaceholderText="Youtube Url"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Name="cb_Google" Content="Google"></CheckBox>
+                        <TextBox Width="450"
+                         Name="sm_Google"
+                         PlaceholderText="Google Url"/>
+                    </StackPanel>
+                    <Button Content="Create" Click="CreateCompany"/>
                 </StackPanel>
 
                 <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">

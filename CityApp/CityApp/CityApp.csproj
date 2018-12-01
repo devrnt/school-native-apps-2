@@ -97,6 +97,7 @@
     </Compile>
     <Compile Include="DataModel\Categories.cs" />
     <Compile Include="DataModel\Company.cs" />
+    <Compile Include="DataModel\Days.cs" />
     <Compile Include="DataModel\DummyData\DummyDataSource.cs" />
     <Compile Include="DataModel\LeaveOfAbsence.cs" />
     <Compile Include="DataModel\Location.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ViewModeService.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\AddCompanyViewModel.cs" />
     <Compile Include="ViewModels\CompaniesViewModel.cs" />
     <Compile Include="ViewModels\CompanyDetailsViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
