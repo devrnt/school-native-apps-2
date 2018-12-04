@@ -18,11 +18,12 @@ namespace CityApp.DataModel
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
+        public ICollection<Discount> Discounts { get; set; }
         public bool HasPromotion
         {
             get
             {
-                return Promotions==null?false:Promotions.Count==0?false:true;
+                return Promotions == null ? false : Promotions.Count == 0 ? false : true;
             }
         }
         #endregion
@@ -41,6 +42,7 @@ namespace CityApp.DataModel
             LeaveOfAbsence = leaveOfAbsence;
             SocialMedia = socialMedia;
             Promotions = promotions;
+            Discounts = new List<Discount>();
         }
 
         public Company()

@@ -23,5 +23,10 @@ namespace CityApp.DataModel
         {
             return $"De kortingscode {CouponCode}";
         }
+
+        public override string ToString()
+        {
+            return $"{CouponCode} [naam]";
+        }
     }
 }

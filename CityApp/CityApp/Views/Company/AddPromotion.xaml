@@ -32,9 +32,16 @@
                          Margin="0,12,0,12"
                          PlaceholderText="Typ de omschrijving van de promotie hier"/>
 
+                    <ComboBox x:Name="Discounts_ComboBox"
+                              Header="Kortingen"
+                              Width="250"
+                              PlaceholderText="Kortingen"
+                              ItemsSource="{x:Bind Discounts}" 
+                              />
+
                 </StackPanel>
                 <Button Content="Maak" Click="CreatePromotion_Click">
-                    
+
                 </Button>
             </StackPanel>
         </Grid>

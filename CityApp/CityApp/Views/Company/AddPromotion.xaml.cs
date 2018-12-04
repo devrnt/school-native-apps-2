@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,21 +26,25 @@ namespace CityApp.Views.Company
     {
         // company passed by the previous page to add the promotion
         public CityApp.DataModel.Company Company { get; set; }
+        public ObservableCollection<Discount> Discounts { get; set; }
 
         public AddPromotion()
         {
             // Tijdelijk, zal altijd een valid company zijn
             Company = DummyDataSource.Companies[0];
+            Company.Discounts = new List<Discount>() { new Discount("couponcode") };
+            Discounts = new ObservableCollection<Discount>(Company.Discounts);
             this.InitializeComponent();
         }
 
         private void CreatePromotion_Click(object sender, RoutedEventArgs e)
         {
-            var promotion = new Promotion(Input_Omschrijving.Text);
+            var selectedDiscount = Discounts_ComboBox.SelectedItem as Discount;
+            var promotion = new Promotion(Input_Omschrijving.Text, selectedDiscount);
 
             Company.Promotions.Add(promotion);
             // post the new company to the REST api
-            
+
         }
     }
 }
