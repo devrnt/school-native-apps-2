@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="CityApp.Views.Company.AddDiscount"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CityApp.Views.Company"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <ScrollViewer>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock 
+            Grid.Row="0"
+            Text="Nieuwe korting"
+            FontWeight="Light"
+            Style="{StaticResource PageTitleStyle}"/>
+
+            <StackPanel Grid.Row="1">
+                <StackPanel Margin="{StaticResource SettingsSubheaderMargin}" HorizontalAlignment="Left">
+                    <TextBlock
+                    Text="Korting"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+
+                    <TextBox Width="450"
+                         Name="Input_Kortingscode"
+                         Header="Kortingscode"
+                         Margin="0,12,0,12"
+                         PlaceholderText="Typ de kortingscode van de korting hier"/>
+
+                    <TextBlock 
+                        Text="PDF bestand"
+                        Margin="0, 8, 0,8"/>
+
+                    <StackPanel 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Left">
+                        <Button 
+                            Content="Blader"
+                            Click="BrowsePdf_Click"/>
+                        <TextBlock 
+                            VerticalAlignment="Center"
+                            Margin="10,0,0,0"
+                            Name="ChosenPdf_Text"
+                            Text="Geen bestand gekozen"/>
+                    </StackPanel>
+                    <Button Content="Maak" 
+                            Click="CreateDiscount_Click"
+                            Margin="0, 32, 0, 32"/>
+
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>

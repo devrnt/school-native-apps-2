@@ -131,6 +131,11 @@ namespace CityApp.Services.Navigation
             return NavigateToPage<AddPromotion>();
         }
 
+        public Task NavigateToAddDiscountAsync()
+        {
+            return NavigateToPage<AddDiscount>();
+        }
+
         public Task NavigateToSettingsAsync()
         {
             return NavigateToPage<SettingsPage>();

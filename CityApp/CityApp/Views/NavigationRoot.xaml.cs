@@ -152,6 +152,9 @@
                 case "[Tijdelijk] promotie toevoegen":
                     _navigationService.NavigateToAddPromotionAsync();
                     break;
+                case "[Tijdelijk] kortingscode toevoegen":
+                    _navigationService.NavigateToAddDiscountAsync();
+                    break;
             }
         }
 

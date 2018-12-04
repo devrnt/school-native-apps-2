@@ -12,7 +12,7 @@ namespace CityApp.Services
 
         bool CanGoBack { get; }
 
-        bool IsNavigating { get;}
+        bool IsNavigating { get; }
 
         // Add Tasks to handle navigation menu
         Task NavigateToCompaniesAsync();
@@ -21,6 +21,7 @@ namespace CityApp.Services
         Task NavigateToSettingsAsync();
         Task NavigateToAddCompanyAsync();
         Task NavigateToAddPromotionAsync();
+        Task NavigateToAddDiscountAsync();
         Task GoBackAsync();
     }
 }

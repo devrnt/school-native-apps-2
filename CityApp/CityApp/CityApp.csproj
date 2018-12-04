@@ -98,6 +98,7 @@
     <Compile Include="DataModel\Categories.cs" />
     <Compile Include="DataModel\Company.cs" />
     <Compile Include="DataModel\Days.cs" />
+    <Compile Include="DataModel\Discount.cs" />
     <Compile Include="DataModel\DummyData\DummyDataSource.cs" />
     <Compile Include="DataModel\LeaveOfAbsence.cs" />
     <Compile Include="DataModel\Location.cs" />
@@ -138,6 +139,9 @@
     </Compile>
     <Compile Include="Views\Company\AddCompany.xaml.cs">
       <DependentUpon>AddCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Company\AddDiscount.xaml.cs">
+      <DependentUpon>AddDiscount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Company\AddPromotion.xaml.cs">
       <DependentUpon>AddPromotion.xaml</DependentUpon>
@@ -198,6 +202,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Company\AddCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Company\AddDiscount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
