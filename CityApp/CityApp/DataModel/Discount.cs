@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CityApp.DataModel
 {
-    public class DiscountCoupon
+    public class Discount
     {
         public int Id { get; set; }
         public string CouponCode { get; set; }
         public string Pdf { get; set; }
 
-        public DiscountCoupon(string couponCode, string pdf = "")
+        public Discount(string couponCode, string pdf = "")
         {
             CouponCode = couponCode;
             Pdf = pdf;
