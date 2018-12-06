@@ -29,6 +29,14 @@ namespace CityApp.DataModel
                 new Company(4, "comp2", "Beschrijving comp2", null, Categories.Bank, null, null, null, null, null, new List<Promotion>()),
                 new Company(5, "comp1", "Beschrijving comp1", null, Categories.Bank, null, null, null, null, null, new List<Promotion>())
             };
+
+        }
+        private static List<User> DummyUsers()
+        {
+            return new List<User>() {
+                new Visitor("bez", "jef", new DateTime(), "user1Email", "123", UserType.Visitor, new List<Company>()),
+                new Owner("owner", "mike", new DateTime(), "MikeMail", "321", UserType.Owner)
+            };
         }
     }
 }

@@ -22,6 +22,7 @@ namespace CityApp.Services
         Task NavigateToAddCompanyAsync();
         Task NavigateToAddPromotionAsync();
         Task NavigateToAddDiscountAsync();
+        Task NavigateToRegisterAsync();
         Task GoBackAsync();
     }
 }

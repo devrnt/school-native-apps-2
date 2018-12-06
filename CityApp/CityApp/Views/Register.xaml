@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="CityApp.Views.Register"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CityApp.Views"
+    xmlns:dm="using:CityApp.DataModel"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid x:Name="LoginGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="Name" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="FirstName" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="FirstName" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Birthdate" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="BirthDate"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="eMail" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Width="150" x:Name="Email" />
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Password" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBox Grid.Row="4" Grid.Column="1" Margin="10" Width="150" x:Name="Password" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Type" Margin="10" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <StackPanel Grid.Row="5" Grid.Column="1" >
+                <RadioButton Name="Visitor" Content="Visitor" IsChecked="True"/>
+                <RadioButton Name="Owner" Content="Owner"/>
+            </StackPanel>
+            <Button Grid.Row="6" Grid.Column="1" Content="Create Account" Command="{Binding RegisterCommand}" HorizontalAlignment="Right">
+                <Button.CommandParameter>
+                    <dm:RegisterCredentials Name="{x:Bind Name.Text, Mode=OneWay}" FirstName="{x:Bind FirstName.Text, Mode=OneWay}" 
+                                                BirthDate="{x:Bind BirthDate.Date , Mode=OneWay}" Email="{x:Bind Email.Text, Mode=OneWay}" 
+                                                Password="{x:Bind Password.Text, Mode=OneWay}" Type="{x:Bind Visitor.IsChecked, Mode=OneWay}" />
+                </Button.CommandParameter>
+            </Button>
+            <Button Grid.Row="6" Grid.Column="0" Content="Cancel" HorizontalAlignment="Left"/>
+        </Grid>
+    </StackPanel>
+</Page>

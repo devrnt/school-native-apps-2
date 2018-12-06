@@ -97,12 +97,14 @@
     </Compile>
     <Compile Include="DataModel\Categories.cs" />
     <Compile Include="DataModel\Company.cs" />
+    <Compile Include="DataModel\LogInCredentials.cs" />
     <Compile Include="DataModel\Days.cs" />
     <Compile Include="DataModel\Discount.cs" />
     <Compile Include="DataModel\DummyData\DummyDataSource.cs" />
     <Compile Include="DataModel\LeaveOfAbsence.cs" />
     <Compile Include="DataModel\Location.cs" />
     <Compile Include="DataModel\OpeningHours.cs" />
+    <Compile Include="DataModel\RegisterCredentials.cs" />
     <Compile Include="DataModel\SocialMedia.cs" />
     <Compile Include="DataModel\Themes.cs" />
     <Compile Include="DataModel\User.cs" />
@@ -133,6 +135,7 @@
     <Compile Include="ViewModels\AddCompanyViewModel.cs" />
     <Compile Include="ViewModels\CompaniesViewModel.cs" />
     <Compile Include="ViewModels\CompanyDetailsViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
@@ -148,6 +151,9 @@
     </Compile>
     <Compile Include="Views\Company\CompanyDetails.xaml.cs">
       <DependentUpon>CompanyDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Register.xaml.cs">
+      <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -214,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Company\CompanyDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Register.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -140,6 +140,10 @@ namespace CityApp.Services.Navigation
         {
             return NavigateToPage<SettingsPage>();
         }
+        public Task NavigateToRegisterAsync()
+        {
+            return NavigateToPage<Register>();
+        }
 
         private void RegisterPageViewModel<TPage, TViewModel>()
            where TViewModel : class

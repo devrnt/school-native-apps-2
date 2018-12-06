@@ -21,13 +21,13 @@ namespace CityApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Account : Page
+    public sealed partial class Register : Page
     {
-        private AccountViewModel _vm;
-        public Account()
+        private RegisterViewModel _vm;
+        public Register()
         {
             this.InitializeComponent();
-            _vm = new AccountViewModel();
+            _vm = new RegisterViewModel();
             this.DataContext = _vm;
         }
     }
