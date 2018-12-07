@@ -59,6 +59,7 @@ namespace CityAppREST.Data.Repositories
             if (company != null)
             {
                 // TODO: add what should be updated
+                company.Description = toUpdate.Description;
             }
         }
     }

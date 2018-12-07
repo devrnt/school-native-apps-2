@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace CityAppREST.Controllers
 {
     [Route("api/[controller]")]
-    public class CompaniesController : Controller
+    [ApiController]
+    public class CompaniesController : ControllerBase
     {
         private readonly IRepository<Company> _companyRepository;
 

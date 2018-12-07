@@ -42,9 +42,7 @@ namespace CityAppREST.Models
 
         public Company()
         {
-            Locations = new List<Location>();
-            Promotions = new List<Promotion>();
-            Discounts = new List<Discount>();
+
         }
         #endregion
 
