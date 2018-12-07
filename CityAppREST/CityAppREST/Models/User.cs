@@ -4,11 +4,11 @@ namespace CityAppREST.Models
     public class User
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Username { get; set; }
 
-        public User(string name)
+        public User(string username)
         {
-            Name = name;
+            Username = username;
         }
 
         protected User()

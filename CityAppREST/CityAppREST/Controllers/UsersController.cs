@@ -10,7 +10,7 @@ namespace CityAppREST.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        readonly IRepository<User> _userRepository;
+        private readonly IRepository<User> _userRepository;
 
         public UsersController(IRepository<User> userRepository)
         {

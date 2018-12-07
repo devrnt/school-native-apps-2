@@ -1,4 +1,5 @@
-﻿using CityAppREST.Models;
+﻿using CityAppREST.Data.Mappers;
+using CityAppREST.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 namespace CityAppREST.Data
@@ -6,9 +7,16 @@ namespace CityAppREST.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new DayConfiguration());
         }
     }
 }

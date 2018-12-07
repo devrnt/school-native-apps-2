@@ -8,8 +8,8 @@ namespace CityAppREST.Data.Repositories
 {
     public class UserRepository : IRepository<User>
     {
-        readonly ApplicationDbContext _applicationDbContext;
-        readonly DbSet<User> _users;
+        private readonly ApplicationDbContext _applicationDbContext;
+        private readonly DbSet<User> _users;
 
         public UserRepository(ApplicationDbContext applicationDbContext)
         {
@@ -17,22 +17,18 @@ namespace CityAppREST.Data.Repositories
             _users = _applicationDbContext.Users;
         }
 
-        public User Create(User toCreate)
+        public void Create(User toCreate)
         {
             _users.Add(toCreate);
-            SaveChanges();
-            return toCreate;
         }
 
-        public User Delete(int id)
+        public void Delete(int id)
         {
-            User user = _users.FirstOrDefault(u => u.Id == id);
+            var user = _users.FirstOrDefault(u => u.Id == id);
             if (user != null)
             {
                 _users.Remove(user);
-                SaveChanges();
             }
-            return user;
         }
 
         public IEnumerable<User> GetAll()
@@ -50,17 +46,14 @@ namespace CityAppREST.Data.Repositories
             _applicationDbContext.SaveChanges();
         }
 
-        public User Update(User toUpdate)
+        public void Update(User toUpdate)
         {
-            User user = _users.FirstOrDefault(u => u.Id == toUpdate.Id);
+            var user = _users.FirstOrDefault(u => u.Id == toUpdate.Id);
 
             if (user != null)
             {
-                user.Name = toUpdate.Name;
-                SaveChanges();
+                // TODO: add what should be updated
             }
-
-            return user;
         }
     }
 }

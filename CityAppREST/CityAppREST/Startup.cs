@@ -35,6 +35,7 @@ namespace CityAppREST
 
             // Add repository services
             services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IRepository<Company>, CompanyRepository>();
 
             // Add data initializer
             services.AddTransient<CityAppDataInitializer>();

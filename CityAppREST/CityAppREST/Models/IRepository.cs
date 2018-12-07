@@ -6,9 +6,9 @@ namespace CityAppREST.Models
     {
         T GetById(int id);
         IEnumerable<T> GetAll();
-        T Create(T toCreate);
-        T Update(T toUpdate);
-        T Delete(int id);
+        void Create(T toCreate);
+        void Update(T toUpdate);
+        void Delete(int id);
         void SaveChanges();
     }
 }
