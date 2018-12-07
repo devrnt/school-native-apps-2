@@ -6,13 +6,13 @@ namespace CityAppREST.Models
     public class OpeningHours
     {
         public int Id { get; set; }
-        public List<Day> Opendagen { get; set; }
-        public string Van { get; set; }
-        public string Tot { get; set; }
+        public Day Day { get; set; }
+        public DateTime Van { get; set; }
+        public DateTime Tot { get; set; }
 
-        public OpeningHours(List<Day> opendagen, string van, string tot)
+        public OpeningHours(Day day, DateTime van, DateTime tot)
         {
-            Opendagen = opendagen;
+            Day = day;
             Van = van;
             Tot = tot;
         }

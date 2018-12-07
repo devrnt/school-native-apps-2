@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CityAppREST.Models
 {
@@ -14,7 +15,7 @@ namespace CityAppREST.Models
         public Categories Categorie { get; set; }
         //public Owner Owner { get; set; }
         public ICollection<Location> Locations { get; set; }
-        public OpeningHours OpeningHours { get; set; }
+        public IEnumerable<OpeningHours> OpeningHours { get; set; }
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
@@ -23,7 +24,7 @@ namespace CityAppREST.Models
         #endregion
 
         #region === Constructor ===
-        public Company(string name, string description, string keyWords, Categories categorie, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
+        public Company(string name, string description, string keyWords, Categories categorie, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
         {
 
             Name = name;

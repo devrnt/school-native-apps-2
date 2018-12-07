@@ -36,11 +36,12 @@ namespace CityAppREST.Data.Repositories
 
         public Company GetById(int id)
         {
-            return _companies.Include(c => c.Categorie)
+            return _companies
                              .Include(c => c.Discounts)
                              .Include(c => c.LeaveOfAbsence)
                              .Include(c => c.Locations)
                              .Include(c => c.OpeningHours)
+                                .ThenInclude(oh => oh.Day)
                              .Include(c => c.Promotions)
                              .Include(c => c.SocialMedia)
                              .FirstOrDefault(c => c.Id == id);

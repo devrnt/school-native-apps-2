@@ -19,6 +19,21 @@ namespace CityAppREST.Data
 
             if (_applicationDbContext.Database.EnsureCreated())
             {
+                #region Days
+                var days = new List<Day>
+                {
+                    new Day(Days.Maandag),
+                    new Day(Days.Dinsdag),
+                    new Day(Days.Woensdag),
+                    new Day(Days.Donderdag),
+                    new Day(Days.Vrijdag),
+                    new Day(Days.Zaterdag),
+                    new Day(Days.Zondag),
+                };
+
+                _applicationDbContext.Days.AddRange(days);
+                _applicationDbContext.SaveChanges();
+                #endregion
 
                 #region Users
                 var users = new List<User>
@@ -41,7 +56,12 @@ namespace CityAppREST.Data
                         "was laundry Swashy",
                         Categories.Wasserij,
                         new List<Location> { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },
-                        null, null, null, null),
+                        new List<OpeningHours> {
+                        new OpeningHours(days[0], new DateTime(2000, 1, 1, 8, 0, 0), new DateTime(2000, 1, 1, 17, 0, 0))
+                    }, new LeaveOfAbsence(), new SocialMedia("", "", "", ""), new List<Promotion>{
+                        new Promotion("Korting op uw eerste was"),
+                        new Promotion("2 wassen = 3 betalen")
+                    }),
                     new Company{ Name = "Bank van Gent", Description = "Voor al uw geldzaken", Categorie = Categories.Bank },
                     new Company{ Name = "Bakkerij Koen", Description = "Uw warme bakker", Categorie = Categories.Bakkerij }
                 };
@@ -49,6 +69,8 @@ namespace CityAppREST.Data
                 _applicationDbContext.Companies.AddRange(companies);
                 _applicationDbContext.SaveChanges();
                 #endregion
+
+
             }
         }
     }

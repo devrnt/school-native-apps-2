@@ -34,20 +34,43 @@ namespace CityAppREST.Controllers
 
         // POST api/companies
         [HttpPost]
-        public void Post([FromBody]string value)
+        public ActionResult<Company> Post(Company company)
         {
+            _companyRepository.Create(company);
+            _companyRepository.SaveChanges();
+            return company;
         }
 
         // PUT api/companies/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public ActionResult<Company> Put(int id, Company company)
         {
+            var toUpdate = _companyRepository.GetById(id);
+            if (toUpdate == null)
+            {
+                return NotFound();
+            }
+
+            company.Id = toUpdate.Id;
+            _companyRepository.Update(company);
+            _companyRepository.SaveChanges();
+
+            return toUpdate;
         }
 
         // DELETE api/companies/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<Company> Delete(int id)
         {
+            var toDelete = _companyRepository.GetById(id);
+            if (toDelete == null)
+            {
+                return NotFound();
+            }
+
+            _companyRepository.Delete(id);
+
+            return toDelete;
         }
     }
 }

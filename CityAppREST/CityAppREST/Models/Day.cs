@@ -7,5 +7,15 @@ namespace CityAppREST.Models
     public class Day
     {
         public Days DayOfWeek { get; set; }
+
+        protected Day()
+        {
+
+        }
+
+        public Day(Days dayOfWeek)
+        {
+            DayOfWeek = dayOfWeek;
+        }
     }
 }
