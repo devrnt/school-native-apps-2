@@ -41,7 +41,6 @@ namespace CityAppREST.Data.Repositories
                              .Include(c => c.LeaveOfAbsence)
                              .Include(c => c.Locations)
                              .Include(c => c.OpeningHours)
-                                .ThenInclude(oh => oh.Day)
                              .Include(c => c.Promotions)
                              .Include(c => c.SocialMedia)
                              .FirstOrDefault(c => c.Id == id);
@@ -58,8 +57,13 @@ namespace CityAppREST.Data.Repositories
 
             if (company != null)
             {
-                // TODO: add what should be updated
                 company.Description = toUpdate.Description;
+                company.Discounts = toUpdate.Discounts;
+                company.LeaveOfAbsence = toUpdate.LeaveOfAbsence;
+                company.Locations = toUpdate.Locations;
+                company.OpeningHours = toUpdate.OpeningHours;
+                company.Promotions = toUpdate.Promotions;
+                company.SocialMedia = toUpdate.SocialMedia;
             }
         }
     }

@@ -19,21 +19,21 @@ namespace CityAppREST.Data
 
             if (_applicationDbContext.Database.EnsureCreated())
             {
-                #region Days
-                var days = new List<Day>
-                {
-                    new Day(Days.Maandag),
-                    new Day(Days.Dinsdag),
-                    new Day(Days.Woensdag),
-                    new Day(Days.Donderdag),
-                    new Day(Days.Vrijdag),
-                    new Day(Days.Zaterdag),
-                    new Day(Days.Zondag),
-                };
+                //#region Days
+                //var days = new List<Day>
+                //{
+                //    new Day(Days.Maandag),
+                //    new Day(Days.Dinsdag),
+                //    new Day(Days.Woensdag),
+                //    new Day(Days.Donderdag),
+                //    new Day(Days.Vrijdag),
+                //    new Day(Days.Zaterdag),
+                //    new Day(Days.Zondag),
+                //};
 
-                _applicationDbContext.Days.AddRange(days);
-                _applicationDbContext.SaveChanges();
-                #endregion
+                //_applicationDbContext.Days.AddRange(days);
+                //_applicationDbContext.SaveChanges();
+                //#endregion
 
                 #region Users
                 var users = new List<User>
@@ -57,7 +57,7 @@ namespace CityAppREST.Data
                         Categories.Wasserij,
                         new List<Location> { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },
                         new List<OpeningHours> {
-                        new OpeningHours(days[0], new DateTime(2000, 1, 1, 8, 0, 0), new DateTime(2000, 1, 1, 17, 0, 0))
+                        new OpeningHours(Days.Maandag, new DateTime(2000, 1, 1, 8, 0, 0), new DateTime(2000, 1, 1, 17, 0, 0))
                     }, new LeaveOfAbsence(), new SocialMedia("", "", "", ""), new List<Promotion>{
                         new Promotion("Korting op uw eerste was"),
                         new Promotion("2 wassen = 3 betalen")
