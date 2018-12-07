@@ -70,6 +70,7 @@ namespace CityAppREST.Controllers
             }
 
             _companyRepository.Delete(id);
+            _companyRepository.SaveChanges();
 
             return toDelete;
         }
