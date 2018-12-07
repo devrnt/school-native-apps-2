@@ -19,35 +19,6 @@ namespace CityAppREST.Data
 
             if (_applicationDbContext.Database.EnsureCreated())
             {
-                //#region Days
-                //var days = new List<Day>
-                //{
-                //    new Day(Days.Maandag),
-                //    new Day(Days.Dinsdag),
-                //    new Day(Days.Woensdag),
-                //    new Day(Days.Donderdag),
-                //    new Day(Days.Vrijdag),
-                //    new Day(Days.Zaterdag),
-                //    new Day(Days.Zondag),
-                //};
-
-                //_applicationDbContext.Days.AddRange(days);
-                //_applicationDbContext.SaveChanges();
-                //#endregion
-
-                #region Users
-                var users = new List<User>
-                {
-                    new User("Jonas De Vrient"),
-                    new User("Sam Dhondt"),
-                    new User("Yanis Ouahab")
-                };
-
-                _applicationDbContext.Users.AddRange(users);
-                _applicationDbContext.SaveChanges();
-                #endregion
-
-
                 #region Companies
                 var companies = new List<Company>
                 {
@@ -70,6 +41,16 @@ namespace CityAppREST.Data
                 _applicationDbContext.SaveChanges();
                 #endregion
 
+                #region Users
+                var users = new List<User>
+                {
+                    new User("Dhondt", "Sam", new DateTime(1993, 7, 5), "sam.dhondt@hogent.be", "unencryptedpasswordlolnoobs", new List<Company>{ companies[0]}, UserType.Visitor),
+                    new User("Ouahab", "Yanis", new DateTime(2000, 1, 1), "yanis.ouahab@hogent.be", "ikdoegraagraar", new List<Company> { companies[0] }, UserType.Owner)
+                };
+
+                _applicationDbContext.Users.AddRange(users);
+                _applicationDbContext.SaveChanges();
+                #endregion
 
             }
         }

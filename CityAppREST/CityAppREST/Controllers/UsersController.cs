@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CityAppREST.Controllers
 {
@@ -19,9 +18,59 @@ namespace CityAppREST.Controllers
 
         // GET: api/users
         [HttpGet]
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<User> Get()
         {
             return _userRepository.GetAll();
+        }
+
+        // GET api/users/5
+        [HttpGet("{id}")]
+        public ActionResult<User> Get(int id)
+        {
+            var user = _userRepository.GetById(id);
+            return user == null ? (ActionResult<User>)NotFound() : (ActionResult<User>)user;
+        }
+
+        // POST api/users
+        [HttpPost]
+        public ActionResult<User> Post(User user)
+        {
+            _userRepository.Create(user);
+            _userRepository.SaveChanges();
+            return user;
+        }
+
+        // PUT api/users/5
+        [HttpPut("{id}")]
+        public ActionResult<User> Put(int id, User user)
+        {
+            var toUpdate = _userRepository.GetById(id);
+            if (toUpdate == null)
+            {
+                return NotFound();
+            }
+
+            user.Id = toUpdate.Id;
+            _userRepository.Update(user);
+            _userRepository.SaveChanges();
+
+            return toUpdate;
+        }
+
+        // DELETE api/users/5
+        [HttpDelete("{id}")]
+        public ActionResult<User> Delete(int id)
+        {
+            var toDelete = _userRepository.GetById(id);
+            if (toDelete == null)
+            {
+                return NotFound();
+            }
+
+            _userRepository.Delete(id);
+            _userRepository.SaveChanges();
+
+            return toDelete;
         }
 
     }

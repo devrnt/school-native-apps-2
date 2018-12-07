@@ -38,7 +38,7 @@ namespace CityAppREST.Data.Repositories
 
         public User GetById(int id)
         {
-            return _users.FirstOrDefault(u => u.Id == id);
+            return _users.Select(u => u).FirstOrDefault(u => u.Id == id);
         }
 
         public void SaveChanges()
@@ -52,7 +52,7 @@ namespace CityAppREST.Data.Repositories
 
             if (user != null)
             {
-                // TODO: add what should be updated
+                user.Companies = toUpdate.Companies;
             }
         }
     }

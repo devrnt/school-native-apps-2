@@ -22,5 +22,9 @@
     <Compile Remove="Models\EmptyClass.cs" />
     <Compile Remove="Models\IUserRepository.cs" />
     <Compile Remove="Controllers\ValuesController.cs" />
+    <Compile Remove="Models\Day.cs" />
+    <Compile Remove="Data\Mappers\DayConfiguration.cs" />
+    <Compile Remove="Models\Owner.cs" />
+    <Compile Remove="Models\Visitor.cs" />
   </ItemGroup>
 </Project>
