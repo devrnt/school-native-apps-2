@@ -1,4 +1,5 @@
-﻿using CityAppREST.Models;
+﻿using CityAppREST.Data.Mappers;
+using CityAppREST.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 namespace CityAppREST.Data
@@ -14,6 +15,7 @@ namespace CityAppREST.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
