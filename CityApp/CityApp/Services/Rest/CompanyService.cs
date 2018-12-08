@@ -28,7 +28,7 @@ namespace CityApp.Services.Rest
             _httpClient = new HttpClient(_httpFilter);
         }
 
-        public async Task<List<Company>> GetCompaniesAsync()
+        public async Task<List<Company>> GetCompanies()
         {
             var json = await _httpClient.GetStringAsync(new Uri(_apiUrl));
 

@@ -129,6 +129,7 @@
     <Compile Include="Services\Navigation\INavigationService.cs" />
     <Compile Include="Services\Navigation\IPageWithViewModel.cs" />
     <Compile Include="Services\Navigation\NavigationService.cs" />
+    <Compile Include="Services\Rest\CompanyService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ViewModeService.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />

@@ -27,7 +27,7 @@ namespace CityApp.ViewModels
         {
             int id = 0;
             List<Promotion> promotions = null;
-            Company co = new Company(id, name, description, keyWordsString.Split(',').ToList(), categorie, owner, locations, openingHours, null, socialMedia, promotions);
+            Company co = new Company(id, name, description, keyWordsString, categorie, owner, locations, openingHours, null, socialMedia, promotions);
             DummyDataSource.Companies.Add(co);
         }
     }
