@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,9 +36,10 @@ namespace CityAppREST.Controllers
         [HttpPost]
         public ActionResult<User> Post(User user)
         {
+            user.Password = PasswordHasher.GetPasswordAndSaltHash(user.Password);
             _userRepository.Create(user);
             _userRepository.SaveChanges();
-            return user;
+            return Ok();
         }
 
         // PUT api/users/5
@@ -73,5 +75,16 @@ namespace CityAppREST.Controllers
             return toDelete;
         }
 
+        [HttpPost("authenticate")]
+        public ActionResult<User> Authenticate(LoginDetails loginDetails)
+        {
+            return Ok();
+        }
+    }
+
+    public class LoginDetails
+    {
+        string Username { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -14,8 +14,6 @@ namespace CityAppREST.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Owner>();
-            modelBuilder.Entity<Visitor>();
             base.OnModelCreating(modelBuilder);
         }
     }

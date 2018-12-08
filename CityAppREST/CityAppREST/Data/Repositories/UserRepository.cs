@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,7 +39,7 @@ namespace CityAppREST.Data.Repositories
 
         public User GetById(int id)
         {
-            return _users.Select(u => u).FirstOrDefault(u => u.Id == id);
+            return _users.FirstOrDefault(u => u.Id == id);
         }
 
         public void SaveChanges()
