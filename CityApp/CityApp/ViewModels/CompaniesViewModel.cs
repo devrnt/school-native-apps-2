@@ -7,17 +7,20 @@ using CityApp.Helpers;
 using CityApp.Services;
 using CityApp.Services.Navigation;
 using System.Linq;
+using CityApp.Services.Rest;
 
 namespace CityApp.ViewModels
 {
     public class CompaniesViewModel : INotifyPropertyChanged
     {
         #region === Fields ===
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
         public ObservableCollection<Company> Companies { get; set; }
         public List<Categories> AllCategories { get; set; }
 
         public List<string> PromotionsChoices { get; set; }
+
+        private readonly CompanyService _companyService;
         // add the list of companies here in future
         // IQueryable<Company> _companies;
         #endregion
@@ -31,7 +34,10 @@ namespace CityApp.ViewModels
         #region === Constructor ===
         public CompaniesViewModel()
         {
+            // Fetch companies
             Companies = new ObservableCollection<Company>(DummyDataSource.Companies);
+            _companyService = new CompanyService();
+            LoadCompaniesAsync() ;
             AllCategories = new List<Categories>();
             PromotionsChoices = new List<string>() { "Ja", "Nee" };
             foreach (Categories cat in Enum.GetValues(typeof(Categories)))
@@ -51,6 +57,15 @@ namespace CityApp.ViewModels
         #endregion
 
         #region === Methods ===
+        public async void LoadCompaniesAsync()
+        {
+            var companies = await _companyService.GetCompanies();
+
+            Console.WriteLine(companies);
+
+            // Companies = new ObservableCollection<Company>(companies);
+        }
+
         // Imagine we have a button on the Companies.xaml with a redirection to another page
         // Then:
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
@@ -62,15 +77,15 @@ namespace CityApp.ViewModels
 
         public ObservableCollection<Company> UpdateFilter(Categories cat, bool promo)
         {
-            List<Company> fCompanies = DummyDataSource.Companies;
+            var fCompanies = DummyDataSource.Companies;
             if (cat != Categories.All)
             {
                 fCompanies = fCompanies.Where(p => p.Categorie == cat).ToList();
             }
             if (promo)
             {
-                Console.WriteLine((fCompanies[0].Promotions));
-                fCompanies= fCompanies
+                Console.WriteLine(fCompanies[0].Promotions);
+                fCompanies = fCompanies
                     .TakeWhile(c => c.Promotions != null)
                     .Where(c => c.Promotions.Count > 0)
                     .ToList();
@@ -79,7 +94,8 @@ namespace CityApp.ViewModels
         }
         public ObservableCollection<Company> ResetFilter()
         {
-            List<Company> fCompanies = DummyDataSource.Companies;
+
+            var fCompanies = DummyDataSource.Companies;
             return new ObservableCollection<Company>(fCompanies);
         }
         #endregion

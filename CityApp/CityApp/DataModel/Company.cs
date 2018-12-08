@@ -9,7 +9,7 @@ namespace CityApp.DataModel
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public ICollection<string> KeyWords { get; set; }
+        public string KeyWords { get; set; }
         // Use Category enum
         public Categories Categorie { get; set; }
         public Owner Owner { get; set; }
@@ -29,7 +29,7 @@ namespace CityApp.DataModel
         #endregion
 
         #region === Constructor ===
-        public Company(int id, string name, string description, ICollection<string> keyWords, Categories categorie, Owner owner, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
+        public Company(int id, string name, string description, string keyWords, Categories categorie, Owner owner, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
         {
             Id = id;
             Name = name;

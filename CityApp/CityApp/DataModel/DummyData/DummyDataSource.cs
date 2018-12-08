@@ -14,7 +14,7 @@ namespace CityApp.DataModel
         {
             var company = new Company(1,
                 "Swashy", "Hier kunt u terrecht met al uw vuile was. Op 15min. kunt u terug keren met een vers gewassen was. Was u er vorige keer niet bij, kom dan nu zeker langs met uw was.",
-                new List<string>() { "was", "laundry", "Swashy" },
+                "was, laundry, Swashy" ,
                 Categories.Wasserij,
                 new Owner("van Gestel", "Gerry", new DateTime(1995, 3, 5), "GerryvanGestel@teleworm.be", "gerrygerry", UserType.Owner),
                 new List<Location>() { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },
