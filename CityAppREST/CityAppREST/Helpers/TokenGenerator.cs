@@ -29,6 +29,5 @@ namespace CityAppREST.Helpers
 
             return new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(header, userData));
         }
-
     }
 }

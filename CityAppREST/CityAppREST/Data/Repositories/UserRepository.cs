@@ -39,7 +39,7 @@ namespace CityAppREST.Data.Repositories
 
         public User GetById(int id)
         {
-            return _users.FirstOrDefault(u => u.Id == id);
+            return _users.Include(u => u.Companies).FirstOrDefault(u => u.Id == id);
         }
 
         public void SaveChanges()
