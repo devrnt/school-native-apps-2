@@ -12,10 +12,12 @@ namespace CityAppREST.Controllers
     public class UsersController : Controller
     {
         private readonly IRepository<User> _userRepository;
+        private readonly TokenGenerator _tokenGenerator;
 
-        public UsersController(IRepository<User> userRepository)
+        public UsersController(IRepository<User> userRepository, TokenGenerator tokenGenerator)
         {
             _userRepository = userRepository;
+            _tokenGenerator = tokenGenerator;
         }
 
         // GET: api/users
@@ -76,14 +78,24 @@ namespace CityAppREST.Controllers
             return toDelete;
         }
 
+        // POST api/users/authenticate
         [HttpPost("authenticate")]
-        public ActionResult<User> Authenticate(LoginDetails loginDetails)
+        public ActionResult Authenticate(LoginDetails loginDetails)
         {
             var user = (_userRepository as UserRepository).GetByUsername(loginDetails.Username);
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-            return user == null ?
-                (ActionResult<User>)NotFound() : PasswordHasher.VerifyPasswordWithHash(loginDetails.Password, user.Password) ?
-                                                               (ActionResult<User>)Ok() : Unauthorized();
+            var passwordsMatch = PasswordHasher.VerifyPasswordWithHash(loginDetails.Password, user.Password);
+            if (!passwordsMatch)
+            {
+                return Unauthorized();
+            }
+
+            var token = _tokenGenerator.GenerateTokenForUser(user);
+            return (ActionResult)Ok(new { token });
         }
     }
 
