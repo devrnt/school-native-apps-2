@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CityAppREST.Data.Repositories;
 using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -78,13 +79,17 @@ namespace CityAppREST.Controllers
         [HttpPost("authenticate")]
         public ActionResult<User> Authenticate(LoginDetails loginDetails)
         {
-            return Ok();
+            var user = (_userRepository as UserRepository).GetByUsername(loginDetails.Username);
+
+            return user == null ?
+                (ActionResult<User>)NotFound() : PasswordHasher.VerifyPasswordWithHash(loginDetails.Password, user.Password) ?
+                                                               (ActionResult<User>)Ok() : Unauthorized();
         }
     }
 
     public class LoginDetails
     {
-        string Username { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
     }
 }

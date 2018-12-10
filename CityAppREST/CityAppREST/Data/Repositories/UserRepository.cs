@@ -56,5 +56,10 @@ namespace CityAppREST.Data.Repositories
                 user.Companies = toUpdate.Companies;
             }
         }
+
+        public User GetByUsername(string username)
+        {
+            return _users.Include(u => u.Companies).FirstOrDefault(u => u.Username == username);
+        }
     }
 }

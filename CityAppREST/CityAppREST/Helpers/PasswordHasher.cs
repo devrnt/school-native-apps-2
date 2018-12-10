@@ -25,7 +25,7 @@ namespace CityAppREST.Helpers
 
         public static Boolean VerifyPasswordWithHash(string password, string passwordHash)
         {
-            var hashBytes = Convert.FromBase64String(password);
+            var hashBytes = Convert.FromBase64String(passwordHash);
 
             var salt = new byte[_saltLength];
             Array.Copy(hashBytes, salt, _saltLength);

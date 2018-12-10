@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CityAppREST.Helpers;
 using CityAppREST.Models;
 
 namespace CityAppREST.Data
@@ -44,8 +45,8 @@ namespace CityAppREST.Data
                 #region Users
                 var users = new List<User>
                 {
-                    new User("Dhondt", "Sam", "dhondtsam", new DateTime(1993, 7, 5), "sam.dhondt@hogent.be", "unencryptedpasswordlolnoobs", new List<Company>{ companies[0]}, UserType.Visitor),
-                    new User("Ouahab", "Yanis", "ouahabyanis", new DateTime(2000, 1, 1), "yanis.ouahab@hogent.be", "ikdoegraagraar", new List<Company> { companies[0] }, UserType.Owner)
+                    new User("Dhondt", "Sam", "dhondtsam", new DateTime(1993, 7, 5), "sam.dhondt@hogent.be", PasswordHasher.GetPasswordAndSaltHash("samsamsam"), new List<Company>{ companies[0]}, UserType.Visitor),
+                    new User("Ouahab", "Yanis", "ouahabyanis", new DateTime(2000, 1, 1), "yanis.ouahab@hogent.be", PasswordHasher.GetPasswordAndSaltHash("yanisyanis"), new List<Company> { companies[0] }, UserType.Owner)
                 };
 
                 _applicationDbContext.Users.AddRange(users);
