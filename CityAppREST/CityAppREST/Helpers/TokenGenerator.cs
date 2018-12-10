@@ -9,25 +9,26 @@ namespace CityAppREST.Helpers
 {
     public class TokenGenerator
     {
-        private readonly string _key;
+        private readonly byte[] _key;
+
+        public byte[] Key => _key;
 
         public TokenGenerator()
         {
-            var keyBytes = new byte[256];
-            new RNGCryptoServiceProvider().GetBytes(keyBytes);
-
-            _key = Convert.ToBase64String(keyBytes);
+            _key = new byte[256];
+            new RNGCryptoServiceProvider().GetBytes(_key);
         }
 
         public string GenerateTokenForUser(User user)
         {
-            var ssk = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_key));
+            var ssk = new SymmetricSecurityKey(_key);
             var creds = new SigningCredentials(ssk, SecurityAlgorithms.HmacSha256Signature);
 
             var header = new JwtHeader(creds);
-            var userData = new JwtPayload { { "username", user.Username } };
+            var userData = new JwtPayload { { "username", user.Username }, { "userType", user.UserType } };
 
             return new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(header, userData));
         }
+
     }
 }

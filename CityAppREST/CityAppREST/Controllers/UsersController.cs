@@ -3,10 +3,12 @@ using System.Linq;
 using CityAppREST.Data.Repositories;
 using CityAppREST.Helpers;
 using CityAppREST.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CityAppREST.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : Controller
@@ -36,6 +38,7 @@ namespace CityAppREST.Controllers
         }
 
         // POST api/users
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult<User> Post(User user)
         {
@@ -79,6 +82,7 @@ namespace CityAppREST.Controllers
         }
 
         // POST api/users/authenticate
+        [AllowAnonymous]
         [HttpPost("authenticate")]
         public ActionResult Authenticate(LoginDetails loginDetails)
         {
@@ -95,7 +99,7 @@ namespace CityAppREST.Controllers
             }
 
             var token = _tokenGenerator.GenerateTokenForUser(user);
-            return (ActionResult)Ok(new { token });
+            return Ok(new { token });
         }
     }
 

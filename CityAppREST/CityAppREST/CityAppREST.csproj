@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="EntityFramework" Version="6.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Microsoft.Net.Http" Version="2.2.29" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,5 +28,6 @@
     <Compile Remove="Data\Mappers\DayConfiguration.cs" />
     <Compile Remove="Models\Owner.cs" />
     <Compile Remove="Models\Visitor.cs" />
+    <Compile Remove="Attributes\JwtAuthenticationAttribute.cs" />
   </ItemGroup>
 </Project>
