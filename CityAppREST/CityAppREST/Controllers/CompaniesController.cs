@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CityAppREST.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CityAppREST.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CompaniesController : ControllerBase
@@ -19,6 +21,7 @@ namespace CityAppREST.Controllers
         }
 
         // GET: api/companies
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult<List<Company>> Get()
         {
@@ -26,6 +29,7 @@ namespace CityAppREST.Controllers
         }
 
         // GET api/companies/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<Company> Get(int id)
         {
