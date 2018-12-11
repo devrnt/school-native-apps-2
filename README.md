@@ -2,8 +2,8 @@
 ## City-app (aka Stads-app)
 
 #### Why
-Repo made for the group project for the subject Native Apps 3. The main purpose is to get to known the UWP platform.
-This repo is only ment for experimental purposes. 
+Repo made for the group project for the subject Native Apps II: Windows. The main purpose is to get to known the UWP platform.
+This repo is only meant for experimental purposes. 
 
 #### By
 * Sam Dhondt
@@ -13,6 +13,7 @@ This repo is only ment for experimental purposes.
 ##### Test Users
 * Regular user: username = dhondtsam, password = samsamsam
 * Company owner: username = ouahabyanis, password = yanisyanis
+* Admin: username = devrientjonas, password = jonasjonas
 
 ## Development
 #### Icons
