@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityAppREST.Controllers
 {
+    /// <summary>
+    /// Contains CRUD endpoints to manage users
+    /// </summary>
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -22,6 +25,10 @@ namespace CityAppREST.Controllers
             _tokenGenerator = tokenGenerator;
         }
 
+        /// <summary>
+        /// Calls the repository to return all users.
+        /// </summary>
+        /// <returns>List of Users</returns>
         // GET: api/users
         [HttpGet]
         public IEnumerable<User> Get()
@@ -29,6 +36,11 @@ namespace CityAppREST.Controllers
             return _userRepository.GetAll();
         }
 
+        /// <summary>
+        /// Get the user with specified id.
+        /// </summary>
+        /// <returns>A user or NotFound if no user is found with specified id</returns>
+        /// <param name="id">User id</param>
         // GET api/users/5
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
@@ -37,6 +49,11 @@ namespace CityAppREST.Controllers
             return user == null ? (ActionResult<User>)NotFound() : (ActionResult<User>)user;
         }
 
+        /// <summary>
+        /// Post the specified user. Hashes the password with salt and calls the repository to create a new user.
+        /// </summary>
+        /// <returns>The created user</returns>
+        /// <param name="user">User object</param>
         // POST api/users
         [AllowAnonymous]
         [HttpPost]
@@ -48,6 +65,13 @@ namespace CityAppREST.Controllers
             return Ok();
         }
 
+
+        /// <summary>
+        /// Put the specified id and user.
+        /// </summary>
+        /// <returns>The edited user</returns>
+        /// <param name="id">User id</param>
+        /// <param name="user">Userobject</param>
         // PUT api/users/5
         [HttpPut("{id}")]
         public ActionResult<User> Put(int id, User user)
@@ -65,6 +89,11 @@ namespace CityAppREST.Controllers
             return toUpdate;
         }
 
+        /// <summary>
+        /// Delete the user with specified id.
+        /// </summary>
+        /// <returns>The deleted user or a NotFound when no user with specified id is found</returns>
+        /// <param name="id">User id</param>
         // DELETE api/users/5
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
@@ -81,6 +110,11 @@ namespace CityAppREST.Controllers
             return toDelete;
         }
 
+        /// <summary>
+        /// Authenticate the specified loginDetails.
+        /// </summary>
+        /// <returns>A jwt token for further authentication</returns>
+        /// <param name="loginDetails">Details containg username and password to check</param>
         // POST api/users/authenticate
         [AllowAnonymous]
         [HttpPost("authenticate")]

@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityAppREST.Controllers
 {
+    /// <summary>
+    /// Contains CRUD endpoints to manage companies
+    /// </summary>
     [Authorize(Policy = "Owner, Admin")]
     [Route("api/[controller]")]
     [ApiController]
@@ -20,6 +23,10 @@ namespace CityAppREST.Controllers
             _companyRepository = companyRepository;
         }
 
+        /// <summary>
+        /// Calls the repository to return a list of all companies
+        /// </summary>
+        /// <returns>List of all companies</returns>
         // GET: api/companies
         [AllowAnonymous]
         [HttpGet]
@@ -28,6 +35,11 @@ namespace CityAppREST.Controllers
             return _companyRepository.GetAll().ToList();
         }
 
+        /// <summary>
+        /// Calls the repository to find a company with a specified Id
+        /// </summary>
+        /// <returns>A company or a NotFoundResult when no company matching the id is found</returns>
+        /// <param name="id">Company id</param>
         // GET api/companies/5
         [AllowAnonymous]
         [HttpGet("{id}")]
@@ -37,6 +49,11 @@ namespace CityAppREST.Controllers
             return company == null ? (ActionResult<Company>)NotFound() : (ActionResult<Company>)company;
         }
 
+        /// <summary>
+        /// Post the specified company. Calls the repository to create a new company.
+        /// </summary>
+        /// <returns>Posted company</returns>
+        /// <param name="company">Company to create</param>
         // POST api/companies
         [HttpPost]
         public ActionResult<Company> Post(Company company)
@@ -46,6 +63,12 @@ namespace CityAppREST.Controllers
             return company;
         }
 
+        /// <summary>
+        /// Put the specified id and company.
+        /// </summary>
+        /// <returns>The edited company</returns>
+        /// <param name="id">Company id</param>
+        /// <param name="company">Company object</param>
         // PUT api/companies/5
         [HttpPut("{id}")]
         public ActionResult<Company> Put(int id, Company company)
@@ -63,6 +86,11 @@ namespace CityAppREST.Controllers
             return toUpdate;
         }
 
+        /// <summary>
+        /// Delete the company with specified id.
+        /// </summary>
+        /// <returns>The deleted company or a NotFound if no company is found with specified id</returns>
+        /// <param name="id">Company id</param>
         // DELETE api/companies/5
         [HttpDelete("{id}")]
         public ActionResult<Company> Delete(int id)
