@@ -56,7 +56,7 @@ namespace CityAppREST
                     IssuerSigningKey = new SymmetricSecurityKey(_key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    ValidateLifetime = false,
+                    ValidateLifetime = true,
 
                 };
             });

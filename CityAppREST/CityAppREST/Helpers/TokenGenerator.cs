@@ -50,6 +50,7 @@ namespace CityAppREST.Helpers
 
             var token = new JwtSecurityToken(
                 claims: userClaims,
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: creds // add credentials so token can be validated upon later authentication
             );
 
