@@ -8,12 +8,12 @@ using CityAppREST.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace CityAppREST
 {
@@ -69,6 +69,18 @@ namespace CityAppREST
 
             // Add data initializer
             services.AddTransient<CityAppDataInitializer>();
+
+            // Add swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "CityAppREST Api",
+                    Description = "Web API for CityApp",
+                    TermsOfService = "None"
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,10 +95,14 @@ namespace CityAppREST
                 app.UseHsts();
             }
 
+
+
             app.UseDefaultFiles();
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(configuration => configuration.SwaggerEndpoint("/swagger/v1/swagger.json", "CityAppREST API"));
 
             cityAppDataInitializer.InitializeData();
         }
