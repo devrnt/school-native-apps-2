@@ -46,7 +46,7 @@ namespace CityAppREST.Controllers
         public ActionResult<User> Get(int id)
         {
             var user = _userRepository.GetById(id);
-            return user == null ? (ActionResult<User>)NotFound() : (ActionResult<User>)user;
+            return (ActionResult<User>)user ?? NotFound();
         }
 
         /// <summary>

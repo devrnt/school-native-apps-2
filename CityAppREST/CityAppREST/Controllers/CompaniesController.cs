@@ -11,7 +11,7 @@ namespace CityAppREST.Controllers
     /// <summary>
     /// Contains CRUD endpoints to manage companies
     /// </summary>
-    [Authorize(Policy = "Owner, Admin")]
+    [Authorize(Policy = "Owner")]
     [Route("api/[controller]")]
     [ApiController]
     public class CompaniesController : ControllerBase
@@ -46,7 +46,7 @@ namespace CityAppREST.Controllers
         public ActionResult<Company> Get(int id)
         {
             var company = _companyRepository.GetById(id);
-            return company == null ? (ActionResult<Company>)NotFound() : (ActionResult<Company>)company;
+            return (ActionResult<Company>)company ?? NotFound();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -29,13 +30,26 @@ namespace CityAppREST.Helpers
             var ssk = new SymmetricSecurityKey(_key);
             var creds = new SigningCredentials(ssk, SecurityAlgorithms.HmacSha256Signature);
 
+            // Claims containing data about the user
+            var userClaims = new List<Claim> {
+               new Claim(ClaimTypes.Name, user.Username),
+               new Claim(ClaimTypes.Role, user.UserType.ToString()) // will be validated against possible policies
+            };
 
-            // Create token with Claims containing data about the user
+            // Adds all roles if user is Admin
+            if (user.UserType == UserType.Admin)
+            {
+                foreach (var type in Enum.GetNames(typeof(UserType)))
+                {
+                    if (type != "Admin")
+                    {
+                        userClaims.Add(new Claim(ClaimTypes.Role, type));
+                    }
+                }
+            }
+
             var token = new JwtSecurityToken(
-                claims: new[] {
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Role, user.UserType.ToString()) // will be validated against possible policies
-                },
+                claims: userClaims,
                 signingCredentials: creds // add credentials so token can be validated upon later authentication
             );
 
