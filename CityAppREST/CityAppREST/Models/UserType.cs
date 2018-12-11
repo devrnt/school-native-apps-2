@@ -2,6 +2,6 @@
 {
     public enum UserType
     {
-        Owner, Visitor
+        Owner, Visitor, Admin
     }
 }

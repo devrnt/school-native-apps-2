@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using CityAppREST.Helpers;
 using CityAppREST.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CityAppREST.Data
 {
     public class CityAppDataInitializer
     {
         private readonly ApplicationDbContext _applicationDbContext;
+
 
         public CityAppDataInitializer(ApplicationDbContext applicationDbContext)
         {
@@ -46,7 +51,8 @@ namespace CityAppREST.Data
                 var users = new List<User>
                 {
                     new User("Dhondt", "Sam", "dhondtsam", new DateTime(1993, 7, 5), "sam.dhondt@hogent.be", PasswordHasher.GetPasswordAndSaltHash("samsamsam"), new List<Company>{ companies[0]}, UserType.Visitor),
-                    new User("Ouahab", "Yanis", "ouahabyanis", new DateTime(2000, 1, 1), "yanis.ouahab@hogent.be", PasswordHasher.GetPasswordAndSaltHash("yanisyanis"), new List<Company> { companies[0] }, UserType.Owner)
+                    new User("Ouahab", "Yanis", "ouahabyanis", new DateTime(2000, 1, 1), "yanis.ouahab@hogent.be", PasswordHasher.GetPasswordAndSaltHash("yanisyanis"), new List<Company> { companies[0] }, UserType.Owner),
+                    new User("De Vrient", "Jonas", "devrientjonas", new DateTime(2000, 1, 1), "jonas.devrient@hogent.be", PasswordHasher.GetPasswordAndSaltHash("jonasjonas"), new List<Company>(), UserType.Admin)
                 };
 
                 _applicationDbContext.Users.AddRange(users);

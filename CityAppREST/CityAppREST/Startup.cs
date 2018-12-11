@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using CityAppREST.Data;
 using CityAppREST.Data.Repositories;
 using CityAppREST.Helpers;
@@ -6,6 +8,7 @@ using CityAppREST.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -57,6 +60,12 @@ namespace CityAppREST
 
                 };
             });
+
+            // Add policies
+            foreach (var type in Enum.GetNames(typeof(UserType)))
+            {
+                services.AddAuthorization(options => options.AddPolicy(type, policy => policy.RequireClaim(ClaimTypes.Role, type)));
+            }
 
             // Add data initializer
             services.AddTransient<CityAppDataInitializer>();

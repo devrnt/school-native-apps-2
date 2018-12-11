@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using CityAppREST.Models;
@@ -24,10 +25,15 @@ namespace CityAppREST.Helpers
             var ssk = new SymmetricSecurityKey(_key);
             var creds = new SigningCredentials(ssk, SecurityAlgorithms.HmacSha256Signature);
 
-            var header = new JwtHeader(creds);
-            var userData = new JwtPayload { { "username", user.Username }, { "userType", user.UserType } };
+            var token = new JwtSecurityToken(
+                claims: new[] {
+                    new Claim(ClaimTypes.Name, user.Username),
+                    new Claim(ClaimTypes.Role, user.UserType.ToString())
+                },
+                signingCredentials: creds
+            );
 
-            return new JwtSecurityTokenHandler().WriteToken(new JwtSecurityToken(header, userData));
+            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }

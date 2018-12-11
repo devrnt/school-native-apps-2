@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CityAppREST.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Owner, Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CompaniesController : ControllerBase
