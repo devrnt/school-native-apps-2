@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CityAppREST.Filters;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +61,7 @@ namespace CityAppREST.Controllers
         /// <response code="200">Returns the created company</response>
         /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
         // POST api/companies
+        [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
         [HttpPost]
         public ActionResult<Company> Post(Company company)
         {
@@ -78,6 +80,7 @@ namespace CityAppREST.Controllers
         /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
         /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
         // PUT api/companies/5
+        [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
         [HttpPut("{id}")]
         public ActionResult<Company> Put(int id, Company company)
         {
@@ -103,6 +106,7 @@ namespace CityAppREST.Controllers
         /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
         /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
         // DELETE api/companies/5
+        [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
         [HttpDelete("{id}")]
         public ActionResult<Company> Delete(int id)
         {
