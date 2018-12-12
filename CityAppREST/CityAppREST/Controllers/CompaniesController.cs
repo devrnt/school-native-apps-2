@@ -12,7 +12,7 @@ namespace CityAppREST.Controllers
     /// <summary>
     /// Contains CRUD endpoints to manage companies
     /// </summary>
-    [Authorize(Policy = "Owner")]
+    [Authorize(Policy = nameof(UserType.Owner))]
     [Route("api/[controller]")]
     [ApiController]
     public class CompaniesController : ControllerBase

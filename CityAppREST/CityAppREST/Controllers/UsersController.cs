@@ -37,7 +37,7 @@ namespace CityAppREST.Controllers
         /// <response code="401">Unauthorized: : Request must contain a valid bearer token and contain a Claim of type Role and value Admin</response>
         // GET: api/users
 
-        [Authorize(Policy = "Admin")]
+        [Authorize(Policy = nameof(UserType.Admin))]
         [HttpGet]
         public IEnumerable<User> Get()
         {

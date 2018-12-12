@@ -43,5 +43,6 @@
     <Compile Remove="Attributes\JwtAuthenticationAttribute.cs" />
     <Compile Remove="Models\ApplicationUser.cs" />
     <Compile Remove="Filters\UserDataFilter.cs" />
+    <Compile Remove="Filters\UserDataFilter.cs" />
   </ItemGroup>
 </Project>
