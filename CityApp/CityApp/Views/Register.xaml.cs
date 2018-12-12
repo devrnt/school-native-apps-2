@@ -24,11 +24,54 @@ namespace CityApp.Views
     public sealed partial class Register : Page
     {
         private RegisterViewModel _vm;
+        private bool _correctCredentials;
+        public bool CorrectCredentials
+        {
+            get { return _correctCredentials; }
+            set { _correctCredentials = value;
+                Bindings.Update();
+            }
+        }
+        private string _errorText;
+
+        public string ErrorText
+        {
+            get { return _errorText; }
+            set { _errorText = value;
+                Bindings.Update();
+            }
+        }
+
+
         public Register()
         {
             this.InitializeComponent();
             _vm = new RegisterViewModel();
             this.DataContext = _vm;
+            CorrectCredentials = false;
+            ErrorText = "Please fill in all fields.";
+        }
+
+        private void BirthDate_DateChanged(object sender, DatePickerValueChangedEventArgs e)
+        {
+            if (BirthDate.Date > DateTimeOffset.Now)
+            {
+                CorrectCredentials = false;
+            }
+            else {
+                CorrectCredentials = true;
+            }
+        }
+        private void Credentials_Changed(object sender, TextChangedEventArgs e) {
+            if (String.IsNullOrEmpty(Name.Text) || String.IsNullOrEmpty(FirstName.Text) || String.IsNullOrEmpty(Email.Text) || String.IsNullOrEmpty(Password.Text))
+            {
+                ErrorText = "Please fill in all fields.";
+                CorrectCredentials = false;
+            }
+            else {
+                ErrorText = "";
+                CorrectCredentials = true;
+            }
         }
     }
 }

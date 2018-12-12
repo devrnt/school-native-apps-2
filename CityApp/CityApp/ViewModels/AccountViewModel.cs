@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using CityApp.DataModel;
@@ -23,6 +24,16 @@ namespace CityApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public RelayCommand LogInCommand { get; set; }
         public RelayCommand RegisterCommand { get; set; }
+        private string _errorText;
+
+        public string ErrorText
+        {
+            get { return _errorText; }
+            set { _errorText = value;
+                RaisePropertyChanged("ErrorText");
+            }
+        }
+
 
         #endregion
 
@@ -45,9 +56,16 @@ namespace CityApp.ViewModels
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
         private void LogIn(LogInCredentials c) {
+            if (c.u == "test") {
+                ErrorText = "errortest";
+            }
         }
         private void Register() {
             _navigationService.NavigateToRegisterAsync();
+        }
+        protected void RaisePropertyChanged([CallerMemberName]string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }
