@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using CityAppREST.Data.Repositories;
+using CityAppREST.Filters;
 using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +32,7 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>List of Users</returns>
         // GET: api/users
+        [Authorize(Policy = "Admin")]
         [HttpGet]
         public IEnumerable<User> Get()
         {
@@ -42,9 +45,16 @@ namespace CityAppREST.Controllers
         /// <returns>A user or NotFound if no user is found with specified id</returns>
         /// <param name="id">User id</param>
         // GET api/users/5
+        [NameIdentifierFilter]
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
         {
+            //int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value ?? "0");
+            //if (userId != id)
+            //{
+            //    return Forbid();
+            //}
+
             var user = _userRepository.GetById(id);
             return (ActionResult<User>)user ?? NotFound();
         }
@@ -73,6 +83,7 @@ namespace CityAppREST.Controllers
         /// <param name="id">User id</param>
         /// <param name="user">Userobject</param>
         // PUT api/users/5
+        [NameIdentifierFilter]
         [HttpPut("{id}")]
         public ActionResult<User> Put(int id, User user)
         {
@@ -81,7 +92,6 @@ namespace CityAppREST.Controllers
             {
                 return NotFound();
             }
-
             user.Id = toUpdate.Id;
             _userRepository.Update(user);
             _userRepository.SaveChanges();
@@ -95,6 +105,7 @@ namespace CityAppREST.Controllers
         /// <returns>The deleted user or a NotFound when no user with specified id is found</returns>
         /// <param name="id">User id</param>
         // DELETE api/users/5
+        [NameIdentifierFilter]
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {

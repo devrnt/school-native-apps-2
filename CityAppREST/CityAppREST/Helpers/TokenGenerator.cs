@@ -32,8 +32,9 @@ namespace CityAppREST.Helpers
 
             // Claims containing data about the user
             var userClaims = new List<Claim> {
-               new Claim(ClaimTypes.Name, user.Username),
-               new Claim(ClaimTypes.Role, user.UserType.ToString()) // will be validated against possible policies
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, user.UserType.ToString()), // will be validated against possible policies
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             // Adds all roles if user is Admin
