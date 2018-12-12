@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CityAppREST.Data;
@@ -71,15 +72,17 @@ namespace CityAppREST
             services.AddTransient<CityAppDataInitializer>();
 
             // Add swagger
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(config =>
             {
-                c.SwaggerDoc("v1", new Info
+                config.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
                     Title = "CityAppREST Api",
                     Description = "Web API for CityApp",
                     TermsOfService = "None"
                 });
+                var xmlDocFilepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "api.xml");
+                config.IncludeXmlComments(xmlDocFilepath);
             });
         }
 

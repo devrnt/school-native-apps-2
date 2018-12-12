@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CityAppREST</name>
+    </assembly>
+    <members>
+        <member name="T:CityAppREST.Controllers.CompaniesController">
+            <summary>
+            Contains CRUD endpoints to manage companies
+            </summary>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.Get">
+            <summary>
+            Calls the repository to return a list of all companies
+            </summary>
+            <returns>List of all companies</returns>
+            <response code="200">Returns a list of companies</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.Get(System.Int32)">
+            <summary>
+            Calls the repository to find a company with a specified Id
+            </summary>
+            <returns>A company or a NotFoundResult when no company matching the id is found</returns>
+            <param name="id">Company id</param>
+            <response code="200">Returns a company whose id matches the supplied id</response>
+            <response code="404">Not Found: no such company whose id matches the supplied id</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.Post(CityAppREST.Models.Company)">
+            <summary>
+            Post the specified company. Calls the repository to create a new company.
+            </summary>
+            <returns>Posted company</returns>
+            <param name="company">Company to create</param>
+            <response code="200">Returns the created company</response>
+            <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.Put(System.Int32,CityAppREST.Models.Company)">
+            <summary>
+            Put the specified id and company.
+            </summary>
+            <returns>The edited company</returns>
+            <param name="id">Company id</param>
+            <param name="company">Company object</param>
+            <response code="200">Returns the edited company</response>
+            <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+            <response code="403">Forbidden: Only the owner of specified company has write access</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.Delete(System.Int32)">
+            <summary>
+            Delete the company with specified id.
+            </summary>
+            <returns>The deleted company or a NotFound if no company is found with specified id</returns>
+            <param name="id">Company id</param>
+            <response code="200">Returns the deleted company</response>
+            <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+            <response code="403">Forbidden: Only the owner of specified company has write access</response>
+        </member>
+        <member name="T:CityAppREST.Controllers.UsersController">
+            <summary>
+            Contains CRUD endpoints to manage users
+            </summary>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Get">
+            <summary>
+            Calls the repository to return all users.
+            </summary>
+            <returns>List of Users</returns>
+            <response code="200">Returns List of users</response>
+            <response code="401">Unauthorized: : Request must contain a valid bearer token and contain a Claim of type Role and value Admin</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Get(System.Int32)">
+            <summary>
+            Get the user with specified id.
+            </summary>
+            <returns>A user or NotFound if no user is found with specified id</returns>
+            <param name="id">User id</param>
+            <response code="200">Returns a User</response>
+            <response code="401">Unauthorized: must be authenticated</response>
+            <response code="403">Forbidden: Only read access to own user</response>
+            <response code="404">Not Found: no user with supplied id</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Post(CityAppREST.Models.User)">
+            <summary>
+            Post the specified user. Hashes the password with salt and calls the repository to create a new user.
+            </summary>
+            <returns>The created user</returns>
+            <param name="user">User object to create</param>
+            <response code="200">The created user</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Put(System.Int32,CityAppREST.Models.User)">
+            <summary>
+            Put the specified id and user.
+            </summary>
+            <returns>The edited user</returns>
+            <param name="id">User id</param>
+            <param name="user">Userobject</param>
+            <response code="200">The edited user</response>
+            <response code="401">Unauthorized: Request must contain a valid bearer token</response>
+            <response code="403">Forbidden: Only write access to own user</response>
+            <response code="404">Not Found: no user with supplied id</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Delete(System.Int32)">
+            <summary>
+            Delete the user with specified id.
+            </summary>
+            <returns>The deleted user or a NotFound when no user with specified id is found</returns>
+            <param name="id">User id</param>
+            <response code="200">The deleted user</response>
+            <response code="401">Unauthorized: Request must contain a valid bearer token</response>
+            <response code="403">Forbidden: Only write access to own user</response>
+            <response code="404">Not Found: no user with supplied id</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Authenticate(CityAppREST.Controllers.LoginDetails)">
+            <summary>
+            Authenticate the specified loginDetails.
+            </summary>
+            <returns>A jwt token for further authentication</returns>
+            <param name="loginDetails">Details containing username and password to authenticate with</param>
+            <response code="200">Returns a token for further authentication</response>
+            <response code="401">Unauthorized: Password did not match</response>
+            <response code="404">Not Found: no user with specified username in logindetails</response>
+        </member>
+        <member name="T:CityAppREST.Helpers.PasswordHasher">
+            <summary>
+            Helper class to hash a password and validate a password with a passwordHash
+            </summary>
+        </member>
+        <member name="T:CityAppREST.Helpers.TokenGenerator">
+            <summary>
+            Helper class to generate a JWT token with Claims
+            </summary>
+        </member>
+    </members>
+</doc>

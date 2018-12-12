@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
@@ -47,6 +48,13 @@ namespace CityAppREST.Helpers
                         userClaims.Add(new Claim(ClaimTypes.Role, type));
                     }
                 }
+            }
+
+            // Add companies ids as claim
+            if (user.UserType == UserType.Owner)
+            {
+                var companyIds = String.Join(" ", user.Companies.Select(company => company.Id));
+                userClaims.Add(new Claim(ClaimTypes.UserData, companyIds));
             }
 
             var token = new JwtSecurityToken(

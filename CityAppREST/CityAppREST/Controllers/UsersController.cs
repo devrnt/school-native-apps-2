@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using CityAppREST.Data.Repositories;
 using CityAppREST.Filters;
@@ -7,6 +8,7 @@ using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.Swagger.Annotations;
 
 namespace CityAppREST.Controllers
 {
@@ -31,7 +33,10 @@ namespace CityAppREST.Controllers
         /// Calls the repository to return all users.
         /// </summary>
         /// <returns>List of Users</returns>
+        /// <response code="200">Returns List of users</response>
+        /// <response code="401">Unauthorized: : Request must contain a valid bearer token and contain a Claim of type Role and value Admin</response>
         // GET: api/users
+
         [Authorize(Policy = "Admin")]
         [HttpGet]
         public IEnumerable<User> Get()
@@ -44,17 +49,15 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>A user or NotFound if no user is found with specified id</returns>
         /// <param name="id">User id</param>
+        /// <response code="200">Returns a User</response>
+        /// <response code="401">Unauthorized: must be authenticated</response>
+        /// <response code="403">Forbidden: Only read access to own user</response>
+        /// <response code="404">Not Found: no user with supplied id</response>
         // GET api/users/5
-        [NameIdentifierFilter]
+        [ReadWriteAccessFilter(RequestObjectType = nameof(User))]
         [HttpGet("{id}")]
         public ActionResult<User> Get(int id)
         {
-            //int userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value ?? "0");
-            //if (userId != id)
-            //{
-            //    return Forbid();
-            //}
-
             var user = _userRepository.GetById(id);
             return (ActionResult<User>)user ?? NotFound();
         }
@@ -63,7 +66,8 @@ namespace CityAppREST.Controllers
         /// Post the specified user. Hashes the password with salt and calls the repository to create a new user.
         /// </summary>
         /// <returns>The created user</returns>
-        /// <param name="user">User object</param>
+        /// <param name="user">User object to create</param>
+        /// <response code="200">The created user</response>
         // POST api/users
         [AllowAnonymous]
         [HttpPost]
@@ -82,8 +86,12 @@ namespace CityAppREST.Controllers
         /// <returns>The edited user</returns>
         /// <param name="id">User id</param>
         /// <param name="user">Userobject</param>
+        /// <response code="200">The edited user</response>
+        /// <response code="401">Unauthorized: Request must contain a valid bearer token</response>
+        /// <response code="403">Forbidden: Only write access to own user</response>
+        /// <response code="404">Not Found: no user with supplied id</response>
         // PUT api/users/5
-        [NameIdentifierFilter]
+        [ReadWriteAccessFilter(RequestObjectType = nameof(User))]
         [HttpPut("{id}")]
         public ActionResult<User> Put(int id, User user)
         {
@@ -104,8 +112,12 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>The deleted user or a NotFound when no user with specified id is found</returns>
         /// <param name="id">User id</param>
+        /// <response code="200">The deleted user</response>
+        /// <response code="401">Unauthorized: Request must contain a valid bearer token</response>
+        /// <response code="403">Forbidden: Only write access to own user</response>
+        /// <response code="404">Not Found: no user with supplied id</response>
         // DELETE api/users/5
-        [NameIdentifierFilter]
+        [ReadWriteAccessFilter(RequestObjectType = nameof(User))]
         [HttpDelete("{id}")]
         public ActionResult<User> Delete(int id)
         {
@@ -125,7 +137,10 @@ namespace CityAppREST.Controllers
         /// Authenticate the specified loginDetails.
         /// </summary>
         /// <returns>A jwt token for further authentication</returns>
-        /// <param name="loginDetails">Details containg username and password to check</param>
+        /// <param name="loginDetails">Details containing username and password to authenticate with</param>
+        /// <response code="200">Returns a token for further authentication</response>
+        /// <response code="401">Unauthorized: Password did not match</response>
+        /// <response code="404">Not Found: no user with specified username in logindetails</response>
         // POST api/users/authenticate
         [AllowAnonymous]
         [HttpPost("authenticate")]

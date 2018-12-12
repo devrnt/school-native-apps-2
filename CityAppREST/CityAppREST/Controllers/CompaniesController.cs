@@ -27,12 +27,13 @@ namespace CityAppREST.Controllers
         /// Calls the repository to return a list of all companies
         /// </summary>
         /// <returns>List of all companies</returns>
+        /// <response code="200">Returns a list of companies</response>
         // GET: api/companies
         [AllowAnonymous]
         [HttpGet]
-        public ActionResult<List<Company>> Get()
+        public IEnumerable<Company> Get()
         {
-            return _companyRepository.GetAll().ToList();
+            return _companyRepository.GetAll();
         }
 
         /// <summary>
@@ -40,6 +41,8 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>A company or a NotFoundResult when no company matching the id is found</returns>
         /// <param name="id">Company id</param>
+        /// <response code="200">Returns a company whose id matches the supplied id</response>
+        /// <response code="404">Not Found: no such company whose id matches the supplied id</response>
         // GET api/companies/5
         [AllowAnonymous]
         [HttpGet("{id}")]
@@ -54,6 +57,8 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>Posted company</returns>
         /// <param name="company">Company to create</param>
+        /// <response code="200">Returns the created company</response>
+        /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
         // POST api/companies
         [HttpPost]
         public ActionResult<Company> Post(Company company)
@@ -69,6 +74,9 @@ namespace CityAppREST.Controllers
         /// <returns>The edited company</returns>
         /// <param name="id">Company id</param>
         /// <param name="company">Company object</param>
+        /// <response code="200">Returns the edited company</response>
+        /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+        /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
         // PUT api/companies/5
         [HttpPut("{id}")]
         public ActionResult<Company> Put(int id, Company company)
@@ -91,6 +99,9 @@ namespace CityAppREST.Controllers
         /// </summary>
         /// <returns>The deleted company or a NotFound if no company is found with specified id</returns>
         /// <param name="id">Company id</param>
+        /// <response code="200">Returns the deleted company</response>
+        /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+        /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
         // DELETE api/companies/5
         [HttpDelete("{id}")]
         public ActionResult<Company> Delete(int id)
