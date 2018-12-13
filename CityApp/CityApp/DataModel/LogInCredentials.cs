@@ -8,13 +8,8 @@ namespace CityApp.DataModel
 {
     public class LogInCredentials
     {
-        public string u { get; set; }
-        public string p { get; set; }
+        public string Username   { get; set; }
+        public string Password { get; set; }
         public LogInCredentials() { }
-        public LogInCredentials(string u, string p)
-        {
-            this.u = u;
-            this.p = p;
-        }
     }
 }

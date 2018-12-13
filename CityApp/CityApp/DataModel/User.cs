@@ -11,6 +11,7 @@ namespace CityApp.DataModel
         public int Id { get; set; }
         public string Name { get; set; }
         public string FirstName { get; set; }
+        public string Username { get; set; }
         public DateTime BirthDate { get; set; }
         public int Age
         {

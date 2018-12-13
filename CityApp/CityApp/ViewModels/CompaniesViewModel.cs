@@ -34,12 +34,18 @@ namespace CityApp.ViewModels
         #region === Constructor ===
         public CompaniesViewModel()
         {
-            _companyService = new CompanyService();
-
-            Companies = new ObservableCollection<Company>();
-
-            LoadCompaniesAsync();
             _navigationService = NavigationService.ns;
+            _companyService = new CompanyService();
+            Companies = new ObservableCollection<Company>();
+            CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
+            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, false));
+            LoadCompaniesAsync();
+            AllCategories = new List<Categories>();
+            PromotionsChoices = new List<string>() { "Ja", "Nee" };
+            foreach (Categories cat in Enum.GetValues(typeof(Categories)))
+            {
+                AllCategories.Add(cat);
+            }
         }
         public CompaniesViewModel(INavigationService navigationService)
         {
@@ -53,16 +59,6 @@ namespace CityApp.ViewModels
         {
             var companies = await _companyService.GetCompanies();
             companies.ForEach(company => Companies.Add(company));
-
-            AllCategories = new List<Categories>();
-            PromotionsChoices = new List<string>() { "Ja", "Nee" };
-            foreach (Categories cat in Enum.GetValues(typeof(Categories)))
-            {
-                AllCategories.Add(cat);
-            }
-            CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
-            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, false));
-
             // Companies = new ObservableCollection<Company>(companies);
         }
 
@@ -71,32 +67,29 @@ namespace CityApp.ViewModels
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
         public void ShowCompanyDetails(Company p)
-        {
+            {
             _navigationService.NavigateToCompanyDetailsAsync(p);
         }
 
         public ObservableCollection<Company> UpdateFilter(Categories cat, bool promo)
         {
-            var fCompanies = DummyDataSource.Companies;
+            var fCompanies = Companies;
             if (cat != Categories.All)
             {
-                fCompanies = fCompanies.Where(p => p.Categorie == cat).ToList();
+               fCompanies.Where(p => p.Categorie == cat);
             }
             if (promo)
             {
-                Console.WriteLine(fCompanies[0].Promotions);
-                fCompanies = fCompanies
+                fCompanies
                     .TakeWhile(c => c.Promotions != null)
                     .Where(c => c.Promotions.Count > 0)
                     .ToList();
             }
-            return new ObservableCollection<Company>(fCompanies);
+            return fCompanies;
         }
         public ObservableCollection<Company> ResetFilter()
         {
-
-            var fCompanies = DummyDataSource.Companies;
-            return new ObservableCollection<Company>(fCompanies);
+            return Companies;
         }
         #endregion
     }

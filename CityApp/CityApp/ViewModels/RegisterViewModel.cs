@@ -22,7 +22,7 @@ namespace CityApp.ViewModels
         {
             RegisterCommand = new RelayCommand((p) => RegisterAsync((RegisterCredentials)p));
             _navigationService = NavigationService.ns;
-            _userService = new UserService();
+            _userService = UserService.us;
         }
 
         private async void RegisterAsync(RegisterCredentials p)

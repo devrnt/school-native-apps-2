@@ -10,6 +10,19 @@ namespace CityApp.Services.Rest
 {
     public class UserService
     {
+        private static UserService _us;
+        public static UserService us
+        {
+            get
+            {
+                if (_us == null) { _us = new UserService(); }
+                return _us;
+            }
+            set { _us = value; }
+        }
+        public int LoggedUser { get; internal set; }
+
+
         // Used for a workaround for the ssl certificate
         private readonly HttpBaseProtocolFilter _httpFilter;
         private readonly HttpClient _httpClient;
@@ -29,23 +42,37 @@ namespace CityApp.Services.Rest
 
         public async Task<string> RegisterAsync(User user)
         {
+            var userJson = JsonConvert.SerializeObject(user);
+            var userPostReady = new HttpStringContent(userJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+
+            var response = await _httpClient.PostAsync(new Uri(_apiUrl), null);
+
+            if (response.IsSuccessStatusCode)
             {
-                var userJson = JsonConvert.SerializeObject(user);
-                var userPostReady = new HttpStringContent(userJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+                return "Succesvol aangemaakt";
+            }
+            else
+            {
+                //    return response;
+            }
+            return response.Content.ToString();
+        }
+        public async Task<string> AuthenticateAsync(LogInCredentials user)
+        {
+            var userJson = JsonConvert.SerializeObject(user);
+            var userPostReady = new HttpStringContent(userJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
 
-                var response = await _httpClient.PostAsync(new Uri(_apiUrl), null);
+            var response = await _httpClient.PostAsync(new Uri(_apiUrl + "/authenticate"), userPostReady);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    return "Succesvol aangemaakt";
-                }
-                else
-                {
-                    //    return response;
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                return "Succesvol ingelogd";
+                
+            }
+            else
+            {
                 return response.Content.ToString();
             }
-
         }
     }
 }
