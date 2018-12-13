@@ -34,19 +34,11 @@ namespace CityApp.ViewModels
         #region === Constructor ===
         public CompaniesViewModel()
         {
-            // Fetch companies
-            Companies = new ObservableCollection<Company>(DummyDataSource.Companies);
             _companyService = new CompanyService();
-            LoadCompaniesAsync() ;
-            AllCategories = new List<Categories>();
-            PromotionsChoices = new List<string>() { "Ja", "Nee" };
-            foreach (Categories cat in Enum.GetValues(typeof(Categories)))
-            {
-                AllCategories.Add(cat);
-            }
-            CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
-            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, false));
 
+            Companies = new ObservableCollection<Company>();
+
+            LoadCompaniesAsync();
             _navigationService = NavigationService.ns;
         }
         public CompaniesViewModel(INavigationService navigationService)
@@ -60,8 +52,16 @@ namespace CityApp.ViewModels
         public async void LoadCompaniesAsync()
         {
             var companies = await _companyService.GetCompanies();
+            companies.ForEach(company => Companies.Add(company));
 
-            Console.WriteLine(companies);
+            AllCategories = new List<Categories>();
+            PromotionsChoices = new List<string>() { "Ja", "Nee" };
+            foreach (Categories cat in Enum.GetValues(typeof(Categories)))
+            {
+                AllCategories.Add(cat);
+            }
+            CompanyDetailsCommand = new RelayCommand((p) => ShowCompanyDetails((Company)p));
+            FilterChangeCommand = new RelayCommand((p) => UpdateFilter((Categories)p, false));
 
             // Companies = new ObservableCollection<Company>(companies);
         }

@@ -27,28 +27,26 @@
                             animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <ScrollViewer>
-            <GridView Name="gv"
+        <GridView Name="gv"
             ItemsSource="{Binding Companies, Mode=OneWay}" 
             IsItemClickEnabled="True"
             helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock Text="{Binding Name}" FontSize="48"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Categorie}" FontSize="24"/>
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="5">
+                        <TextBlock Text="{Binding Name}" FontSize="48"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Categorie}" FontSize="24"/>
 
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C9;" Foreground="Gold" Visibility="{Binding HasPromotion}" >
-                                    <ToolTipService.ToolTip>
-                                        <TextBlock Text="Promotion(s) available!"/>
-                                    </ToolTipService.ToolTip>
-                                </FontIcon>
-                            </StackPanel>
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C9;" Foreground="Gold" Visibility="{Binding HasPromotion}" >
+                                <ToolTipService.ToolTip>
+                                    <TextBlock Text="Promotion(s) available!"/>
+                                </ToolTipService.ToolTip>
+                            </FontIcon>
                         </StackPanel>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-        </ScrollViewer>
+                    </StackPanel>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </StackPanel>
 </Page>
