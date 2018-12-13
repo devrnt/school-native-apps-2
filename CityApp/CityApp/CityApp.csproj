@@ -131,6 +131,7 @@
     <Compile Include="Services\Navigation\NavigationService.cs" />
     <Compile Include="Services\Rest\CompanyService.cs" />
     <Compile Include="Services\Rest\UserService.cs" />
+    <Compile Include="Services\StorageService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ViewModeService.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />

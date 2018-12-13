@@ -49,6 +49,7 @@ namespace CityApp.Services.Rest
 
             if (response.IsSuccessStatusCode)
             {
+                Console.WriteLine(response.Content);
                 return "Succesvol aangemaakt";
             }
             else
@@ -66,13 +67,20 @@ namespace CityApp.Services.Rest
 
             if (response.IsSuccessStatusCode)
             {
+                var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(await response.Content.ReadAsStringAsync());
+                await StorageService.StoreUserToken(loginResponse.Token);
+
                 return "Succesvol ingelogd";
-                
             }
             else
             {
                 return response.Content.ToString();
             }
         }
+    }
+
+    public class LoginResponse
+    {
+        public string Token { get; set; }
     }
 }

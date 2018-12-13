@@ -69,6 +69,8 @@ namespace CityApp.ViewModels
             var result = await _userService.AuthenticateAsync(c);
             if (result == "Succesvol ingelogd")
             {
+                // the token can be retrieved by:
+                // var token = await StorageService.RetrieveUserToken();
                 await _navigationService.NavigateToCompaniesAsync();
             }
             else
