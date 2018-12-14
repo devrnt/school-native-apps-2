@@ -20,10 +20,10 @@ namespace CityAppREST.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly IRepository<User> _userRepository;
+        private readonly UserRepository _userRepository;
         private readonly TokenGenerator _tokenGenerator;
 
-        public UsersController(IRepository<User> userRepository, TokenGenerator tokenGenerator)
+        public UsersController(UserRepository userRepository, TokenGenerator tokenGenerator)
         {
             _userRepository = userRepository;
             _tokenGenerator = tokenGenerator;
@@ -59,6 +59,24 @@ namespace CityAppREST.Controllers
         public ActionResult<User> Get(int id)
         {
             var user = _userRepository.GetById(id);
+            return (ActionResult<User>)user ?? NotFound();
+        }
+
+        /// <summary>
+        /// Get the user with specified username.
+        /// </summary>
+        /// <returns>A user or NotFound if no user is found with specified id</returns>
+        /// <param name="username">User username</param>
+        /// <response code="200">Returns a User</response>
+        /// <response code="401">Unauthorized: must be authenticated</response>
+        /// <response code="403">Forbidden: Only read access to own user</response>
+        /// <response code="404">Not Found: no user with supplied id</response>
+        // GET api/users/5
+        [ReadWriteAccessFilter(RequestObjectType = nameof(User))]
+        [HttpGet("{username}")]
+        public ActionResult<User> Get(string username)
+        {
+            var user = _userRepository.GetByUsername(username);
             return (ActionResult<User>)user ?? NotFound();
         }
 

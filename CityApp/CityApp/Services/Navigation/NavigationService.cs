@@ -118,7 +118,13 @@ namespace CityApp.Services.Navigation
 
         public Task NavigateToAccountAsync()
         {
-            return NavigateToPage<Account>();
+            if (!StorageService.UserStored)
+            {
+                return NavigateToPage<Account>();
+            }
+            else {
+                return NavigateToPage<Profile>();
+            }
         }
 
         public Task NavigateToAddCompanyAsync()

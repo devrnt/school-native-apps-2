@@ -69,13 +69,19 @@ namespace CityApp.Services.Rest
             {
                 var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(await response.Content.ReadAsStringAsync());
                 await StorageService.StoreUserToken(loginResponse.Token);
-
+                StorageService.StoreUserCredentials(user.Username, user.Password);
                 return "Succesvol ingelogd";
             }
             else
             {
                 return response.Content.ToString();
             }
+        }
+        public async Task<User> GetUser(string username)
+        {
+            var json = await _httpClient.GetStringAsync(new Uri(_apiUrl ));
+
+            return JsonConvert.DeserializeObject<User>(json);
         }
     }
 

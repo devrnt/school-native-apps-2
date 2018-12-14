@@ -12,6 +12,8 @@ namespace CityApp.Services
     public static class StorageService
     {
         private const string _tokenKey = "UserToken";
+        private static string _user { get; set; }
+        public static bool UserStored { get; private set; }
 
         // === User token ===
         public static async Task StoreUserToken(string token)
@@ -33,22 +35,24 @@ namespace CityApp.Services
         // === User credentials: username and password ===
         public static void StoreUserCredentials(string username, string password)
         {
+            _user = username;
             var vault = new PasswordVault();
             vault.Add(new PasswordCredential(
                 "CityApp", username, password));
+            UserStored = true;
         }
 
-        public static PasswordCredential GetUserCredentials(string username)
+        public static PasswordCredential GetUserCredentials()
         {
             var vault = new PasswordVault();
-            return vault.Retrieve("CityApp", username);
+            return vault.Retrieve("CityApp", _user);
         }
 
-        public static void RemoveUserCredentials(string username, string password)
+        public static void RemoveUserCredentials()
         {
             var vault = new PasswordVault();
-            vault.Remove(new PasswordCredential(
-                "CityApp", username, password));
+            vault.Remove(GetUserCredentials());
+            UserStored = false;
         }
     }
 }
