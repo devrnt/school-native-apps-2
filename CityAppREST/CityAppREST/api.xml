@@ -131,6 +131,16 @@
             <response code="401">Unauthorized: Password did not match</response>
             <response code="404">Not Found: no user with specified username in logindetails</response>
         </member>
+        <member name="M:CityAppREST.Controllers.UsersController.Companies(System.Int32,CityAppREST.Models.Company)">
+            <summary>
+            Add company to the subscription list of the user
+            </summary>
+            <returns>The updated subscription list</returns>
+            <param name="id">user id</param>
+            <param name="company">companyId</param>
+            <returns>List of the user subscription</returns>
+            <response code="200">Returns a list of the subscriptions of the user</response>
+        </member>
         <member name="T:CityAppREST.Helpers.PasswordHasher">
             <summary>
             Helper class to hash a password and validate a password with a passwordHash
