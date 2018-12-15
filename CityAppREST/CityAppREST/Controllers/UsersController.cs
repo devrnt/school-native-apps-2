@@ -177,7 +177,7 @@ namespace CityAppREST.Controllers
             }
 
             var token = _tokenGenerator.GenerateTokenForUser(user);
-            return Ok(new { token });
+            return Ok(new { userId = user.Id, username = user.Username, token });
         }
     }
 
