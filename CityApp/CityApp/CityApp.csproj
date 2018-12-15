@@ -105,6 +105,7 @@
     <Compile Include="DataModel\Location.cs" />
     <Compile Include="DataModel\OpeningHours.cs" />
     <Compile Include="DataModel\RegisterCredentials.cs" />
+    <Compile Include="DataModel\Responses\Responses.cs" />
     <Compile Include="DataModel\SocialMedia.cs" />
     <Compile Include="DataModel\Themes.cs" />
     <Compile Include="DataModel\User.cs" />

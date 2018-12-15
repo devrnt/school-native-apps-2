@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CityApp.DataModel;
+using CityApp.DataModel.Responses;
 using Newtonsoft.Json;
 using Windows.Security.Cryptography.Certificates;
 using Windows.Web.Http;
@@ -69,7 +70,7 @@ namespace CityApp.Services.Rest
             {
                 var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(await response.Content.ReadAsStringAsync());
                 await StorageService.StoreUserToken(loginResponse.Token);
-                StorageService.StoreUserCredentials(user.Username, user.Password);
+                await StorageService.StoreUserId(loginResponse.UserId);
                 return "Succesvol ingelogd";
             }
             else
@@ -77,16 +78,15 @@ namespace CityApp.Services.Rest
                 return response.Content.ToString();
             }
         }
-        public async Task<User> GetUser(string username)
+        public async Task<UserResponse> GetUser()
         {
-            var json = await _httpClient.GetStringAsync(new Uri(_apiUrl ));
+            var token = await StorageService.RetrieveUserToken();
+            var userId = await StorageService.RetrieveUserId();
 
-            return JsonConvert.DeserializeObject<User>(json);
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+            var json = await _httpClient.GetStringAsync(new Uri($"{_apiUrl}/{userId}"));
+
+            return JsonConvert.DeserializeObject<UserResponse>(json);
         }
-    }
-
-    public class LoginResponse
-    {
-        public string Token { get; set; }
     }
 }

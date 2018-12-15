@@ -12,6 +12,8 @@ namespace CityApp.Services
     public static class StorageService
     {
         private const string _tokenKey = "UserToken";
+        private const string _userIdKey = "UserId";
+
         private static string _user { get; set; }
         public static bool UserStored { get; private set; }
 
@@ -30,6 +32,24 @@ namespace CityApp.Services
                 .Current
                 .LocalSettings
                 .ReadAsync<string>(_tokenKey);
+        }
+
+        public static async Task StoreUserId(int id)
+        {
+            await ApplicationData
+                .Current
+                .LocalSettings
+                .SaveAsync(_userIdKey, id);
+            UserStored = true;
+
+        }
+
+        public static async Task<string> RetrieveUserId()
+        {
+            return await ApplicationData
+                .Current
+                .LocalSettings
+                .ReadAsync<string>(_userIdKey);
         }
 
         // === User credentials: username and password ===
