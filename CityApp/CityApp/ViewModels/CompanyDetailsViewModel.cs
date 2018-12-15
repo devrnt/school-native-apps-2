@@ -8,6 +8,7 @@ using CityApp.DataModel;
 using CityApp.Helpers;
 using CityApp.Services;
 using CityApp.Services.Navigation;
+using CityApp.Services.Rest;
 using Windows.UI.Xaml.Navigation;
 
 namespace CityApp.ViewModels
@@ -21,16 +22,25 @@ namespace CityApp.ViewModels
         public RelayCommand SubscribeCommand { get; set; }
 
         private INavigationService _navigationService;
+        private UserService _userService;
 
         public CompanyDetailsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            SubscribeCommand = new RelayCommand((p) => AddCompanyToSubscription());
+            _userService = new UserService();
+            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
         }
 
-        private void AddCompanyToSubscription()
+        public CompanyDetailsViewModel()
         {
-            Console.WriteLine(Company);
+            _userService = new UserService();
+            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
+        }
+
+        private async Task AddCompanyToSubscriptionAsync()
+        {
+            await _userService.AddCompanyToSubscription(Company);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Company)));
         }
 
         public async Task NavigatedTo(NavigationMode navigationMode, object parameter)
