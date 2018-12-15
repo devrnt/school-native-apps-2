@@ -41,21 +41,23 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock x:Name="companyName" Grid.Row="0" Grid.Column="0" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Name}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}"/>
-                <TextBlock x:Name="companyCategory" Grid.Row="1" Grid.Column="0" Style="{ThemeResource TitleTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" Text="{x:Bind Path=ViewModel.Company.Categorie}" />
-                <TextBlock x:Name="companyDescription" Grid.Row="2" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description}" />
-                <TextBlock x:Name="companyKeywords" Grid.Row="3" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords}" />
 
-                <TextBlock x:Name="companyOwner" Grid.Column="0" Grid.Row="4" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Owner.Name}" />
+                <StackPanel>
+                    <TextBlock x:Name="companyName" Grid.Row="0" Grid.Column="0" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Name}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}"/>
+                    <TextBlock x:Name="companyCategory" Grid.Row="1" Grid.Column="0" Style="{ThemeResource TitleTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" Text="{x:Bind Path=ViewModel.Company.Categorie}" />
+                    <TextBlock x:Name="companyDescription" Grid.Row="2" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description}" />
+                    <TextBlock x:Name="companyKeywords" Grid.Row="3" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords}" />
+                    <TextBlock x:Name="companyOwner" Grid.Column="0" Grid.Row="4" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Owner.Name}" />
+                    <Button Name="Subscribe_Btn" IsEnabled="{x:Bind CanSubscribe}" Content="Abonneer" Command="{Binding SubscribeCommand}"></Button>
+                </StackPanel>
             </Grid>
-            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Promotions}" Margin="12,52.333,-405,-496.333" RenderTransformOrigin="0.468,0.449" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>
+                <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Promotions}" Margin="12,52.333,-405,-496.333" RenderTransformOrigin="0.468,0.449" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
     </RelativePanel>
 </Page>
