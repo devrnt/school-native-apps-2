@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CityApp.DataModel;
 using CityApp.DataModel.Responses;
@@ -82,10 +83,10 @@ namespace CityApp.Services.Rest
         }
         public static async Task<string> LogOutUserAsync()
         {
-                //StorageService.RemoveUserCredentials();
-                await StorageService.ClearStoredUser();
-                StorageService.UserType = -1;
-                return "ok";
+            //StorageService.RemoveUserCredentials();
+            await StorageService.ClearStoredUser();
+            StorageService.UserType = -1;
+            return "ok";
         }
         public async Task<UserResponse> GetUser()
         {
@@ -97,6 +98,24 @@ namespace CityApp.Services.Rest
             var json = await _httpClient.GetStringAsync(new Uri($"{_apiUrl}/{userId}"));
 
             return JsonConvert.DeserializeObject<UserResponse>(json);
+        }
+
+        public async Task<string> AddCompanyToSubscription(Company company)
+        {
+            var token = await StorageService.RetrieveUserToken();
+            var userId = await StorageService.RetrieveUserId();
+
+            var companyJson = JsonConvert.SerializeObject(company);
+
+            var companyPostReady = new HttpStringContent(companyJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+
+            var response = await _httpClient.PostAsync(new Uri($"{_apiUrl}/{userId}/companies"), companyPostReady);
+
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            //return JsonConvert.DeserializeObject<List<Company>>(await response.Content.ReadAsStringAsync());
+            return "succes";
         }
     }
 }

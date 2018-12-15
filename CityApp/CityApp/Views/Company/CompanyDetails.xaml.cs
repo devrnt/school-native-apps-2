@@ -13,9 +13,13 @@ namespace CityApp.Views
         public CompanyDetails()
         {
             this.InitializeComponent();
-            ViewModel = new CompanyDetailsViewModel(NavigationService.ns);
             this.DataContext = ViewModel;
             CanSubscribe = StorageService.UserType == 1 ? true : false;
+        }
+
+        private void Subscribe_Btn_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Subscribe_Btn.Content = "Geabonneerd";
         }
     }
 }
