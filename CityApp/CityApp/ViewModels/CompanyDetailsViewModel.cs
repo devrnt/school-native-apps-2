@@ -24,7 +24,7 @@ namespace CityApp.ViewModels
         }
 
 
-        public async Task NavigatedTo(NavigationMode navigationMode, object parameter)
+        public void NavigatedTo(NavigationMode navigationMode, object parameter)
         {
             if (navigationMode != NavigationMode.Back && parameter is Company company)
             {

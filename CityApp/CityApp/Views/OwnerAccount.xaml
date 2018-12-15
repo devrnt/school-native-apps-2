@@ -21,7 +21,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </StackPanel>
         </Grid>
     </StackPanel>

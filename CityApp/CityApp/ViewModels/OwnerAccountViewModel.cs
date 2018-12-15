@@ -23,8 +23,8 @@ namespace CityApp.ViewModels
         public OwnerAccountViewModel()
         {
             LogOutCommand = new RelayCommand((p) => ClearStoredUser());
+            Companies = new ObservableCollection<Company>();
             LoadUser();
-
         }
         private async void ClearStoredUser()
         {
@@ -35,7 +35,9 @@ namespace CityApp.ViewModels
         {
             var user = await UserService.us.GetUser();
             User = user;
-            Companies = new ObservableCollection<Company>(user.Companies);
+            foreach (Company c in User.Companies) {
+                Companies.Add(c);
+            }
         }
     }
 }
