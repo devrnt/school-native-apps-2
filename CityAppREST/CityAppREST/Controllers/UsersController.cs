@@ -20,10 +20,10 @@ namespace CityAppREST.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly UserRepository _userRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly TokenGenerator _tokenGenerator;
 
-        public UsersController(UserRepository userRepository, TokenGenerator tokenGenerator)
+        public UsersController(IRepository<User> userRepository, TokenGenerator tokenGenerator)
         {
             _userRepository = userRepository;
             _tokenGenerator = tokenGenerator;
@@ -76,7 +76,7 @@ namespace CityAppREST.Controllers
         [HttpGet("{username}")]
         public ActionResult<User> Get(string username)
         {
-            var user = _userRepository.GetByUsername(username);
+            var user = (_userRepository as UserRepository).GetByUsername(username);
             return (ActionResult<User>)user ?? NotFound();
         }
 
