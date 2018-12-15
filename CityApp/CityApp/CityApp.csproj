@@ -139,9 +139,10 @@
     <Compile Include="ViewModels\AddCompanyViewModel.cs" />
     <Compile Include="ViewModels\CompaniesViewModel.cs" />
     <Compile Include="ViewModels\CompanyDetailsViewModel.cs" />
-    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\OwnerAccountViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\VisitorAccountViewModel.cs" />
     <Compile Include="Views\Account.xaml.cs">
       <DependentUpon>Account.xaml</DependentUpon>
     </Compile>
@@ -157,8 +158,8 @@
     <Compile Include="Views\Company\CompanyDetails.xaml.cs">
       <DependentUpon>CompanyDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile.xaml.cs">
-      <DependentUpon>Profile.xaml</DependentUpon>
+    <Compile Include="Views\OwnerAccount.xaml.cs">
+      <DependentUpon>OwnerAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
@@ -171,6 +172,9 @@
     </Compile>
     <Compile Include="Views\NavigationRoot.xaml.cs">
       <DependentUpon>NavigationRoot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VisitorAccount.xaml.cs">
+      <DependentUpon>VisitorAccount.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -231,7 +235,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Profile.xaml">
+    <Page Include="Views\OwnerAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NavigationRoot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VisitorAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

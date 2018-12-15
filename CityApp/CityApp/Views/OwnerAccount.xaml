@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="CityApp.Views.OwnerAccount"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CityApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+            <StackPanel>
+                <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
+                <TextBlock Text="Companies"/>
+                <ListView ItemsSource="{Binding Companies, Mode=OneWay}" BorderThickness="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Page>

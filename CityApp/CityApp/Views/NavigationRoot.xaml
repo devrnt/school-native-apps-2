@@ -18,13 +18,13 @@ Explanation TAGS
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     mc:Ignorable="d"
     Loaded="Page_Loaded">
-
     <Grid x:Name="NavRootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Rectangle x:Name="BorderRect" x:Load="False" 
                    Fill="{StaticResource NavigationViewDefaultPaneBackground}" 
                    HorizontalAlignment="Left" Height="1000" Width="48"/>
 
-        <FCU:NavigationView IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="MenuItem_Invoked">
+        <FCU:NavigationView Margin="0,33,0,0" IsSettingsVisible="True" x:Name="navview" AlwaysShowHeader="False" ItemInvoked="MenuItem_Invoked" IsBackButtonVisible="Collapsed" IsPaneOpen="False">
+            
             <FCU:NavigationView.MenuItems>
                 <FCU:NavigationViewItem Content="Lokale handelaars" IsSelected="True">
                     <FCU:NavigationViewItem.Icon>

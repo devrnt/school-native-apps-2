@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CityApp.DataModel;
 using CityApp.Helpers;
 using Windows.Security.Credentials;
 using Windows.Storage;
@@ -13,10 +14,8 @@ namespace CityApp.Services
     {
         private const string _tokenKey = "UserToken";
         private const string _userIdKey = "UserId";
-
         private static string _user { get; set; }
-        public static bool UserStored { get; private set; }
-
+        public static int UserType { get; set; } = -1;
         // === User token ===
         public static async Task StoreUserToken(string token)
         {
@@ -40,8 +39,6 @@ namespace CityApp.Services
                 .Current
                 .LocalSettings
                 .SaveAsync(_userIdKey, id);
-            UserStored = true;
-
         }
 
         public static async Task<string> RetrieveUserId()
@@ -52,6 +49,18 @@ namespace CityApp.Services
                 .ReadAsync<string>(_userIdKey);
         }
 
+        public static async Task ClearStoredUser()
+        {
+            await ApplicationData
+            .Current
+            .LocalSettings
+            .SaveAsync(_userIdKey, "");
+            await ApplicationData
+            .Current
+            .LocalSettings
+            .SaveAsync(_tokenKey, "");
+
+        }
         // === User credentials: username and password ===
         public static void StoreUserCredentials(string username, string password)
         {
@@ -59,7 +68,6 @@ namespace CityApp.Services
             var vault = new PasswordVault();
             vault.Add(new PasswordCredential(
                 "CityApp", username, password));
-            UserStored = true;
         }
 
         public static PasswordCredential GetUserCredentials()
@@ -72,7 +80,6 @@ namespace CityApp.Services
         {
             var vault = new PasswordVault();
             vault.Remove(GetUserCredentials());
-            UserStored = false;
         }
     }
 }

@@ -71,6 +71,8 @@ namespace CityApp.Services.Rest
                 var loginResponse = JsonConvert.DeserializeObject<LoginResponse>(await response.Content.ReadAsStringAsync());
                 await StorageService.StoreUserToken(loginResponse.Token);
                 await StorageService.StoreUserId(loginResponse.UserId);
+                UserResponse uType = await GetUser();
+                StorageService.UserType = (int)uType.UserType;
                 return "Succesvol ingelogd";
             }
             else
@@ -78,11 +80,19 @@ namespace CityApp.Services.Rest
                 return response.Content.ToString();
             }
         }
+        public static async Task<string> LogOutUserAsync()
+        {
+                //StorageService.RemoveUserCredentials();
+                await StorageService.ClearStoredUser();
+                StorageService.UserType = -1;
+                return "ok";
+        }
         public async Task<UserResponse> GetUser()
         {
             var token = await StorageService.RetrieveUserToken();
             var userId = await StorageService.RetrieveUserId();
 
+            _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
             var json = await _httpClient.GetStringAsync(new Uri($"{_apiUrl}/{userId}"));
 
