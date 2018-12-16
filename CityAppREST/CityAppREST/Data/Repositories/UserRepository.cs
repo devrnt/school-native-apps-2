@@ -57,7 +57,7 @@ namespace CityAppREST.Data.Repositories {
 
 		public User GetByUsername(string username)
 		{
-			return _users.Include(u => u.Companies).FirstOrDefault(u => u.Username == username);
+			return _users.Include(u => u.Companies).ThenInclude(c => c.Promotions).Include(u => u.Companies).ThenInclude(c => c.Discounts).FirstOrDefault(u => u.Username == username);
 		}
 	}
 }
