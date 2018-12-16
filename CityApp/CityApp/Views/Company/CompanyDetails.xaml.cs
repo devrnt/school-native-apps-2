@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using CityApp.Services;
+﻿using CityApp.Services;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
 using Windows.UI.Xaml.Controls;
@@ -10,7 +9,6 @@ namespace CityApp.Views
     {
         public CompanyDetailsViewModel ViewModel { get; set; }
         public bool CanSubscribe { get; set; }
-
 
         public CompanyDetails()
         {

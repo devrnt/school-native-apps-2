@@ -37,8 +37,8 @@ namespace CityApp.ViewModels
         private async Task<bool> CheckIfCompanyIsAlreadySubscribed()
         {
             // check if there is a user
-            var token = await StorageService.RetrieveUserToken();
-            if (token?.Length == 0)
+            var token = await StorageService.RetrieveUserId();
+            if (StorageService.UserType == -1)
             {
                 return false;
             }
