@@ -29,12 +29,11 @@
                 <TextBlock
                     Text="Lijst van alle bedrijven"
                     Style="{StaticResource SubtitleTextBlockStyle}" />
-                
-                
+
                 <StackPanel Margin="0, 25, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ComboBox x:Name="fCat" PlaceholderText="Categorie" SelectionChanged="Update_Filters"  ItemsSource="{Binding AllCategories}" Margin="5,5,5,5"/>
-                    <CheckBox x:Name="fPromo"  Checked="Update_Filters" Unchecked="Update_Filters" Content="Promoties" Margin="5,5,5,5"/>
-                    <Button Content="Reset" Click="Reset_Filters" Margin="5,5,5,5"/>
+                    <ComboBox x:Name="fCat" PlaceholderText="Categorie" SelectionChanged="Update_Filters"  ItemsSource="{Binding AllCategories}" Margin="0,5,5,5"/>
+                    <CheckBox x:Name="fPromo"  Checked="Update_Filters" Unchecked="Update_Filters" Content="Promoties" Margin="15,5,5,5"/>
+                    <Button Content="Reset" Click="Reset_Filters" Margin="5,5,5,5" Style="{StaticResource AccentButtonStyle}"/>
                     <AutoSuggestBox x:Name="Search" PlaceholderText="Zoek bedrijf" QueryIcon="Find"
                             TextChanged="Search_TextChanged"
                                     HorizontalAlignment="Right"
@@ -47,19 +46,19 @@
 
 
             <GridView Name="gv"
+            Margin="5, 0, 0, 0"
             ItemsSource="{Binding Companies, Mode=OneWay}" 
             IsItemClickEnabled="True"
             helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock Text="{Binding Name}" FontSize="48"/>
+                        <StackPanel Margin="5" Width="Auto" MinWidth="200">
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="24px" MaxLines="1"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Categorie}" FontSize="24"/>
-
-                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C9;" Foreground="Gold" Visibility="{Binding HasPromotion}" >
+                                <TextBlock Text="{Binding Categorie}" Style="{StaticResource BodyTextStyle}"/>
+                                <FontIcon HorizontalAlignment="Right" Margin="5, 0, 0, 0" FontFamily="Segoe MDL2 Assets" Glyph="&#xE789;" Foreground="Goldenrod" Visibility="{Binding HasPromotion}">
                                     <ToolTipService.ToolTip>
-                                        <TextBlock Text="Promotion(s) available!"/>
+                                        <TextBlock Text="Promotie(s) beschikbarr"/>
                                     </ToolTipService.ToolTip>
                                 </FontIcon>
                             </StackPanel>

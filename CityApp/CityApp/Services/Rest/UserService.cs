@@ -85,6 +85,7 @@ namespace CityApp.Services.Rest
         {
             //StorageService.RemoveUserCredentials();
             await StorageService.ClearStoredUser();
+            await StorageService.StoreUserToken("");
             StorageService.UserType = -1;
             return "ok";
         }

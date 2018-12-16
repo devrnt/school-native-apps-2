@@ -47,7 +47,8 @@ namespace CityApp.Views
             {
                 // TODO: Fetch all the available companies from a service and get them here in the list
                 var companies = _cv.Companies;
-                var results = companies.Where(c => c.Name.IndexOf(sender.Text, System.StringComparison.CurrentCultureIgnoreCase) >= 0);
+                var results = companies.Where(c => c.Name.IndexOf(sender.Text, System.StringComparison.CurrentCultureIgnoreCase) >= 0 
+                || c.Categorie.ToString().IndexOf(sender.Text, System.StringComparison.CurrentCultureIgnoreCase) >= 0);
                 sender.ItemsSource = results.ToList();
             }
         }

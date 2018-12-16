@@ -67,25 +67,27 @@ namespace CityApp.ViewModels
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
         public void ShowCompanyDetails(Company p)
-            {
+        {
             _navigationService.NavigateToCompanyDetailsAsync(p);
         }
 
-        public ObservableCollection<Company> UpdateFilter(Categories cat, bool promo)
+        public ObservableCollection<Company> UpdateFilter(Categories categorie, bool shouldHavePromo)
         {
-            var fCompanies = Companies;
-            if (cat != Categories.All)
+            var copyCompanies = Companies.ToList();
+
+            if (categorie != Categories.All)
             {
-               fCompanies.Where(p => p.Categorie == cat);
+                copyCompanies = copyCompanies.Where(c => c.Categorie == categorie).ToList();
             }
-            if (promo)
+
+            if (shouldHavePromo)
             {
-                fCompanies
+                copyCompanies = copyCompanies
                     .TakeWhile(c => c.Promotions != null)
                     .Where(c => c.Promotions.Count > 0)
                     .ToList();
             }
-            return fCompanies;
+            return new ObservableCollection<Company>(copyCompanies);
         }
         public ObservableCollection<Company> ResetFilter()
         {
