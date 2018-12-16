@@ -41,5 +41,23 @@ namespace CityApp.Services.Rest
 
             return JsonConvert.DeserializeObject<Company>(json);
         }
+
+        public async Task<Company> AddCompany(Company company)
+        {
+            var token = await StorageService.RetrieveUserToken();
+            var userId = await StorageService.RetrieveUserId();
+
+            var copy = company.Owner.Id = int.Parse(userId);
+
+            var companyJson = JsonConvert.SerializeObject(company);
+            var companyPostReady = new HttpStringContent(companyJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var response = await _httpClient.PostAsync(new Uri(_apiUrl), companyPostReady);
+
+            return JsonConvert.DeserializeObject<Company>(await response.Content.ReadAsStringAsync());
+        }
     }
 }

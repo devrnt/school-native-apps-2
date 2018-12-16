@@ -130,9 +130,8 @@
                          Name="sm_Google"
                          PlaceholderText="Google Url"/>
                     </StackPanel>
-                    <Button Content="Create" Click="CreateCompany"/>
+                    <Button Content="Maak" Click="CreateCompany"  RequestedTheme="Dark" Style="{StaticResource ButtonRevealStyle}"/>
                 </StackPanel>
-
                 <StackPanel Margin="{StaticResource SettingsSubheaderMargin}">
                     <TextBlock
                         x:Uid="Settings_About"
