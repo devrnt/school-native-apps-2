@@ -11,42 +11,62 @@
     xmlns:helpers="using:CityApp.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.Resources>
-    </Page.Resources>
-    <StackPanel>
-        <TextBlock Text="Companies" FontSize="48" HorizontalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ComboBox x:Name="fCat" PlaceholderText="Category" SelectionChanged="Update_Filters"  ItemsSource="{Binding AllCategories}" Margin="5"/>
-            <CheckBox x:Name="fPromo"  Checked="Update_Filters" Unchecked="Update_Filters" Content="Only Promotions" Margin="5"/>
-            <Button Content="Reset" Click="Reset_Filters" Margin="5"/>
-            <AutoSuggestBox x:Name="Search" PlaceholderText="Zoek bedrijf" QueryIcon="Find"
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0"
+           Text="Bedrijven"
+            x:Name="TitlePage"
+            FontWeight="Light"
+            Style="{StaticResource PageTitleStyle}"/>
+
+        <StackPanel Grid.Row="1">
+            <StackPanel Margin="{StaticResource SettingsSubheaderMargin}" HorizontalAlignment="Left">
+                <TextBlock
+                    Text="Lijst van alle bedrijven"
+                    Style="{StaticResource SubtitleTextBlockStyle}" />
+                
+                
+                <StackPanel Margin="0, 25, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ComboBox x:Name="fCat" PlaceholderText="Categorie" SelectionChanged="Update_Filters"  ItemsSource="{Binding AllCategories}" Margin="5,5,5,5"/>
+                    <CheckBox x:Name="fPromo"  Checked="Update_Filters" Unchecked="Update_Filters" Content="Promoties" Margin="5,5,5,5"/>
+                    <Button Content="Reset" Click="Reset_Filters" Margin="5,5,5,5"/>
+                    <AutoSuggestBox x:Name="Search" PlaceholderText="Zoek bedrijf" QueryIcon="Find"
                             TextChanged="Search_TextChanged"
+                                    HorizontalAlignment="Right"
                             SuggestionChosen="Search_SuggestionChosen"
                         Width="200"
                             RequestedTheme="Light"
                             animations:Implicit.Animations="{StaticResource LayoutImplicitAnimations}" VerticalAlignment="Center"/>
-        </StackPanel>
+                </StackPanel>
+            </StackPanel>
 
-        <GridView Name="gv"
+
+            <GridView Name="gv"
             ItemsSource="{Binding Companies, Mode=OneWay}" 
             IsItemClickEnabled="True"
             helpers:ItemClickCommand.Command="{Binding CompanyDetailsCommand}">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <TextBlock Text="{Binding Name}" FontSize="48"/>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Categorie}" FontSize="24"/>
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="{Binding Name}" FontSize="48"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Categorie}" FontSize="24"/>
 
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C9;" Foreground="Gold" Visibility="{Binding HasPromotion}" >
-                                <ToolTipService.ToolTip>
-                                    <TextBlock Text="Promotion(s) available!"/>
-                                </ToolTipService.ToolTip>
-                            </FontIcon>
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8C9;" Foreground="Gold" Visibility="{Binding HasPromotion}" >
+                                    <ToolTipService.ToolTip>
+                                        <TextBlock Text="Promotion(s) available!"/>
+                                    </ToolTipService.ToolTip>
+                                </FontIcon>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
-    </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </StackPanel>
+    </Grid>
 </Page>
