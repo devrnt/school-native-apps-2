@@ -34,7 +34,7 @@ namespace CityApp.ViewModels
             SubscribeCommand = new RelayCommand(async (_) => await AddCompanyToSubscriptionAsync());
         }
 
-        private async Task CheckIfCompanyIsAlreadySubscribed()
+        private async Task<bool> CheckIfCompanyIsAlreadySubscribed()
         {
             var user = await _userService.GetUser();
             var subscriptions = user.Subscriptions;
@@ -43,11 +43,13 @@ namespace CityApp.ViewModels
             {
                 SubscribeButtonText = "Geabonneerd";
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubscribeButtonText)));
+                return false;
             }
             else
             {
                 SubscribeButtonText = "Abonneer";
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubscribeButtonText)));
+                return true;
             }
         }
 
@@ -55,7 +57,16 @@ namespace CityApp.ViewModels
         {
             await _userService.AddCompanyToSubscription(Company);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Company)));
-            await CheckIfCompanyIsAlreadySubscribed();
+            if (await CheckIfCompanyIsAlreadySubscribed())
+            {
+                AlertService.Toast($"Bedrijf {Company.Name}", $"Afgemeld op bedrijf {Company.Name}");
+
+            }
+            else
+            {
+                AlertService.Toast($"Bedrijf {Company.Name}", $"Geabonneerd op bedrijf {Company.Name}");
+
+            }
         }
 
         public async Task NavigatedTo(NavigationMode navigationMode, object parameter)
