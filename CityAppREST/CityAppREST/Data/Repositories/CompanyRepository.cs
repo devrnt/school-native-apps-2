@@ -31,7 +31,7 @@ namespace CityAppREST.Data.Repositories
 
         public IEnumerable<Company> GetAll()
         {
-            return _companies.ToList();
+            return _companies.Include(c => c.Promotions).ToList();
         }
 
         public Company GetById(int id)

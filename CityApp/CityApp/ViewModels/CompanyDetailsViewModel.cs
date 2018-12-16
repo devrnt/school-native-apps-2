@@ -21,6 +21,8 @@ namespace CityApp.ViewModels
 
         public RelayCommand SubscribeCommand { get; set; }
 
+        public string SubscribeButtonText { get; set; } = "Standaard";
+
         private INavigationService _navigationService;
         private UserService _userService;
 
@@ -28,19 +30,43 @@ namespace CityApp.ViewModels
         {
             _navigationService = navigationService;
             _userService = new UserService();
-            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
+            CheckIfCompanyIsAlreadySubscribed();
+            SubscribeCommand = new RelayCommand(async (_) => await AddCompanyToSubscriptionAsync());
         }
 
-        public CompanyDetailsViewModel()
+        private async Task<bool> CheckIfCompanyIsAlreadySubscribed()
         {
-            _userService = new UserService();
-            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
+            var user = await _userService.GetUser();
+            var subscriptions = user.Subscriptions;
+
+            if (subscriptions.Select(c => c.Id).Contains(Company.Id))
+            {
+                SubscribeButtonText = "Geabonneerd";
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubscribeButtonText)));
+                return false;
+            }
+            else
+            {
+                SubscribeButtonText = "Abonneer";
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SubscribeButtonText)));
+                return true;
+            }
         }
 
         private async Task AddCompanyToSubscriptionAsync()
         {
             await _userService.AddCompanyToSubscription(Company);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Company)));
+            if (await CheckIfCompanyIsAlreadySubscribed())
+            {
+                AlertService.Toast($"Bedrijf {Company.Name}", $"Afgemeld op bedrijf {Company.Name}");
+
+            }
+            else
+            {
+                AlertService.Toast($"Bedrijf {Company.Name}", $"Geabonneerd op bedrijf {Company.Name}");
+
+            }
         }
 
         Task INavigableTo.NavigatedTo(NavigationMode navigationMode, object parameter)

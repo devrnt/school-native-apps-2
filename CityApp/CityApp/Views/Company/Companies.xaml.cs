@@ -46,7 +46,7 @@ namespace CityApp.Views
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 // TODO: Fetch all the available companies from a service and get them here in the list
-                var companies = DummyDataSource.Companies;
+                var companies = _cv.Companies;
                 var results = companies.Where(c => c.Name.IndexOf(sender.Text, System.StringComparison.CurrentCultureIgnoreCase) >= 0);
                 sender.ItemsSource = results.ToList();
             }

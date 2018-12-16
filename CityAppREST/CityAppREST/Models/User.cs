@@ -14,7 +14,7 @@ namespace CityAppREST.Models {
 		public string Password { get; set; }
 		public IEnumerable<Company> Companies { get; set; }
 		public UserType UserType { get; set; }
-		public List<Company> Subscriptions { get; set; } = new List<Company>();
+		public List<Company> Subscriptions { get; set; }
 
 		public User(string name, string firstName, string username, DateTime birthDate, String email, String password, IEnumerable<Company> companies, UserType userType)
 		{
@@ -26,6 +26,7 @@ namespace CityAppREST.Models {
 			Password = password;
 			UserType = userType;
 			Companies = companies;
+			Subscriptions = new List<Company>();
 		}
 
 		protected User()
