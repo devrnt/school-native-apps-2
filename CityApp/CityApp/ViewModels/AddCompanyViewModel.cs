@@ -40,7 +40,7 @@ namespace CityApp.ViewModels
             var company = new Company(name, description, keyWordsString, categorie, owner, locations, openingHours, null, socialMedia, promotions);
 
             var responseCompany = await _companyService.AddCompany(company);
-            Console.WriteLine(responseCompany);
+
             AlertService.Toast($"{responseCompany.Name} aangemaakt", $"{responseCompany.Name} succesvol toegevoegd");
             await _navigationService.NavigateToCompaniesAsync();
         }
