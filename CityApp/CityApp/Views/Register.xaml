@@ -28,9 +28,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" Margin="10" 
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="SurName" Margin="10" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="Name" TextChanged="Credentials_Changed"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="SurName" TextChanged="Credentials_Changed"/>
             <TextBlock Grid.Row="1" Grid.Column="0" Text="FirstName" Margin="10" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" />
             <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="FirstName" TextChanged="Credentials_Changed"/>
@@ -56,7 +56,7 @@
             <Button Grid.Row="8" Grid.Column="0" Content="Cancel" HorizontalAlignment="Left"/>
             <Button Grid.Row="8" Grid.Column="1" Content="Create Account" Command="{Binding RegisterCommand}" HorizontalAlignment="Right" IsEnabled="{x:Bind CorrectCredentials, Mode= OneWay}">
                 <Button.CommandParameter>
-                    <dm:RegisterCredentials Name="{x:Bind Name.Text, Mode=OneWay}" FirstName="{x:Bind FirstName.Text, Mode=OneWay}" 
+                    <dm:RegisterCredentials Name="{x:Bind SurName.Text, Mode=OneWay}" FirstName="{x:Bind FirstName.Text, Mode=OneWay}" 
                                                 BirthDate="{x:Bind BirthDate.Date , Mode=OneWay}" Email="{x:Bind Email.Text, Mode=OneWay}" 
                                                 Username="{x:Bind Username.Text, Mode=OneWay}"  Password="{x:Bind Password.Text, Mode=OneWay}" Type="{x:Bind Visitor.IsChecked, Mode=OneWay}" />
                 </Button.CommandParameter>

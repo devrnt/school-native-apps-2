@@ -13,34 +13,33 @@ using Windows.UI.Xaml.Navigation;
 
 namespace CityApp.ViewModels
 {
-    public class CompanyDetailsViewModel : INavigableTo, INotifyPropertyChanged
+    public class EditCompanyDetailsViewModel : INavigableTo, INotifyPropertyChanged
     {
         public Company Company { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RelayCommand SubscribeCommand { get; set; }
+        public RelayCommand AddPromotionCommand { get; set; }
 
         private INavigationService _navigationService;
         private UserService _userService;
 
-        public CompanyDetailsViewModel(INavigationService navigationService)
+        public EditCompanyDetailsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            _userService = new UserService();
-            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
+            _userService = UserService.us;
+            AddPromotionCommand = new RelayCommand((_) => AddPromotion());
         }
 
-        public CompanyDetailsViewModel()
+        public EditCompanyDetailsViewModel()
         {
             _userService = new UserService();
-            SubscribeCommand = new RelayCommand((_) => AddCompanyToSubscriptionAsync());
+            AddPromotionCommand = new RelayCommand((_) => AddPromotion());
         }
 
-        private async Task AddCompanyToSubscriptionAsync()
+        private Task AddPromotion()
         {
-            await _userService.AddCompanyToSubscription(Company);
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Company)));
+            throw new NotImplementedException();
         }
 
         Task INavigableTo.NavigatedTo(NavigationMode navigationMode, object parameter)

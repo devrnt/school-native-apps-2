@@ -139,6 +139,7 @@
     <Compile Include="ViewModels\AddCompanyViewModel.cs" />
     <Compile Include="ViewModels\CompaniesViewModel.cs" />
     <Compile Include="ViewModels\CompanyDetailsViewModel.cs" />
+    <Compile Include="ViewModels\EditCompanyDetailsViewModel.cs" />
     <Compile Include="ViewModels\OwnerAccountViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
@@ -157,6 +158,9 @@
     </Compile>
     <Compile Include="Views\Company\CompanyDetails.xaml.cs">
       <DependentUpon>CompanyDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditCompanyDetails.xaml.cs">
+      <DependentUpon>EditCompanyDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OwnerAccount.xaml.cs">
       <DependentUpon>OwnerAccount.xaml</DependentUpon>
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Company\CompanyDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditCompanyDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

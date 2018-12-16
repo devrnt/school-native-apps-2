@@ -64,10 +64,14 @@ namespace CityApp.Services.Navigation
             RegisterPageViewModel<Companies, CompaniesViewModel>();
             RegisterPageViewModel<SettingsPage, SettingsViewModel>();
             RegisterPageViewModel<CompanyDetails, CompanyDetailsViewModel>();
+            RegisterPageViewModel<EditCompanyDetails, EditCompanyDetailsViewModel>();
+
 
             Frame.Navigated += Frame_Navigated;
             ns = this;
         }
+
+
         #endregion
 
         #region === Methods ===
@@ -115,7 +119,10 @@ namespace CityApp.Services.Navigation
         {
             return NavigateToPage<CompanyDetails>(c);
         }
-
+        public Task NavigateToEditCompanyDetailsAsync(Company c)
+        {
+            return NavigateToPage<EditCompanyDetails>(c);
+        }
         public Task NavigateToAccountAsync()
         {
             switch (StorageService.UserType) {

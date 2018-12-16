@@ -5,14 +5,19 @@
     xmlns:local="using:CityApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:CityApp.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <StackPanel>
                 <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
-                <TextBlock Text="Companies"/>
-                <ListView ItemsSource="{Binding Companies, Mode=OneWay}" BorderThickness="2">
+                <TextBlock Text="{Binding NameText}"/>
+                
+                <TextBlock Text="Companies" FontSize="36"/>
+                <TextBlock Text="(Click to edit)"/>
+                <ListView ItemsSource="{Binding Companies, Mode=OneWay}" IsItemClickEnabled="True"
+                            helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}" BorderThickness="2">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <StackPanel>

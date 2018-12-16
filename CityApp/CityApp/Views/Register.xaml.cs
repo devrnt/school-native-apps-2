@@ -63,7 +63,7 @@ namespace CityApp.Views
             }
         }
         private void Credentials_Changed(object sender, TextChangedEventArgs e) {
-            if (String.IsNullOrEmpty(Name.Text) || String.IsNullOrEmpty(FirstName.Text) || String.IsNullOrEmpty(Email.Text) || String.IsNullOrEmpty(Password.Text) || String.IsNullOrEmpty(Username.Text))
+            if (String.IsNullOrEmpty(SurName.Text) || String.IsNullOrEmpty(FirstName.Text) || String.IsNullOrEmpty(Email.Text) || String.IsNullOrEmpty(Password.Text) || String.IsNullOrEmpty(Username.Text))
             {
                 ErrorText = "Please fill in all fields.";
                 CorrectCredentials = false;

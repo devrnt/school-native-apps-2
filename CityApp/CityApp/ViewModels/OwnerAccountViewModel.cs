@@ -16,13 +16,18 @@ namespace CityApp.ViewModels
     public class OwnerAccountViewModel
     {
         public UserResponse User { get; private set; }
-        public String test = "x";
+        public string NameText;
+        public string FirstName;
+
         public RelayCommand LogOutCommand { get; set; }
+        public RelayCommand EditCompanyDetailsCommand { get; set; }
         public ObservableCollection<Company> Companies { get; set; }
 
         public OwnerAccountViewModel()
         {
             LogOutCommand = new RelayCommand((p) => ClearStoredUser());
+            EditCompanyDetailsCommand = new RelayCommand((p) => EditCompanyDetails((Company)p));
+
             Companies = new ObservableCollection<Company>();
             LoadUser();
         }
@@ -35,9 +40,15 @@ namespace CityApp.ViewModels
         {
             var user = await UserService.us.GetUser();
             User = user;
-            foreach (Company c in User.Companies) {
+            foreach (Company c in User.Companies)
+            {
                 Companies.Add(c);
             }
+            NameText = "Gebruiker:" + user.Name + user.FirstName;
+        }
+        public void EditCompanyDetails(Company p)
+        {
+            NavigationService.ns.NavigateToEditCompanyDetailsAsync(p);
         }
     }
 }
