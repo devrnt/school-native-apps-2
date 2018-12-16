@@ -198,7 +198,16 @@ namespace CityAppREST.Controllers {
 			// Update company with latest details
 			var companyResult = _companyRepository.GetById(company.Id);
 
-			user.Subscriptions.Add(companyResult);
+			// Unsubscribe
+			if (user.Subscriptions.Select(c => c.Id).Contains(companyResult.Id))
+			{
+				user.Subscriptions.Remove(companyResult);
+			}
+			else
+			{
+				user.Subscriptions.Add(companyResult);
+
+			}
 			_userRepository.SaveChanges();
 
 			return user.Subscriptions;
