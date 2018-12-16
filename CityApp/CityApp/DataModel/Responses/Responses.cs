@@ -25,5 +25,6 @@ namespace CityApp.DataModel.Responses
         public string Password { get; set; }
         public List<Company> Companies { get; set; }
         public long UserType { get; set; }
+        public List<Company> Subscriptions { get; set; }
     }
 }
