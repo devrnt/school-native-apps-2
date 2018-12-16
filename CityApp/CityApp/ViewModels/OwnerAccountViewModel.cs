@@ -20,12 +20,14 @@ namespace CityApp.ViewModels
         public string FirstName;
 
         public RelayCommand LogOutCommand { get; set; }
+        public RelayCommand AddCompanyCommand { get; set; }
         public RelayCommand EditCompanyDetailsCommand { get; set; }
         public ObservableCollection<Company> Companies { get; set; }
 
         public OwnerAccountViewModel()
         {
             LogOutCommand = new RelayCommand((p) => ClearStoredUser());
+            AddCompanyCommand = new RelayCommand((p) => AddCompany());
             EditCompanyDetailsCommand = new RelayCommand((p) => EditCompanyDetails((Company)p));
 
             Companies = new ObservableCollection<Company>();
@@ -45,6 +47,9 @@ namespace CityApp.ViewModels
                 Companies.Add(c);
             }
             NameText = "Gebruiker:" + user.Name + user.FirstName;
+        }
+        public void AddCompany() {
+            NavigationService.ns.NavigateToAddCompanyAsync();
         }
         public void EditCompanyDetails(Company p)
         {

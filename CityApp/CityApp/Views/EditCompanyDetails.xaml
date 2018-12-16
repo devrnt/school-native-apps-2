@@ -8,7 +8,36 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock Text="{x:Bind Path=ViewModel.Company.Name}"/>
-    </Grid>
+    <RelativePanel>
+        <StackPanel RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <StackPanel>
+                <TextBlock x:Name="companyName" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Name}"/>
+                <TextBlock x:Name="companyCategory" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Categorie}" />
+                <TextBlock x:Name="companyDescription"  Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description}" />
+                <TextBlock x:Name="companyKeywords" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords}" />
+                <TextBlock x:Name="companyOwner" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0"  HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Owner.Name}" />
+            </StackPanel>
+            <Button Content="Promotie Toevoegen" Command="{Binding AddPromotionCommand}"/>
+            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Discounts}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="2">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding CouponCode}"/>
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <Button Content="Korting Toevoegen" Command="{Binding AddDiscountCommand}"/>
+            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Promotions}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="2">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Description}"/>
+                            <TextBlock Text="{Binding Discount.CouponCode}"/>
+                        </StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </StackPanel>
+    </RelativePanel>
 </Page>

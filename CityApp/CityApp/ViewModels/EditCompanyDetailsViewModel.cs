@@ -20,6 +20,7 @@ namespace CityApp.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand AddPromotionCommand { get; set; }
+        public RelayCommand AddDiscountCommand { get; set; }
 
         private INavigationService _navigationService;
         private UserService _userService;
@@ -28,18 +29,18 @@ namespace CityApp.ViewModels
         {
             _navigationService = navigationService;
             _userService = UserService.us;
-            AddPromotionCommand = new RelayCommand((_) => AddPromotion());
+            AddPromotionCommand = new RelayCommand((p) => AddPromotion((Company)p));
+            AddDiscountCommand = new RelayCommand((p) => AddDiscount((Company)p));
         }
 
-        public EditCompanyDetailsViewModel()
+        private void AddDiscount(Company c)
         {
-            _userService = new UserService();
-            AddPromotionCommand = new RelayCommand((_) => AddPromotion());
+            NavigationService.ns.NavigateToAddDiscountAsync();
         }
 
-        private Task AddPromotion()
+        private void AddPromotion(Company c)
         {
-            throw new NotImplementedException();
+            NavigationService.ns.NavigateToAddPromotionAsync();
         }
 
         Task INavigableTo.NavigatedTo(NavigationMode navigationMode, object parameter)

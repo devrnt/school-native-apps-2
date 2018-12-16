@@ -13,15 +13,30 @@
             <StackPanel>
                 <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
                 <TextBlock Text="{Binding NameText}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Companies" FontSize="36"/>
+                        <TextBlock Text="(Click to edit)"/>
+                    </StackPanel>
+                    <StackPanel  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <Button Content="Add Company" Command="{Binding AddCompanyCommand}"/>
+                    </StackPanel>
+                </Grid>
                 
-                <TextBlock Text="Companies" FontSize="36"/>
-                <TextBlock Text="(Click to edit)"/>
                 <ListView ItemsSource="{Binding Companies, Mode=OneWay}" IsItemClickEnabled="True"
                             helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}" BorderThickness="2">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <StackPanel>
                                 <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Categorie}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
