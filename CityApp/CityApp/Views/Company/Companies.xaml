@@ -29,8 +29,7 @@
                 <TextBlock
                     Text="Lijst van alle bedrijven"
                     Style="{StaticResource SubtitleTextBlockStyle}" />
-                
-                
+
                 <StackPanel Margin="0, 25, 0, 0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <ComboBox x:Name="fCat" PlaceholderText="Categorie" SelectionChanged="Update_Filters"  ItemsSource="{Binding AllCategories}" Margin="5,5,5,5"/>
                     <CheckBox x:Name="fPromo"  Checked="Update_Filters" Unchecked="Update_Filters" Content="Promoties" Margin="5,5,5,5"/>
