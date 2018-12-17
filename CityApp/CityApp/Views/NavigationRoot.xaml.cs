@@ -21,7 +21,9 @@
         {
             get { return isOwner; }
             set { isOwner = value;
-                Bindings.Update();
+                if (Bindings != null) {
+                    Bindings.Update();
+                }
             }
         }
 
