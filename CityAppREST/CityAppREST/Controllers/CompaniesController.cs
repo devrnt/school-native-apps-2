@@ -148,7 +148,7 @@ namespace CityAppREST.Controllers
         /// <response code="404">Not Found: No such company with specified id was found</response>
         [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
         [HttpPost("{id}/promotions")]
-        public async Task<ActionResult<Promotion>> PostPromotionAsync(int id, Promotion promotion)
+        public ActionResult<Promotion> PostPromotion(int id, Promotion promotion)
         {
             var company = _companyRepository.GetById(id);
 
@@ -160,7 +160,8 @@ namespace CityAppREST.Controllers
             company.Promotions.Add(promotion);
             _companyRepository.SaveChanges();
 
-            await _pushNotificationsHelper.SendNotification($"{company.Name} has a new promotion!");
+            // Uncomment to send notification
+            // await _pushNotificationsHelper.SendNotification($"{company.Name} has a new promotion!");
 
             return company.Promotions.TakeLast(1).First();
         }
