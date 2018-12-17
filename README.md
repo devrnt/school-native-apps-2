@@ -15,6 +15,12 @@ This repo is only meant for experimental purposes.
 * Company owner: username = ouahabyanis, password = yanisyanis
 * Admin: username = devrientjonas, password = jonasjonas
 
+#### How to run?
+We have one solution for the UWP Application and one for the REST-API backend.
+Run both solutions in Visual Studio (2 seperate windows).
+
+
 ## Development
 #### Icons
 https://docs.microsoft.com/en-us/windows/uwp/design/style/segoe-ui-symbol-font
+
