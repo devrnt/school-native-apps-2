@@ -14,7 +14,7 @@ namespace CityApp.DataModel
         public Categories Categorie { get; set; }
         public Owner Owner { get; set; }
         public ICollection<Location> Locations { get; set; }
-        public OpeningHours OpeningHours { get; set; }
+        public ICollection<OpeningHours> OpeningHours { get; set; }
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
@@ -29,7 +29,7 @@ namespace CityApp.DataModel
         #endregion
 
         #region === Constructor ===
-        public Company(int id, string name, string description, string keyWords, Categories categorie, Owner owner, ICollection<Location> locations, OpeningHours openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
+        public Company(int id, string name, string description, string keyWords, Categories categorie, Owner owner, ICollection<Location> locations, ICollection<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
         {
             Id = id;
             Name = name;

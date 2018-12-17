@@ -9,29 +9,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <StackPanel>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <StackPanel>
-                <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
                 <TextBlock Text="{Binding NameText}"/>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Companies" FontSize="36"/>
-                        <TextBlock Text="(Click to edit)"/>
-                    </StackPanel>
-                    <StackPanel  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-                        <Button Content="Add Company" Command="{Binding AddCompanyCommand}"/>
-                    </StackPanel>
-                </Grid>
-                
-                <ListView ItemsSource="{Binding Companies, Mode=OneWay}" IsItemClickEnabled="True"
-                            helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}" BorderThickness="2">
+        <Grid  HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Companies" FontSize="36"/>
+                <TextBlock Text="(Click to edit)"/>
+            </StackPanel>
+            <StackPanel  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Content="Add Company" Command="{Binding AddCompanyCommand}"/>
+            </StackPanel>
+        </Grid>
+        <ListView ItemsSource="{Binding Companies, Mode=OneWay}" IsItemClickEnabled="True" HorizontalAlignment="Center"
+                            helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}" BorderThickness="2" BorderBrush="Black">
                     <ListView.ItemTemplate>
                         <DataTemplate >
                             <StackPanel>
@@ -41,7 +37,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackPanel>
-        </Grid>
+        <Button Content="Log Out" HorizontalAlignment="Center"  Command="{Binding LogOutCommand}"/>
     </StackPanel>
 </Page>

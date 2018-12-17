@@ -37,8 +37,7 @@ namespace CityApp.Services.Rest
 
         public async Task<Company> GetCompany(int id)
         {
-            var json = await _httpClient.GetStringAsync(new Uri(_apiUrl));
-
+            var json = await _httpClient.GetStringAsync(new Uri($"{_apiUrl}/{id}"));
             return JsonConvert.DeserializeObject<Company>(json);
         }
     }

@@ -23,7 +23,7 @@ namespace CityApp.ViewModels
             }
         }
         public AddCompanyViewModel() { }
-        public void CreateCompany(string name, string description, string keyWordsString, Categories categorie, Owner owner, List<Location> locations, OpeningHours openingHours, string leaveOfAbsence, SocialMedia socialMedia)
+        public void CreateCompany(string name, string description, string keyWordsString, Categories categorie, Owner owner, List<Location> locations, List<OpeningHours> openingHours, string leaveOfAbsence, SocialMedia socialMedia)
         {
             int id = 0;
             List<Promotion> promotions = null;

@@ -44,9 +44,9 @@ namespace CityApp.Views
             Owner owner = null;
             List<Location> locations = new List<Location>();
             locations.Add(new Location("Belgie", Input_CompanyCity.Text, int.Parse(Input_CompanyPostal.Text), Input_CompanyStreet.Text, int.Parse(Input_CompanyNumber.Text)));
-            
-            
-            OpeningHours openingHours = new OpeningHours(getDagen(), ou_van.Text, ou_tot.Text);
+            List<OpeningHours> openingHours = new List<OpeningHours>();
+            openingHours.Add(new OpeningHours(getDagen(), ou_van.Text, ou_tot.Text));
+            new OpeningHours(getDagen(), ou_van.Text, ou_tot.Text);
             string leaveOfAbsence = null;
             SocialMedia socialMedia = new SocialMedia(cb_Facebook.IsChecked == null ? null : cb_Facebook.IsChecked == false ? null : sm_Facebook.Text,
                 cb_Twitter.IsChecked == null ? null : cb_Twitter.IsChecked == false ? null : sm_Twitter.Text,

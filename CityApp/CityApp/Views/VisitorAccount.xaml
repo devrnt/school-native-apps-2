@@ -12,11 +12,7 @@
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
             <StackPanel>
                 <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
-                <TextBlock Name="Name" Text="Visitor"/>
-                <TextBlock Name="FirstName" />
-                <TextBlock Name="UserName" />
-                <TextBlock Name="BirthDate" />
-                <TextBlock Name="Email" />
+                <TextBlock Text="Visitor"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>

@@ -51,9 +51,12 @@ namespace CityApp.ViewModels
         public void AddCompany() {
             NavigationService.ns.NavigateToAddCompanyAsync();
         }
-        public void EditCompanyDetails(Company p)
+        public async void EditCompanyDetails(Company p)
         {
-            NavigationService.ns.NavigateToEditCompanyDetailsAsync(p);
+            var x = new CompanyService();
+            var company = await x.GetCompany(p.Id);
+            var c = (Company)company;
+            await NavigationService.ns.NavigateToEditCompanyDetailsAsync(c);
         }
     }
 }
