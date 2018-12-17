@@ -33,7 +33,7 @@ Explanation TAGS
                 </FCU:NavigationViewItem>
                 <FCU:NavigationViewItem Content="Bedrijf toevoegen" Visibility="{x:Bind IsOwner}">
                     <FCU:NavigationViewItem.Icon>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE82E;"/>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
                 <FCU:NavigationViewItem Content="[Tijdelijk] promotie toevoegen" Visibility="Collapsed">

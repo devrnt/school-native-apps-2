@@ -15,12 +15,13 @@ namespace CityApp.DataModel
         // Use Category enum
         public Categories Categorie { get; set; }
         public Owner Owner { get; set; }
-        public ICollection<Location> Locations { get; set; }
         public IEnumerable<OpeningHours> OpeningHours { get; set; }
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
+        public ICollection<Location> Locations { get; set; }
         public ICollection<Discount> Discounts { get; set; }
+        public ICollection<Event> Events { get; set; }
         public bool HasPromotion
         {
             get
@@ -47,10 +48,7 @@ namespace CityApp.DataModel
             Discounts = new List<Discount>();
         }
 
-        public Company()
-        {
-
-        }
+        public Company(){}
 
         // Used to send the post request to the server
         public Company(string name, string description, string keyWordsString, Categories categorie, Owner owner, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, object p, SocialMedia socialMedia, List<Promotion> promotions)

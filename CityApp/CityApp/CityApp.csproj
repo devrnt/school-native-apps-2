@@ -98,6 +98,7 @@
     <Compile Include="DataModel\Categories.cs" />
     <Compile Include="DataModel\CommandParameters\AddPromotionParameters.cs" />
     <Compile Include="DataModel\Company.cs" />
+    <Compile Include="DataModel\Event.cs" />
     <Compile Include="DataModel\LogInCredentials.cs" />
     <Compile Include="DataModel\Days.cs" />
     <Compile Include="DataModel\Discount.cs" />

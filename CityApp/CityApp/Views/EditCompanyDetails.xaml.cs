@@ -68,6 +68,27 @@ namespace CityApp.Views
             }
         }
 
+        private bool _showhidePromotions;
+        public bool ShowhidePromotions
+        {
+            get { return _showhidePromotions; }
+            set
+            {
+                _showhidePromotions = value;
+                Bindings.Update();
+            }
+        }
+        private bool _showhideDiscounts;
+        public bool ShowhideDiscounts
+        {
+            get { return _showhideDiscounts; }
+            set
+            {
+                _showhideDiscounts = value;
+                Bindings.Update();
+            }
+        }
+
         public EditCompanyDetails()
         {
             this.InitializeComponent();
@@ -76,7 +97,17 @@ namespace CityApp.Views
             IsAddPromotionVisible = false;
             IsNewPromoVisible = true;
             IsNewDiscountVisible = true;
+            ShowhidePromotions = false;
         }
+        private void ShowHidePromoties(object sender, RoutedEventArgs e)
+        {
+            ShowhidePromotions = !ShowhidePromotions;
+        }
+        private void ShowHideDiscounts(object sender, RoutedEventArgs e)
+        {
+            ShowhideDiscounts = !ShowhideDiscounts;
+        }
+
         private void NewPromotion(object sender, RoutedEventArgs e)
         {
             IsAddPromotionVisible = !IsAddPromotionVisible;

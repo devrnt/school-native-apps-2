@@ -11,8 +11,7 @@
     <ScrollViewer>
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="{StaticResource PageMargin}">
             <StackPanel>
-                <Button Content="Log Out" HorizontalAlignment="Right"  Command="{Binding LogOutCommand}"/>
-                <TextBlock Text="Visitor"/>
+                <Button Content="Log Out" HorizontalAlignment="Center"  Command="{Binding LogOutCommand}"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>
