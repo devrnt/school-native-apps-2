@@ -44,6 +44,7 @@
             <response code="200">Returns the edited company</response>
             <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
             <response code="403">Forbidden: Only the owner of specified company has write access</response>
+            /// <response code="404">Not Found: No such company with specified id was found</response>
         </member>
         <member name="M:CityAppREST.Controllers.CompaniesController.Delete(System.Int32)">
             <summary>
@@ -54,6 +55,19 @@
             <response code="200">Returns the deleted company</response>
             <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
             <response code="403">Forbidden: Only the owner of specified company has write access</response>
+            /// <response code="404">Not Found: No such company with specified id was found</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.PostPromotion(System.Int32,CityAppREST.Models.Promotion)">
+            <summary>
+            Add a promotion to specified company.
+            </summary>
+            <returns>The added promotion</returns>
+            <param name="id">Company id</param>
+            <param name="promotion">The promotion to add</param>
+            <response code="200">The added promotion</response>
+            <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+            <response code="403">Forbidden: Only the owner of specified company has write access</response>
+            <response code="404">Not Found: No such company with specified id was found</response>
         </member>
         <member name="T:CityAppREST.Controllers.UsersController">
             <summary>
