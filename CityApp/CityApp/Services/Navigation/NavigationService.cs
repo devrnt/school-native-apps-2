@@ -170,8 +170,8 @@ namespace CityApp.Services.Navigation
                     {
                         do { } while (navVM == null);
                         await navVM.NavigatedTo(navArgs.NavigationMode, parameter);
+                        pageWithVM.UpdateBindings();
                     }
-                    pageWithVM.UpdateBindings();
                     // Async loading
                 }
             };
