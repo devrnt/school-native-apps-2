@@ -51,10 +51,13 @@
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Button Content="New" Click="NewPromotion" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
                 </StackPanel>
-                <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Promotions, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
+                <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Events, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Description}"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Description}"/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

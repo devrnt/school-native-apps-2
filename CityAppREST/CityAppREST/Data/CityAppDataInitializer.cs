@@ -44,7 +44,9 @@ namespace CityAppREST.Data {
 						new List<Promotion> {
 							new Promotion("Korting op uw eerste was"),
 							new Promotion("2 wassen = 3 betalen")
-						}) { Discounts = new List<Discount>(){ new Discount("couponcode", "") } },
+						})
+                    { Discounts = new List<Discount>(){ new Discount("couponcode", "") },
+                        Events = new List<Event>(){ new Event("Opendeurdag", "U bent welkom om in onze state-of-the art wasserij.", new DateTime(2000, 1, 1, 17, 0, 0), "http://www.cohousinglimburg.be/wp-content/uploads/2017/11/opendeur-2.gif") } },
 					new Company{ Name = "Bank van Gent", Description = "Voor al uw geldzaken", Categorie = Categories.Bank },
 					new Company{ Name = "Bakkerij Koen", Description = "Uw warme bakker", Categorie = Categories.Bakkerij }
 				};
