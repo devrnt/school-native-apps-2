@@ -49,22 +49,6 @@ namespace CityAppREST.Models
 
         }
 
-        public Company(string name, string description, string keyWords, Categories categorie, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions, User owner)
-        {
-
-            Name = name;
-            Description = description;
-            KeyWords = keyWords;
-            Categorie = categorie;
-            Owner = owner;
-            Locations = locations;
-            OpeningHours = openingHours;
-            LeaveOfAbsence = leaveOfAbsence;
-            SocialMedia = socialMedia;
-            Promotions = promotions;
-            Discounts = new List<Discount>();
-        }
-
         #endregion
 
         #region === Methods === 

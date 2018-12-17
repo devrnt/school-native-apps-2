@@ -26,6 +26,7 @@ namespace CityApp.DataModel.Responses
         public List<Company> Companies { get; set; }
         public long UserType { get; set; }
         public List<Company> Subscriptions { get; set; }
+        public List<Event> Events { get; set; }
     }
     public class CompanyResponse
     {

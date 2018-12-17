@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace CityAppREST.Models
 {
@@ -18,9 +21,13 @@ namespace CityAppREST.Models
             Image = image;
         }
 
+        protected Event()
+        {
+        }
+
         public override string ToString()
         {
-            return string.Format("{0}", Description);
+            return string.Format("{0}: {1}", Title, Description);
         }
     }
 }

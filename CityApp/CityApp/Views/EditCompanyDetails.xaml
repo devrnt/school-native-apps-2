@@ -19,41 +19,81 @@
                 <TextBlock><Underline>Sleuterlwoorden:</Underline></TextBlock>
                 <TextBlock x:Name="companyKeywords" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords, Mode=OneWay}" />
             </StackPanel>
+            <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Events</Underline></TextBlock>
+            <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHideEvents"/>
+            <StackPanel Visibility="{x:Bind ShowhideEvents, Mode=OneWay}">
+                <StackPanel Margin="0,10" Visibility="{x:Bind IsAddEventVisible, Mode=OneWay}">
+                    <TextBox HorizontalAlignment="Center"
+                         x:Name="event_Titel"
+                         Header="Titel"
+                         Margin="0,5"
+                         PlaceholderText="Typ de title van het event hier"/>
+                    <TextBox HorizontalAlignment="Center"
+                         x:Name="event_Omschrijving"
+                         Header="Titel"
+                         Margin="0,5"
+                         PlaceholderText="Typ de omschrijving van het event hier"/>
+                    <TextBlock Text="Birthdate" Margin="10" HorizontalAlignment="Center"/>
+                    <DatePicker x:Name="event_Date" DateChanged="event_DateChanged" HorizontalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Center" Text="Foto bestand" Margin="0, 8, 0,8"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Content="Blader" Click="event_Browsepdf"/>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Name="event_Chosenpdf" Text="Geen bestand gekozen"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Add" Click="AddEvent" HorizontalAlignment="Center" Margin="5"/>
+                        <Button Margin="5" Click="CancelAddEvent">
+                            <FontIcon HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;"  />
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Content="New" Click="NewPromotion" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
+                </StackPanel>
+                <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Events, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Description}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
             <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Promoties</Underline></TextBlock>
             <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHidePromoties"/>
             <StackPanel Visibility="{x:Bind ShowhidePromotions, Mode=OneWay}">
-            <StackPanel Margin="0,10" Visibility="{x:Bind IsAddPromotionVisible, Mode=OneWay}">
-                <TextBox HorizontalAlignment="Center"
+                <StackPanel Margin="0,10" Visibility="{x:Bind IsAddPromotionVisible, Mode=OneWay}">
+                    <TextBox HorizontalAlignment="Center"
                          x:Name="promo_Omschrijving"
                          Header="Omschrijving"
                          Margin="0,5"
                          PlaceholderText="Typ de omschrijving van de promotie hier"/>
-                <ComboBox x:Name="promo_Discounts" HorizontalAlignment="Center"
+                    <ComboBox x:Name="promo_Discounts" HorizontalAlignment="Center"
                               Header="Korting"
                               PlaceholderText="Kortingen"
                               ItemsSource="{x:Bind Path=ViewModel.Discounts, Mode=OneWay}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Add" Click="AddPromotie" HorizontalAlignment="Center" Margin="5"/>
-                    <Button Margin="5" Click="CancelAddPromotie">
-                        <FontIcon HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;"  />
-                    </Button>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Content="Add" Click="AddPromotie" HorizontalAlignment="Center" Margin="5"/>
+                        <Button Margin="5" Click="CancelAddPromotie">
+                            <FontIcon HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;"  />
+                        </Button>
+                    </StackPanel>
 
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Content="New" Click="NewPromotion" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
+                </StackPanel>
+                <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Promotions, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Description}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Content="New" Click="NewPromotion" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
-            </StackPanel>
-            <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Promotions, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Description}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            </StackPanel>
-            <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Events</Underline></TextBlock>
-            <Button Content="Show/Hide" HorizontalAlignment="Center"/>
-            <StackPanel></StackPanel>
             <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Discounts</Underline></TextBlock>
             <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHideDiscounts"/>
             <StackPanel Visibility="{x:Bind ShowhideDiscounts, Mode=OneWay}">
@@ -61,7 +101,7 @@
                 <TextBox Width="450" Name="disc_Kortingscode" Header="Kortingscode" Margin="0,10,0,0" PlaceholderText="Typ de kortingscode van de korting hier"/>
                 <TextBlock HorizontalAlignment="Center" Text="PDF bestand" Margin="0, 8, 0,8"/>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Content="Blader" Click="Disc_Browsepdf"/>
+                    <Button Content="Blader" Click="disc_Browsepdf"/>
                     <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Name="disc_Chosenpdf" Text="Geen bestand gekozen"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">

@@ -48,7 +48,8 @@ namespace CityAppREST.Data
                             new Promotion("2 wassen = 3 betalen")
                         },
                         new List<Event> {
-                            new Event("Nieuwjaarsreceptie", "Iedereen welkom voor een glaasje cava en tapas!", new DateTime(2019, 1, 10), "receptie.png")
+                            new Event("Nieuwjaarsreceptie", "Iedereen welkom voor een glaasje cava en tapas!", new DateTime(2019, 1, 10), "receptie.png"),
+                            new Event("Opendeurdag", "U bent welkom om in onze state-of-the art wasserij.", new DateTime(2000, 1, 1, 17, 0, 0), "http://www.cohousinglimburg.be/wp-content/uploads/2017/11/opendeur-2.gif")
                         }
                     ),
                     new Company{ Name = "Bank van Gent", Description = "Voor al uw geldzaken", Categorie = Categories.Bank },
