@@ -17,6 +17,7 @@ namespace CityApp.Services.Rest
 
         // REST endpoint url
         private const string _apiUrl = "https://localhost:44321/api/companies";
+        // private const string _apiUrl = "https://cityapprest.azurewebsites.net/api/companies";
 
         public CompanyService()
         {

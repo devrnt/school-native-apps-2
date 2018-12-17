@@ -37,7 +37,7 @@
                     </Button.CommandParameter>
                 </Button>
                 <Button Grid.Row="3" Grid.Column="1"  Margin="10" Content="Register" HorizontalAlignment="Right" Command="{Binding RegisterCommand}"/>
-                <Button Grid.Row="4" Grid.Column="0"  Margin="10" Grid.ColumnSpan="2" Content="Continue As A Guest" Command="{Binding GuestContinueCommand}" HorizontalAlignment="Center"/>
+                <Button Grid.Row="4" Grid.Column="0"  Margin="10" Grid.ColumnSpan="2" Content="Ga verder als gast" Command="{Binding GuestContinueCommand}" HorizontalAlignment="Center"/>
             </Grid>
         </StackPanel>
     </Grid>
