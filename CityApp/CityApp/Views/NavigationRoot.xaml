@@ -31,17 +31,17 @@ Explanation TAGS
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE707;"></FontIcon>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="[Tijdelijk] bedrijf toevoegen" >
+                <FCU:NavigationViewItem Content="Bedrijf toevoegen" Visibility="{x:Bind IsOwner}">
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE77B;"/>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="[Tijdelijk] promotie toevoegen" >
+                <FCU:NavigationViewItem Content="[Tijdelijk] promotie toevoegen" Visibility="Collapsed">
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE789;"/>
                     </FCU:NavigationViewItem.Icon>
                 </FCU:NavigationViewItem>
-                <FCU:NavigationViewItem Content="[Tijdelijk] kortingscode toevoegen" >
+                <FCU:NavigationViewItem Content="[Tijdelijk] kortingscode toevoegen" Visibility="Collapsed">
                     <FCU:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEC5A;"/>
                     </FCU:NavigationViewItem.Icon>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CityApp.DataModel;
 using CityApp.DataModel.Responses;
+using CityApp.Views;
 using Newtonsoft.Json;
 using Windows.Security.Cryptography.Certificates;
 using Windows.Web.Http;
@@ -74,6 +75,13 @@ namespace CityApp.Services.Rest
                 await StorageService.StoreUserId(loginResponse.UserId);
                 UserResponse uType = await GetUser();
                 StorageService.UserType = (int)uType.UserType;
+                if ((int)uType.UserType == 0) {
+                    NavigationRoot.Instance.IsOwner = true;
+                }
+                else
+                {
+                    NavigationRoot.Instance.IsOwner = false;
+                }
                 return "Succesvol ingelogd";
             }
             else
@@ -87,6 +95,7 @@ namespace CityApp.Services.Rest
             await StorageService.ClearStoredUser();
             await StorageService.StoreUserToken("");
             StorageService.UserType = -1;
+            NavigationRoot.Instance.IsOwner = false;
             return "ok";
         }
         public async Task<UserResponse> GetUser()
