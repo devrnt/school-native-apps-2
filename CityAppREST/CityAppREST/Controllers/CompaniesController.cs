@@ -79,7 +79,7 @@ namespace CityAppREST.Controllers
             (owner.Companies ?? (owner.Companies = new List<Company>())).Add(company);
             _userRepository.SaveChanges();
 
-            return new Company(company.Name, company.Description, company.KeyWords, company.Categorie, company.Locations, company.OpeningHours, company.LeaveOfAbsence, company.SocialMedia, company.Promotions);
+            return company;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace CityAppREST.Controllers
         }
 
         /// <summary>
-        /// Add a promotion to specified company.
+        /// Adds a promotion to specified company.
         /// </summary>
         /// <returns>The added promotion</returns>
         /// <param name="id">Company id</param>
@@ -164,6 +164,36 @@ namespace CityAppREST.Controllers
             // await _pushNotificationsHelper.SendNotification($"{company.Name} has a new promotion!");
 
             return company.Promotions.TakeLast(1).First();
+        }
+
+        /// <summary>
+        /// Adds an event to specified company
+        /// </summary>
+        /// <returns>The added event.</returns>
+        /// <param name="id">Company id</param>
+        /// <param name="newEvent">The event to add</param>
+        /// <response code="200">The added event</response>
+        /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+        /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
+        /// <response code="404">Not Found: No such company with specified id was found</response>
+        [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
+        [HttpPost("{id}/events")]
+        public ActionResult<Event> PostEvents(int id, Event newEvent)
+        {
+            var company = _companyRepository.GetById(id);
+
+            if (company == null)
+            {
+                return NotFound(new { message = $"No company was found with id {id}" });
+            }
+
+            company.Events.Add(newEvent);
+            _companyRepository.SaveChanges();
+
+            // Uncomment to send notification
+            // await _pushNotificationsHelper.SendNotification($"{company.Name} has a new event!");
+
+            return company.Events.TakeLast(1).First();
         }
     }
 }

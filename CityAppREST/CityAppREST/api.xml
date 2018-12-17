@@ -57,14 +57,26 @@
             <response code="403">Forbidden: Only the owner of specified company has write access</response>
             /// <response code="404">Not Found: No such company with specified id was found</response>
         </member>
-        <member name="M:CityAppREST.Controllers.CompaniesController.PostPromotionAsync(System.Int32,CityAppREST.Models.Promotion)">
+        <member name="M:CityAppREST.Controllers.CompaniesController.PostPromotion(System.Int32,CityAppREST.Models.Promotion)">
             <summary>
-            Add a promotion to specified company.
+            Adds a promotion to specified company.
             </summary>
             <returns>The added promotion</returns>
             <param name="id">Company id</param>
             <param name="promotion">The promotion to add</param>
             <response code="200">The added promotion</response>
+            <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
+            <response code="403">Forbidden: Only the owner of specified company has write access</response>
+            <response code="404">Not Found: No such company with specified id was found</response>
+        </member>
+        <member name="M:CityAppREST.Controllers.CompaniesController.PostEvents(System.Int32,CityAppREST.Models.Event)">
+            <summary>
+            Adds an event to specified company
+            </summary>
+            <returns>The added event.</returns>
+            <param name="id">Company id</param>
+            <param name="newEvent">The event to add</param>
+            <response code="200">The added event</response>
             <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
             <response code="403">Forbidden: Only the owner of specified company has write access</response>
             <response code="404">Not Found: No such company with specified id was found</response>

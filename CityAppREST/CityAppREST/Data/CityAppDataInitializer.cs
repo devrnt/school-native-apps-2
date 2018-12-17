@@ -46,7 +46,11 @@ namespace CityAppREST.Data
                         new List<Promotion> {
                             new Promotion("Korting op uw eerste was"),
                             new Promotion("2 wassen = 3 betalen")
-                        }),
+                        },
+                        new List<Event> {
+                            new Event("Nieuwjaarsreceptie", "Iedereen welkom voor een glaasje cava en tapas!", new DateTime(2019, 1, 10), "receptie.png")
+                        }
+                    ),
                     new Company{ Name = "Bank van Gent", Description = "Voor al uw geldzaken", Categorie = Categories.Bank },
                     new Company{ Name = "Bakkerij Koen", Description = "Uw warme bakker", Categorie = Categories.Bakkerij }
                 };
