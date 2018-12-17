@@ -29,22 +29,24 @@ namespace CityApp.ViewModels
 
         private INavigationService _navigationService;
         private UserService _userService;
-
-
+        private CompanyService _companyService;
 
 
         public EditCompanyDetailsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             _userService = UserService.us;
+            _companyService = new CompanyService();
             DeletePromotionCommand = new RelayCommand((p) => DeletePromotions());
             DeleteDiscountCommand = new RelayCommand((p) => DeleteDiscounts());
         }
-        public void AddPromotion(String s, Object d)
+        public async void AddPromotionAsync(String s, Object d)
         {
-            Promotion p = new Promotion(s, (Discount)d);
-            Promotions.Add(p);
-            Company.Promotions.Add(p);
+            var promotion = new Promotion(s, (Discount)d);
+
+            var promotionResult = await _companyService.AddPromotion(Company.Id, promotion);
+            Promotions.Add(promotionResult);
+            AlertService.Toast("Promotie toegevoegd", $"De promotie {promotionResult.Description} toegevoegd");
         }
         public void AddDiscount(string c, string pdf)
         {
@@ -52,6 +54,7 @@ namespace CityApp.ViewModels
             Discounts.Add(d);
             Company.Discounts.Add(d);
         }
+
         private void DeletePromotions()
         {
             Promotions.Clear();
