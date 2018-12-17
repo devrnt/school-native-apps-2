@@ -5,13 +5,13 @@ namespace CityApp.DataModel
 {
     public class OpeningHours
     {
-        public List<Days> Opendagen;
+        public List<Days> Days;
         public string Van;
         public string Tot;
 
-        public OpeningHours(List<Days> opendagen, string van, string tot)
+        public OpeningHours(List<Days> days, string van, string tot)
         {
-            Opendagen = opendagen;
+            Days = days;
             Van = van;
             Tot = tot;
         }

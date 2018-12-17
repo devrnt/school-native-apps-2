@@ -12,11 +12,11 @@ namespace CityAppREST.Models {
 		public string Email { get; set; }
 		// Password should not be a String
 		public string Password { get; set; }
-		public IEnumerable<Company> Companies { get; set; }
+		public List<Company> Companies { get; set; }
 		public UserType UserType { get; set; }
 		public List<Company> Subscriptions { get; set; }
 
-		public User(string name, string firstName, string username, DateTime birthDate, String email, String password, IEnumerable<Company> companies, UserType userType)
+		public User(string name, string firstName, string username, DateTime birthDate, String email, String password, List<Company> companies, UserType userType)
 		{
 			Name = name;
 			FirstName = firstName;
