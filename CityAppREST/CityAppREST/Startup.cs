@@ -43,6 +43,9 @@ namespace CityAppREST
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<Company>, CompanyRepository>();
 
+            // Add push notification helper
+            services.AddSingleton<PushNotificationsHelper>();
+
             // Add jwt token authentication
             services.AddSingleton<TokenGenerator>(_tokenGenerator);
             services.AddAuthentication(options =>

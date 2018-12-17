@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CityAppREST.Filters;
+using CityAppREST.Helpers;
 using CityAppREST.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +20,15 @@ namespace CityAppREST.Controllers
     {
         private readonly IRepository<Company> _companyRepository;
         private readonly IRepository<User> _userRepository;
+        private readonly PushNotificationsHelper _pushNotificationsHelper;
 
-        public CompaniesController(IRepository<Company> companyRepository, IRepository<User> userRepository)
+        public CompaniesController(IRepository<Company> companyRepository,
+                                   IRepository<User> userRepository,
+                                   PushNotificationsHelper pushNotificationsHelper)
         {
             _companyRepository = companyRepository;
             _userRepository = userRepository;
+            _pushNotificationsHelper = pushNotificationsHelper;
         }
 
         /// <summary>
@@ -141,9 +146,9 @@ namespace CityAppREST.Controllers
         /// <response code="401">Unauthorized: request must contain a valid bearer token and contain a Claim of type Role and value Owner</response>
         /// <response code="403">Forbidden: Only the owner of specified company has write access</response>
         /// <response code="404">Not Found: No such company with specified id was found</response>
-        [ReadWriteAccessFilter]
+        [ReadWriteAccessFilter(RequestObjectType = nameof(Company))]
         [HttpPost("{id}/promotions")]
-        public ActionResult<Promotion> PostPromotion(int id, Promotion promotion)
+        public async Task<ActionResult<Promotion>> PostPromotionAsync(int id, Promotion promotion)
         {
             var company = _companyRepository.GetById(id);
 
@@ -154,6 +159,8 @@ namespace CityAppREST.Controllers
 
             company.Promotions.Add(promotion);
             _companyRepository.SaveChanges();
+
+            await _pushNotificationsHelper.SendNotification($"{company.Name} has a new promotion!");
 
             return company.Promotions.TakeLast(1).First();
         }
