@@ -15,10 +15,20 @@
         private static NavigationRoot _instance;
         private INavigationService _navigationService;
         private bool hasLoadedPreviously;
+        private bool isOwner;
+
+        public bool IsOwner
+        {
+            get { return isOwner; }
+            set { isOwner = value;
+                Bindings.Update();
+            }
+        }
 
         public NavigationRoot()
         {
             _instance = this;
+            IsOwner = false;
             InitializeComponent();
 
             var nav = SystemNavigationManager.GetForCurrentView();
@@ -146,7 +156,7 @@
                 case "Account":
                     _navigationService.NavigateToAccountAsync();
                     break;
-                case "[Tijdelijk] bedrijf toevoegen":
+                case "Bedrijf toevoegen":
                     _navigationService.NavigateToAddCompanyAsync();
                     break;
                 case "[Tijdelijk] promotie toevoegen":
