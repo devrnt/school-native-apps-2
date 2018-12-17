@@ -20,7 +20,9 @@ namespace CityAppREST.Models
             Date = date;
             Image = image;
         }
-        protected Event(){
+
+        protected Event()
+        {
         }
 
         public override string ToString()

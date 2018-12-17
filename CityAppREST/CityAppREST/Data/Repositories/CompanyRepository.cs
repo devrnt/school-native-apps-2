@@ -45,6 +45,7 @@ namespace CityAppREST.Data.Repositories
                                 .ThenInclude(p => p.Discount)
                              .Include(c=> c.Events)
                              .Include(c => c.SocialMedia)
+                             .Include(c => c.Events)
                              .FirstOrDefault(c => c.Id == id);
         }
 

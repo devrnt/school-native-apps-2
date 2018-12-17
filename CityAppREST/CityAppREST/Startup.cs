@@ -37,7 +37,8 @@ namespace CityAppREST
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("CityAppDB"));
+            // services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("CityAppDB"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
 
             // Add repository services
             services.AddScoped<IRepository<User>, UserRepository>();
