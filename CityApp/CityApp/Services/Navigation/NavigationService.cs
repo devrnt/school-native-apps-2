@@ -66,6 +66,8 @@ namespace CityApp.Services.Navigation
             RegisterPageViewModel<CompanyDetails, CompanyDetailsViewModel>();
             RegisterPageViewModel<EditCompanyDetails, EditCompanyDetailsViewModel>();
             RegisterPageViewModel<AddCompany, AddCompanyViewModel>();
+            RegisterPageViewModel<OwnerAccount, OwnerAccountViewModel>();
+
 
 
             Frame.Navigated += Frame_Navigated;
@@ -170,9 +172,9 @@ namespace CityApp.Services.Navigation
                     {
                         do { } while (navVM == null);
                         await navVM.NavigatedTo(navArgs.NavigationMode, parameter);
-                        pageWithVM.UpdateBindings();
                     }
                     // Async loading
+                    pageWithVM.UpdateBindings();
                 }
             };
 

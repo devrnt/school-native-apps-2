@@ -154,6 +154,7 @@ namespace CityApp
                 builder.RegisterType<AddCompanyViewModel>().SingleInstance();
                 builder.RegisterType<AccountViewModel>();
                 builder.RegisterType<SettingsViewModel>();
+                builder.RegisterType<OwnerAccountViewModel>();
 
                 builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()

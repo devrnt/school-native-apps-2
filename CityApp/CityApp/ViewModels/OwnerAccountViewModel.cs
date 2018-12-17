@@ -38,7 +38,8 @@ namespace CityApp.ViewModels
             await UserService.LogOutUserAsync();
             await NavigationService.ns.NavigateToAccountAsync();
         }
-        private async void LoadUser()
+
+        public async void LoadUser()
         {
             var user = await UserService.us.GetUser();
             User = user;
