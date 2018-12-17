@@ -5,7 +5,6 @@
     xmlns:local="using:CityApp.Views.Companies"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:helper="using:CityApp.Helpers"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -22,7 +21,7 @@
             FontWeight="Light"
             Style="{StaticResource PageTitleStyle}"/>
 
-            <StackPanel Grid.Row="1">
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center">
                 <StackPanel Margin="{StaticResource SettingsSubheaderMargin}" HorizontalAlignment="Left">
                     <TextBlock
                     Text="Onderneming"
@@ -32,9 +31,12 @@
                          Name="Input_CompanyName"
                          Header="Naam"
                          Margin="0,12,0,12"
+                         HorizontalAlignment="Left"
                          PlaceholderText="Typ de naam van de onderneming hier"/>
+                    <TextBlock Text="{x:Bind CompanyNameError, Mode=TwoWay}" Foreground="Red"/>
 
                     <TextBox Width="450"
+                         HorizontalAlignment="Left"
                          Name="Input_CompanyDescription"
                          Header="Omschrijving"
                          TextWrapping="Wrap"
@@ -42,8 +44,10 @@
                          MaxHeight="170"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          PlaceholderText="Typ de omschrijving van de onderneming hier"/>
+                    <TextBlock Text="{x:Bind CompanyDescriptionError, Mode=TwoWay}" Foreground="Red"/>
 
                     <TextBox Width="450"
+                         HorizontalAlignment="Left"
                          Name="Input_CompanyKeywords"
                          Margin="0,12,0,12"
                          Header="Zoekwoorden"
@@ -52,12 +56,17 @@
                             <ToolTip Content="Gebruik een ',' om de woorden te scheiden" HorizontalOffset="100" VerticalOffset="-80"/>
                         </ToolTipService.ToolTip>
                     </TextBox>
+                    <TextBlock Text="{x:Bind CompanyKeywordsError, Mode=TwoWay}" Foreground="Red"/>
+
 
                     <ComboBox Header="Categorie"
+                          HorizontalAlignment="Left"
                           Margin="0,0,0,24"
                           Name="Input_CategoryComboBox"
                           PlaceholderText="Categorie" SelectionChanged="CategoryComboBox_SelectionChanged"
                           ItemsSource="{Binding AllCategories}"/>
+                    <TextBlock Text="{x:Bind CompanyCategoryError, Mode=TwoWay}" Foreground="Red"/>
+
 
                     <TextBlock
                     Text="Locatie"
@@ -66,29 +75,38 @@
                     <TextBox Width="450"
                          Name="Input_CompanyCity"
                          Margin="0,24,0,12"
+                         HorizontalAlignment="Left"
                          Header="Stad"
                          PlaceholderText="Typ hier de stad waar uw onderneming"/>
+                    <TextBlock Text="{x:Bind CompanyCityError, Mode=TwoWay}" Foreground="Red"/>
 
 
                     <TextBox Width="450"
                          Name="Input_CompanyPostal"
                          Margin="0,12,0,12"
+                         HorizontalAlignment="Left"
                          Header="Postcode"
                          PlaceholderText="Typ de postcode hier"/>
-
+                    <TextBlock Text="{x:Bind CompanyPostalError, Mode=TwoWay}" Foreground="Red"/>
 
                     <TextBox Width="450"
                          Name="Input_CompanyStreet"
                          Margin="0,12,0,12"
+                         HorizontalAlignment="Left"
                          Header="Straat"
                          PlaceholderText="Typ de straat hier"/>
+                    <TextBlock Text="{x:Bind CompanyStreetError, Mode=TwoWay}" Foreground="Red"/>
 
                     <TextBox Width="450"
                          Name="Input_CompanyNumber"
                          Margin="0,12,0,12"
                          Header="Nummer"
+                         HorizontalAlignment="Left"
                          PlaceholderText="Typ het huisnummer hier"/>
+                    <TextBlock Text="{x:Bind CompanyNumberError, Mode=TwoWay}" Foreground="Red"/>
+
                     <TextBlock Text="Openingsuren"/>
+
                     <StackPanel Orientation="Horizontal">
                         <CheckBox x:Name="ou_maandag" Content="Maandag" Margin="5"/>
                         <CheckBox x:Name="ou_dinsdag" Content="Dinsdag" Margin="5"/>
@@ -100,16 +118,23 @@
                     </StackPanel>
                     <TextBox Width="450"
                          Name="ou_van"
+                         HorizontalAlignment="Left"
                          Header="Van"
                          PlaceholderText="08:00"/>
+                    <TextBlock Text="{x:Bind CompanyOpeningsHourFrom, Mode=TwoWay}" Foreground="Red"/>
+
                     <TextBox Width="450"
+                         HorizontalAlignment="Left"
                          Name="ou_tot"
                          Header="Tot"
                          PlaceholderText="18:00"/>
+                    <TextBlock Text="{x:Bind CompanyOpeningsHourUntil, Mode=TwoWay}" Foreground="Red"/>
+
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Name="cb_Facebook" Content="Facebook"></CheckBox>
                         <TextBox Width="450"
                          Name="sm_Facebook"
+                         HorizontalAlignment="Left"
                          PlaceholderText="Facebook Url"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">

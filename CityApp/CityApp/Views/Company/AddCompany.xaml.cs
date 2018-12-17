@@ -27,6 +27,16 @@ namespace CityApp.Views
     public sealed partial class AddCompany : Page
     {
         private AddCompanyViewModel _vm;
+        public string CompanyNameError { get; set; }
+        public string CompanyDescriptionError { get; set; }
+        public string CompanyKeywordsError { get; set; }
+        public string CompanyCategoryError { get; set; }
+        public string CompanyCityError { get; set; }
+        public string CompanyPostalError { get; set; }
+        public string CompanyStreetError { get; set; }
+        public string CompanyNumberError { get; set; }
+        public string CompanyOpeningsHourFrom { get; set; }
+        public string CompanyOpeningsHourUntil { get; set; }
 
         public AddCompany()
         {
@@ -42,6 +52,12 @@ namespace CityApp.Views
 
         private void CreateCompany(object sender, RoutedEventArgs e)
         {
+            ValidateForm();
+            if (!IsFormValid())
+            {
+                return;
+            }
+
             var owner = new Owner(StorageService.RetrieveUserId());
             var locations = new List<Location>
             {
@@ -69,6 +85,118 @@ namespace CityApp.Views
             };
 
             this._vm.CreateCompany(company.Name, company.Description, company.KeyWords, company.Categorie, company.Owner, company.Locations, company.OpeningHours, "", company.SocialMedia);
+        }
+
+        private bool IsFormValid()
+        {
+            var errorList = new List<string>()
+            {
+                CompanyNameError,
+                CompanyDescriptionError ,
+                CompanyKeywordsError,
+                CompanyCategoryError,
+                CompanyCityError ,
+                CompanyPostalError,
+                CompanyStreetError,
+                CompanyNumberError,
+                CompanyOpeningsHourFrom,
+                CompanyOpeningsHourUntil
+            };
+            return errorList.All(error => error.Length == 0);
+        }
+
+        private void ValidateForm()
+        {
+            if (Input_CompanyName.Text.Length == 0)
+            {
+                CompanyNameError = "Naam mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyNameError = "";
+            }
+            if (Input_CompanyDescription.Text.Length == 0)
+            {
+                CompanyDescriptionError = "Omschrijving mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyDescriptionError = "";
+
+            }
+            if (Input_CompanyKeywords.Text.Length == 0)
+            {
+                CompanyKeywordsError = "Geef ten minste 1 zoekword op";
+            }
+            else
+            {
+                CompanyKeywordsError = "";
+            }
+            if (Input_CategoryComboBox.SelectedItem == null)
+            {
+                CompanyCategoryError = "Selecteer een categorie";
+            }
+            else
+            {
+                CompanyCategoryError = "";
+            }
+            if (Input_CompanyCity.Text.Length == 0)
+            {
+                CompanyCityError = "Stad mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyCityError = "";
+            }
+            if (Input_CompanyPostal.Text.Length == 0)
+            {
+                CompanyPostalError = "Postcode mag niet leeg zijn";
+            }
+            else if (!int.TryParse(Input_CompanyPostal.Text, out int num))
+            {
+                CompanyPostalError = "Postcode moet een getal zijn";
+            }
+            else
+            {
+                CompanyPostalError = "";
+            }
+            if (Input_CompanyStreet.Text.Length == 0)
+            {
+                CompanyStreetError = "Straat mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyStreetError = "";
+            }
+            if (Input_CompanyNumber.Text.Length == 0)
+            {
+                CompanyNumberError = "Nummer mag niet leeg zijn";
+            }
+            else if (!int.TryParse(Input_CompanyPostal.Text, out int num))
+            {
+                CompanyNumberError = "Nummer moet een getal zijn";
+            }
+            else
+            {
+                CompanyNumberError = "";
+            }
+            if (ou_van.Text.Length == 0)
+            {
+                CompanyOpeningsHourFrom = "Beginuur mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyOpeningsHourFrom = "";
+            }
+            if (ou_tot.Text.Length == 0)
+            {
+                CompanyOpeningsHourUntil = "Einduur mag niet leeg zijn";
+            }
+            else
+            {
+                CompanyOpeningsHourUntil = "";
+            }
+            Bindings.Update();
         }
 
         private List<OpeningHours> GetOpeningHours()

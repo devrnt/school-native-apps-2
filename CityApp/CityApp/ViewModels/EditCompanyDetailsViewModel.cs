@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using CityApp.DataModel;
-using CityApp.DataModel.CommandParameters;
 using CityApp.Helpers;
 using CityApp.Services;
 using CityApp.Services.Navigation;
@@ -42,12 +40,14 @@ namespace CityApp.ViewModels
             DeletePromotionCommand = new RelayCommand((p) => DeletePromotions());
             DeleteDiscountCommand = new RelayCommand((p) => DeleteDiscounts());
         }
-        public void AddPromotion(String s, Object d) {
+        public void AddPromotion(String s, Object d)
+        {
             Promotion p = new Promotion(s, (Discount)d);
             Promotions.Add(p);
             Company.Promotions.Add(p);
         }
-        public void AddDiscount(string c, string pdf) {
+        public void AddDiscount(string c, string pdf)
+        {
             Discount d = new Discount(c, pdf);
             Discounts.Add(d);
             Company.Discounts.Add(d);
