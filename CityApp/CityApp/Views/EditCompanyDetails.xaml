@@ -20,6 +20,8 @@
                 <TextBlock x:Name="companyKeywords" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords, Mode=OneWay}" />
             </StackPanel>
             <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Promoties</Underline></TextBlock>
+            <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHidePromoties"/>
+            <StackPanel Visibility="{x:Bind ShowhidePromotions, Mode=OneWay}">
             <StackPanel Margin="0,10" Visibility="{x:Bind IsAddPromotionVisible, Mode=OneWay}">
                 <TextBox HorizontalAlignment="Center"
                          x:Name="promo_Omschrijving"
@@ -48,11 +50,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
-
+            </StackPanel>
+            <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Events</Underline></TextBlock>
+            <Button Content="Show/Hide" HorizontalAlignment="Center"/>
+            <StackPanel></StackPanel>
             <TextBlock  HorizontalAlignment="Center"  FontSize="36"><Underline>Discounts</Underline></TextBlock>
-            <StackPanel Margin="0,10" Visibility="{x:Bind IsAddDiscountVisible, Mode=OneWay}">
+            <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHideDiscounts"/>
+            <StackPanel Visibility="{x:Bind ShowhideDiscounts, Mode=OneWay}">
+                <StackPanel Margin="0,10" Visibility="{x:Bind IsAddDiscountVisible, Mode=OneWay}">
                 <TextBox Width="450" Name="disc_Kortingscode" Header="Kortingscode" Margin="0,10,0,0" PlaceholderText="Typ de kortingscode van de korting hier"/>
                 <TextBlock HorizontalAlignment="Center" Text="PDF bestand" Margin="0, 8, 0,8"/>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
@@ -76,7 +81,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+</StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>
