@@ -58,7 +58,6 @@ namespace CityApp.Views
         }
         public void UpdateBindings()
         {
-            UpdateBindings();
         }
     }
 }

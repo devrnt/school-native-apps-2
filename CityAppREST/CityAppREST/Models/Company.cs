@@ -20,13 +20,13 @@ namespace CityAppREST.Models {
 		public SocialMedia SocialMedia { get; set; }
 		public ICollection<Promotion> Promotions { get; set; }
 		public ICollection<Discount> Discounts { get; set; }
+        public ICollection<Event> Events { get; set; }
 		public bool HasPromotion => Promotions == null || Promotions.Count != 0;
 		#endregion
 
 		#region === Constructor ===
 		public Company(string name, string description, string keyWords, Categories categorie, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
 		{
-
 			Name = name;
 			Description = description;
 			KeyWords = keyWords;
@@ -38,6 +38,7 @@ namespace CityAppREST.Models {
 			SocialMedia = socialMedia;
 			Promotions = promotions;
 			Discounts = new List<Discount>();
+            Events = new List<Event>();
 		}
 
 		public Company()
@@ -59,12 +60,13 @@ namespace CityAppREST.Models {
 			SocialMedia = socialMedia;
 			Promotions = promotions;
 			Discounts = new List<Discount>();
-		}
+            Events = new List<Event>();
+        }
 
-		#endregion
+        #endregion
 
-		#region === Methods === 
-		public override string ToString()
+        #region === Methods === 
+        public override string ToString()
 		{
 			return string.Format("{0}", Name);
 		}

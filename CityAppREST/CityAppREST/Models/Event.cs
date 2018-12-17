@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace CityApp.DataModel
+namespace CityAppREST.Models
 {
     public class Event
     {
@@ -21,10 +20,12 @@ namespace CityApp.DataModel
             Date = date;
             Image = image;
         }
+        protected Event(){
+        }
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}",Title, Description);
+            return string.Format("{0}: {1}", Title, Description);
         }
     }
 }

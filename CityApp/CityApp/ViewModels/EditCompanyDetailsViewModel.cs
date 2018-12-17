@@ -19,6 +19,7 @@ namespace CityApp.ViewModels
     public class EditCompanyDetailsViewModel : INavigableTo, INotifyPropertyChanged
     {
         public Company Company { get; private set; }
+        public ObservableCollection<Event> Events { get; set; }
         public ObservableCollection<Promotion> Promotions { get; set; }
         public ObservableCollection<Discount> Discounts { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -33,8 +34,6 @@ namespace CityApp.ViewModels
         private UserService _userService;
 
 
-
-
         public EditCompanyDetailsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -42,7 +41,14 @@ namespace CityApp.ViewModels
             DeletePromotionCommand = new RelayCommand((p) => DeletePromotions());
             DeleteDiscountCommand = new RelayCommand((p) => DeleteDiscounts());
         }
-        public void AddPromotion(String s, Object d) {
+        public void AddEvent(string t, string d, DateTime date, string i)
+        {
+            Event e = new Event(t, d, date, i);
+            Events.Add(e);
+            Company.Events.Add(e);
+        }
+        public void AddPromotion(String s, Object d)
+        {
             Promotion p = new Promotion(s, (Discount)d);
             Promotions.Add(p);
             Company.Promotions.Add(p);
@@ -67,6 +73,11 @@ namespace CityApp.ViewModels
             if (navigationMode != NavigationMode.Back && parameter is Company company)
             {
                 Company = company;
+                Events = new ObservableCollection<Event>();
+                foreach (Event p in company.Events)
+                {
+                    Events.Add(p);
+                }
                 Promotions = new ObservableCollection<Promotion>();
                 foreach (Promotion p in company.Promotions)
                 {
