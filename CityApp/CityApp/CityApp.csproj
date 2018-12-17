@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Categories.cs" />
+    <Compile Include="DataModel\CommandParameters\AddPromotionParameters.cs" />
     <Compile Include="DataModel\Company.cs" />
     <Compile Include="DataModel\LogInCredentials.cs" />
     <Compile Include="DataModel\Days.cs" />

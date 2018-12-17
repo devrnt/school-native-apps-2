@@ -20,7 +20,7 @@ namespace CityApp.DataModel
                 new List<Location>() { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },
                 null, null, null, null);
 
-            company.Promotions = new List<Promotion>() { new Promotion("Dit is een promotie!"), new Promotion("Nog een promotie zeg") };
+            company.Promotions = new List<Promotion>() { new Promotion("Dit is een promotie!", null), new Promotion("Nog een promotie zeg", null) };
 
             return new List<Company>() {
                 company,

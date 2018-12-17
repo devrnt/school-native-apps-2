@@ -27,13 +27,14 @@
             </StackPanel>
         </Grid>
         <ListView ItemsSource="{Binding Companies, Mode=OneWay}" IsItemClickEnabled="True" HorizontalAlignment="Center"
-                            helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}" BorderThickness="2" BorderBrush="Black">
+                            helpers:ItemClickCommand.Command="{Binding EditCompanyDetailsCommand}">
                     <ListView.ItemTemplate>
                         <DataTemplate >
-                            <StackPanel>
+                    <StackPanel BorderThickness="2" BorderBrush="Black">
                                 <TextBlock Text="{Binding Name}"/>
                                 <TextBlock Text="{Binding Categorie}"/>
-                            </StackPanel>
+                                <TextBlock Text="{Binding Description}"/>
+                    </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>

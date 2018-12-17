@@ -150,7 +150,7 @@ namespace CityApp
                 // Register the view models to the builder 
                 builder.RegisterType<CompaniesViewModel>();
                 builder.RegisterType<CompanyDetailsViewModel>().SingleInstance();
-                builder.RegisterType<EditCompanyDetailsViewModel>().SingleInstance();
+                builder.RegisterType<EditCompanyDetailsViewModel>();
                 builder.RegisterType<AddCompanyViewModel>().SingleInstance();
                 builder.RegisterType<AccountViewModel>();
                 builder.RegisterType<SettingsViewModel>();

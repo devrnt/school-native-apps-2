@@ -12,7 +12,6 @@ namespace CityApp.Views
     public sealed partial class Companies : Page, IPageWithViewModel<CompaniesViewModel>
     {
         private CompaniesViewModel _cv;
-        private NullableBooleanToBooleanConverter _boolConverter;
         public CompaniesViewModel ViewModel { get; set; }
         private Categories cat { get { return fCat.SelectedItem == null ? Categories.All : (Categories)fCat.SelectedItem; } }
         private bool promo { get { return fPromo.IsChecked == null ? false : fPromo.IsChecked == false ? false : true; } }

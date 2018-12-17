@@ -49,7 +49,6 @@ namespace CityApp.Views
             };
 
             var openingHours = GetOpeningHours();
-            string leaveOfAbsence = "";
 
             var socialMedia = new SocialMedia(cb_Facebook.IsChecked == null ? null : cb_Facebook.IsChecked == false ? null : sm_Facebook.Text,
                 cb_Twitter.IsChecked == null ? null : cb_Twitter.IsChecked == false ? null : sm_Twitter.Text,

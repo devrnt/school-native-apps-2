@@ -65,7 +65,7 @@ namespace CityApp.Services.Navigation
             RegisterPageViewModel<SettingsPage, SettingsViewModel>();
             RegisterPageViewModel<CompanyDetails, CompanyDetailsViewModel>();
             RegisterPageViewModel<EditCompanyDetails, EditCompanyDetailsViewModel>();
-            RegisterPageViewModel<EditCompanyDetails, AddCompanyViewModel>();
+            RegisterPageViewModel<AddCompany, AddCompanyViewModel>();
 
 
             Frame.Navigated += Frame_Navigated;

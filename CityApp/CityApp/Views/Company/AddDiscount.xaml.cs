@@ -29,26 +29,26 @@ namespace CityApp.Views.Company
             this.InitializeComponent();
         }
 
-        private async void BrowsePdf_Click(object sender, RoutedEventArgs e)
-        {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker
+            private async void BrowsePdf_Click(object sender, RoutedEventArgs e)
             {
-                ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail,
-                SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
-            };
-            picker.FileTypeFilter.Add(".pdf");
+                var picker = new Windows.Storage.Pickers.FileOpenPicker
+                {
+                    ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail,
+                    SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary
+                };
+                picker.FileTypeFilter.Add(".pdf");
 
-            var file = await picker.PickSingleFileAsync();
-            if (file != null)
-            {
-                // Application now has read/write access to the picked file
-                ChosenPdf_Text.Text = "Gekozen pdf" + file.Name;
+                var file = await picker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    // Application now has read/write access to the picked file
+                    ChosenPdf_Text.Text = "Gekozen pdf" + file.Name;
+                }
+                else
+                {
+                    ChosenPdf_Text.Text = "Geen bestand gekozen";
+                }
             }
-            else
-            {
-                ChosenPdf_Text.Text = "Geen bestand gekozen";
-            }
-        }
         private void CreateDiscount_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Creating discount...");
