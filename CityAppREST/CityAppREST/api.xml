@@ -57,7 +57,7 @@
             <response code="403">Forbidden: Only the owner of specified company has write access</response>
             /// <response code="404">Not Found: No such company with specified id was found</response>
         </member>
-        <member name="M:CityAppREST.Controllers.CompaniesController.PostPromotionAsync(System.Int32,CityAppREST.Models.Promotion)">
+        <member name="M:CityAppREST.Controllers.CompaniesController.PostPromotion(System.Int32,CityAppREST.Models.Promotion)">
             <summary>
             Add a promotion to specified company.
             </summary>
