@@ -56,5 +56,9 @@ namespace CityApp.Views
         {
             ViewModel.ShowCompanyDetails(args.SelectedItem as CityApp.DataModel.Company);
         }
+        public void UpdateBindings()
+        {
+            UpdateBindings();
+        }
     }
 }

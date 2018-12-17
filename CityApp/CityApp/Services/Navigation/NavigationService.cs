@@ -168,11 +168,11 @@ namespace CityApp.Services.Navigation
 
                     if (pageWithVM.ViewModel is INavigableTo navVM)
                     {
+                        do { } while (navVM == null);
                         await navVM.NavigatedTo(navArgs.NavigationMode, parameter);
                     }
-
+                    pageWithVM.UpdateBindings();
                     // Async loading
-                    //pageWithVM.UpdateBindings();
                 }
             };
 

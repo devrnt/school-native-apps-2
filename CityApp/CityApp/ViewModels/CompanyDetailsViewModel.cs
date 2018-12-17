@@ -82,7 +82,7 @@ namespace CityApp.ViewModels
             {
                 Company = company;
             }
-            return null;
+            return Task.FromResult<object>(null);
         }
     }
 }

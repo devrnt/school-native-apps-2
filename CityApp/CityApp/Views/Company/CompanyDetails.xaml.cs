@@ -16,5 +16,9 @@ namespace CityApp.Views
             this.DataContext = ViewModel;
             CanSubscribe = StorageService.UserType == 1 ? true : false;
         }
+        public void UpdateBindings()
+        {
+            Bindings.Update();
+        }
     }
 }

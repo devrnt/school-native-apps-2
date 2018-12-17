@@ -51,7 +51,6 @@ namespace CityApp.Views
             CorrectCredentials = false;
             ErrorText = "Please fill in all fields.";
         }
-
         private void BirthDate_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
             if (BirthDate.Date > DateTimeOffset.Now)
@@ -72,6 +71,11 @@ namespace CityApp.Views
                 ErrorText = "";
                 CorrectCredentials = true;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this._vm.RegisterAsync(SurName.Text, FirstName.Text, BirthDate.Date, Email.Text, Username.Text, Password.Text, Visitor.IsChecked == null ? false : Visitor.IsChecked == false ? false : true);
         }
     }
 }

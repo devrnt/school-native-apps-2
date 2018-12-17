@@ -32,5 +32,9 @@ namespace CityApp.Views
             this.InitializeComponent();
         }
 
+        public void UpdateBindings()
+        {
+            UpdateBindings();
+        }
     }
 }

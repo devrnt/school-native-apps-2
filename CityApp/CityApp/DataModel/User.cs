@@ -33,6 +33,7 @@ namespace CityApp.DataModel
             Email = email;
             Password = password;
             TypeOfUser = typeOfUser;
+            Username = name.ToLower() + firstName.ToLower();
         }
 
         protected User()

@@ -31,5 +31,9 @@ namespace CityApp.Views
             ViewModel = new VisitorAccountViewModel();
             this.DataContext = ViewModel;
         }
+        public void UpdateBindings()
+        {
+            UpdateBindings();
+        }
     }
 }

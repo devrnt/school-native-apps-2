@@ -138,5 +138,9 @@ namespace CityApp.Views
                 disc_Chosenpdf.Text = "Geen bestand gekozen";
             }
         }
+        public void UpdateBindings()
+        {
+            Bindings.Update();
+        }
     }
 }

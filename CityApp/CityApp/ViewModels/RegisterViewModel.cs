@@ -15,30 +15,25 @@ namespace CityApp.ViewModels
     {
         private INavigationService _navigationService;
         private UserService _userService;
-        public RelayCommand RegisterCommand { get; set; }
 
 
         public RegisterViewModel()
         {
-            RegisterCommand = new RelayCommand((p) => RegisterAsync((RegisterCredentials)p));
             _navigationService = NavigationService.ns;
             _userService = UserService.us;
         }
 
-        private async void RegisterAsync(RegisterCredentials p)
+        public async void RegisterAsync(string sname, string fname, DateTimeOffset date, string email, string uname, string pass, bool ch)
         {
-            UserType ut;
-            if (p.Type != null || p.Type == true)
+            User user;
+            if (ch == true)
             {
-                ut = UserType.Visitor;
+                user = new Visitor(sname, fname, date.DateTime, email, pass, UserType.Visitor, new List<Company>());
             }
             else
             {
-                ut = UserType.Owner;
+                user = new Owner(sname, fname, date.DateTime, email, pass, UserType.Owner, new List<Company>());
             }
-
-            var user = new Visitor(p.Name, p.FirstName, p.BirthDate.DateTime, p.Email, p.Password, ut, new List<Company>());
-
             var result = await _userService.RegisterAsync(user);
             if(result == "Succesvol aangemaakt")
             {

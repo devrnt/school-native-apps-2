@@ -78,7 +78,7 @@ namespace CityApp.ViewModels
                     Discounts.Add(d);
                 }
             }
-            return null;
+            return Task.FromResult<object>(null);
         }
     }
 }
