@@ -167,7 +167,7 @@ namespace CityApp.Views
         }
         private void AddPromotie(object sender, RoutedEventArgs e)
         {
-            this.ViewModel.AddPromotion(promo_Omschrijving.Text, promo_Discounts.SelectedItem);
+            this.ViewModel.AddPromotionAsync(promo_Omschrijving.Text, promo_Discounts.SelectedItem);
             promo_Omschrijving.Text = "";
             promo_Discounts.SelectedIndex = -1;
             IsAddPromotionVisible = false;

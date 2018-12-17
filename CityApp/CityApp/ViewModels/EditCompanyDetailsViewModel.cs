@@ -4,10 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using CityApp.DataModel;
-using CityApp.DataModel.CommandParameters;
 using CityApp.Helpers;
 using CityApp.Services;
 using CityApp.Services.Navigation;
@@ -19,7 +17,6 @@ namespace CityApp.ViewModels
     public class EditCompanyDetailsViewModel : INavigableTo, INotifyPropertyChanged
     {
         public Company Company { get; private set; }
-        public ObservableCollection<Event> Events { get; set; }
         public ObservableCollection<Promotion> Promotions { get; set; }
         public ObservableCollection<Discount> Discounts { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -32,32 +29,32 @@ namespace CityApp.ViewModels
 
         private INavigationService _navigationService;
         private UserService _userService;
+        private CompanyService _companyService;
 
 
         public EditCompanyDetailsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             _userService = UserService.us;
+            _companyService = new CompanyService();
             DeletePromotionCommand = new RelayCommand((p) => DeletePromotions());
             DeleteDiscountCommand = new RelayCommand((p) => DeleteDiscounts());
         }
-        public void AddEvent(string t, string d, DateTime date, string i)
+        public async void AddPromotionAsync(String s, Object d)
         {
-            Event e = new Event(t, d, date, i);
-            Events.Add(e);
-            Company.Events.Add(e);
+            var promotion = new Promotion(s, (Discount)d);
+
+            var promotionResult = await _companyService.AddPromotion(Company.Id, promotion);
+            Promotions.Add(promotionResult);
+            AlertService.Toast("Promotie toegevoegd", $"De promotie {promotionResult.Description} toegevoegd");
         }
-        public void AddPromotion(String s, Object d)
+        public void AddDiscount(string c, string pdf)
         {
-            Promotion p = new Promotion(s, (Discount)d);
-            Promotions.Add(p);
-            Company.Promotions.Add(p);
-        }
-        public void AddDiscount(string c, string pdf) {
             Discount d = new Discount(c, pdf);
             Discounts.Add(d);
             Company.Discounts.Add(d);
         }
+
         private void DeletePromotions()
         {
             Promotions.Clear();
@@ -73,11 +70,6 @@ namespace CityApp.ViewModels
             if (navigationMode != NavigationMode.Back && parameter is Company company)
             {
                 Company = company;
-                Events = new ObservableCollection<Event>();
-                foreach (Event p in company.Events)
-                {
-                    Events.Add(p);
-                }
                 Promotions = new ObservableCollection<Promotion>();
                 foreach (Promotion p in company.Promotions)
                 {
