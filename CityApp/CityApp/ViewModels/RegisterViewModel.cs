@@ -34,14 +34,9 @@ namespace CityApp.ViewModels
             {
                 user = new Owner(sname, fname, date.DateTime, email, pass, UserType.Owner, new List<Company>());
             }
-            var result = await _userService.RegisterAsync(user);
-            if(result == "Succesvol aangemaakt")
-            {
-                await _navigationService.NavigateToCompaniesAsync();
-            } else
-            {
-                // Not logged in, display error message
-            }
+            var result = await _userService.RegisterUser(user);
+            AlertService.Toast($"Succesvol geregistreerd", $"Je bent nu ingelogd als {user.Username}");
+            await _navigationService.NavigateToCompaniesAsync();
         }
     }
 }

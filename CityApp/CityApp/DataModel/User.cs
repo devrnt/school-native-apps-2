@@ -23,16 +23,16 @@ namespace CityApp.DataModel
         public string Email { get; set; }
         // Password should not be a String
         public string Password { get; set; }
-        public UserType TypeOfUser { get; set; }
+        public UserType UserType { get; set; }
 
-        protected User(string name, string firstName, DateTime birthDate, String email, String password, UserType typeOfUser)
+        protected User(string name, string firstName, DateTime birthDate, String email, String password, UserType userType)
         {
             Name = name;
             FirstName = firstName;
             BirthDate = birthDate;
             Email = email;
             Password = password;
-            TypeOfUser = typeOfUser;
+            UserType = userType;
             Username = name.ToLower() + firstName.ToLower();
         }
 

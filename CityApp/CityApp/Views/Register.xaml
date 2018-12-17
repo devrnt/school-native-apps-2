@@ -12,8 +12,8 @@
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid x:Name="LoginGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" MinWidth="159.333" />
+                <ColumnDefinition Width="auto" MinWidth="278" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -28,33 +28,32 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="SurName" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="SurName" TextChanged="Credentials_Changed"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="FirstName" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="FirstName" TextChanged="Credentials_Changed"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Birthdate" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="BirthDate" DateChanged="BirthDate_DateChanged"/>
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="eMail" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="10" Width="150" x:Name="Email" TextChanged="Credentials_Changed"/>
-            <TextBlock Grid.Row="4" Grid.Column="0" Text="Password" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="10" Width="150" x:Name="Username" TextChanged="Credentials_Changed"/>
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="Username" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed" />
-            <TextBox Grid.Row="5" Grid.Column="1" Margin="10" Width="150" x:Name="Password" TextChanged="Credentials_Changed" Visibility="Collapsed"/>
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="Type" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-            <StackPanel Grid.Row="6" Grid.Column="1" >
-                <RadioButton Name="Visitor" Content="Visitor" IsChecked="True"/>
-                <RadioButton Name="Owner" Content="Owner"/>
+            <TextBlock Grid.Column="0" Text="Achternaam" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="80" />
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="72.667,10,73.333,10" x:Name="SurName" TextChanged="Credentials_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Voornaam" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="68" />
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="72.667,10,73.333,10" x:Name="FirstName" TextChanged="Credentials_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Grid.Row="2" Text="Geboortedatum" Margin="0,0,0,0" 
+                   HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" Width="106" />
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="BirthDate" DateChanged="BirthDate_DateChanged" HorizontalAlignment="Center" Height="32" Margin="0,0,0,0" VerticalAlignment="Center" Width="296"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="35" ><Run Text="Email"/><LineBreak/><Run/></TextBlock>
+            <TextBox Grid.Row="3" Grid.Column="1" Margin="72.667,10,73.333,10" x:Name="Email" TextChanged="Credentials_Changed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Height="40" Width="84" ><Run Text="Wachtwoord"/><LineBreak/><Run/></TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Username" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="Collapsed" Height="0" Width="0" />
+            <PasswordBox Grid.Row="4" Margin="159,0,0.333,0" x:Name="Password" PasswordChanged="Credentials_Changed" Grid.ColumnSpan="2"/>
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="Gebruikerstype" Margin="10,0,0,0" 
+                   HorizontalAlignment="Left" VerticalAlignment="Center" Height="20" Width="100" />
+            <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Stretch" Margin="141,0,0.333,0" VerticalAlignment="Stretch" Grid.ColumnSpan="2" >
+                <RadioButton Name="Visitor" Content="Bezoeker" IsChecked="True"/>
+                <RadioButton Name="Owner" Content="Eigenaar"/>
             </StackPanel>
-            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Right" Text="{x:Bind ErrorText, Mode=OneWay}" Foreground="Red"/>
-            <Button Grid.Row="8" Grid.Column="0" Content="Cancel" HorizontalAlignment="Left"/>
-            <Button Grid.Row="8" Grid.Column="1" Content="Create Account" Click="Button_Click" HorizontalAlignment="Right" IsEnabled="{x:Bind CorrectCredentials, Mode= OneWay}"/>
+            <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Right" Text="{x:Bind ErrorText, Mode=OneWay}" Foreground="Red" HorizontalAlignment="Stretch" Margin="0,0,0.333,0" VerticalAlignment="Stretch"/>
+            <Button Grid.Row="8" Grid.Column="0" Content="Annuleer" HorizontalAlignment="Left" Height="32" Margin="0,0,0,0" VerticalAlignment="Center" Width="64"/>
+            <Button Grid.Row="8" Grid.Column="1" Content="Maak" Click="Button_Click" HorizontalAlignment="Left" IsEnabled="{x:Bind CorrectCredentials, Mode= OneWay}" Height="32" Margin="173.667,0,0,0" VerticalAlignment="Center" Width="122"/>
         </Grid>
     </StackPanel>
 </Page>

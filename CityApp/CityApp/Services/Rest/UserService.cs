@@ -43,24 +43,25 @@ namespace CityApp.Services.Rest
             _httpClient = new HttpClient(_httpFilter);
         }
 
-        public async Task<string> RegisterAsync(User user)
+
+        public async Task<User> RegisterUser(User user)
         {
             var userJson = JsonConvert.SerializeObject(user);
+
             var userPostReady = new HttpStringContent(userJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
 
-            var response = await _httpClient.PostAsync(new Uri(_apiUrl), null);
+            var response = await _httpClient.PostAsync(new Uri(_apiUrl), userPostReady);
 
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine(response.Content);
-                return "Succesvol aangemaakt";
-            }
-            else
-            {
-                //    return response;
-            }
-            return response.Content.ToString();
+            // No authorization is needed for a post user request
+            _httpClient.DefaultRequestHeaders.Clear();
+
+            await response.Content.ReadAsStringAsync();
+
+            await AuthenticateAsync(new LogInCredentials() { Username = user.Username, Password = user.Password });
+
+            return JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync());
         }
+
         public async Task<string> AuthenticateAsync(LogInCredentials user)
         {
             var userJson = JsonConvert.SerializeObject(user);
@@ -75,7 +76,8 @@ namespace CityApp.Services.Rest
                 await StorageService.StoreUserId(loginResponse.UserId);
                 UserResponse uType = await GetUser();
                 StorageService.UserType = (int)uType.UserType;
-                if ((int)uType.UserType == 0) {
+                if ((int)uType.UserType == 0)
+                {
                     NavigationRoot.Instance.IsOwner = true;
                 }
                 else

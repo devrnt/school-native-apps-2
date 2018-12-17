@@ -28,7 +28,9 @@ namespace CityApp.Views
         public bool CorrectCredentials
         {
             get { return _correctCredentials; }
-            set { _correctCredentials = value;
+            set
+            {
+                _correctCredentials = value;
                 Bindings.Update();
             }
         }
@@ -37,7 +39,9 @@ namespace CityApp.Views
         public string ErrorText
         {
             get { return _errorText; }
-            set { _errorText = value;
+            set
+            {
+                _errorText = value;
                 Bindings.Update();
             }
         }
@@ -49,7 +53,7 @@ namespace CityApp.Views
             _vm = new RegisterViewModel();
             this.DataContext = _vm;
             CorrectCredentials = false;
-            ErrorText = "Please fill in all fields.";
+            ErrorText = "Vul alle velden in";
         }
         private void BirthDate_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
@@ -57,17 +61,20 @@ namespace CityApp.Views
             {
                 CorrectCredentials = false;
             }
-            else {
+            else
+            {
                 CorrectCredentials = true;
             }
         }
-        private void Credentials_Changed(object sender, TextChangedEventArgs e) {
-            if (String.IsNullOrEmpty(SurName.Text) || String.IsNullOrEmpty(FirstName.Text) || String.IsNullOrEmpty(Email.Text) || String.IsNullOrEmpty(Password.Text) || String.IsNullOrEmpty(Username.Text))
+        private void Credentials_Changed(object sender, RoutedEventArgs e)
+        {
+            if (String.IsNullOrEmpty(SurName.Text) || String.IsNullOrEmpty(FirstName.Text) || String.IsNullOrEmpty(Email.Text) || String.IsNullOrEmpty(Password.Password))
             {
-                ErrorText = "Please fill in all fields.";
+                ErrorText = "Vul alle velden in";
                 CorrectCredentials = false;
             }
-            else {
+            else
+            {
                 ErrorText = "";
                 CorrectCredentials = true;
             }
@@ -75,7 +82,7 @@ namespace CityApp.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this._vm.RegisterAsync(SurName.Text, FirstName.Text, BirthDate.Date, Email.Text, Username.Text, Password.Text, Visitor.IsChecked == null ? false : Visitor.IsChecked == false ? false : true);
+            this._vm.RegisterAsync(SurName.Text, FirstName.Text, BirthDate.Date, Email.Text, $"{SurName.Text.Trim().ToLower()}${FirstName.Text.Trim().ToLower()}", Password.Password, Visitor.IsChecked == null ? false : Visitor.IsChecked == false ? false : true);
         }
     }
 }

@@ -12,12 +12,12 @@ namespace CityApp.DataModel
         private Task<string> task;
 
         #region Constructor
-        public Owner(string name, string firstName, DateTime birthDate, String email, String password, UserType typeOfUser, ICollection<Company> companies) : base(name, firstName, birthDate, email, password, typeOfUser)
+        public Owner(string name, string firstName, DateTime birthDate, String email, String password, UserType userType, ICollection<Company> companies) : base(name, firstName, birthDate, email, password, userType)
         {
             Companies = companies;
         }
 
-        public Owner(string name, string firstName, DateTime birthDate, String email, String password, UserType typeOfUser) : base(name, firstName, birthDate, email, password, typeOfUser)
+        public Owner(string name, string firstName, DateTime birthDate, String email, String password, UserType userType) : base(name, firstName, birthDate, email, password, userType)
         {
         }
 
