@@ -99,9 +99,12 @@ namespace CityApp.ViewModels
             return Task.FromResult<object>(null);
         }
 
-        public void DeleteCompany()
+        public async void DeleteCompanyAsync()
         {
-            throw new NotImplementedException();
+            var company = await _companyService.RemoveCompany(Company.Id);
+
+            await _navigationService.NavigateToAccountAsync();
+            AlertService.Toast("Bedrijf verwijderd", $"Het bedrijf {company.Description} succesvol verwijderd");
         }
     }
 }
