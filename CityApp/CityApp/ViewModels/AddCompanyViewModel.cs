@@ -33,7 +33,7 @@ namespace CityApp.ViewModels
             _navigationService = NavigationService.ns;
         }
 
-        public async void CreateCompany(string name, string description, string keyWordsString, Categories categorie, Owner owner, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, string leaveOfAbsence, SocialMedia socialMedia)
+        public async void CreateCompany(string name, string description, string keyWordsString, Categories categorie, Owner owner, ICollection<Location> locations, List<OpeningHours> openingHours, string leaveOfAbsence, SocialMedia socialMedia)
         {
             // is overwritten in the backend
             List<Promotion> promotions = null;

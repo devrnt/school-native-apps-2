@@ -106,29 +106,44 @@
                     <TextBlock Text="{x:Bind CompanyNumberError, Mode=TwoWay}" Foreground="Red"/>
 
                     <TextBlock Text="Openingsuren"/>
-
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox x:Name="ou_maandag" Content="Maandag" Margin="5"/>
-                        <CheckBox x:Name="ou_dinsdag" Content="Dinsdag" Margin="5"/>
-                        <CheckBox x:Name="ou_woensdag" Content="Woensdag" Margin="5"/>
-                        <CheckBox x:Name="ou_donderdag" Content="Donderdag" Margin="5"/>
-                        <CheckBox x:Name="ou_vrijdag" Content="Vrijdag" Margin="5"/>
-                        <CheckBox x:Name="ou_zaterdag" Content="Zaterdag" Margin="5"/>
-                        <CheckBox x:Name="ou_zondag" Content="Zondag" Margin="5"/>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox x:Name="ou_maandag" Content="Maandag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Mau, Mode=OneWay}">
+                            <TextBox x:Name="maandag_van" Header="Van"/>
+                            <TextBox x:Name="maandag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_dinsdag" Content="Dinsdag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Diu, Mode=OneWay}">
+                            <TextBox x:Name="dinsdag_van" Header="Van"/>
+                            <TextBox x:Name="dinsdag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_woensdag" Content="Woensdag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Wou, Mode=OneWay}">
+                            <TextBox x:Name="woensdag_van" Header="Van"/>
+                            <TextBox x:Name="woensdag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_donderdag" Content="Donderdag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Dou, Mode=OneWay}">
+                            <TextBox x:Name="donderdag_van" Header="Van"/>
+                            <TextBox x:Name="donderdag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_vrijdag" Content="Vrijdag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Vru, Mode=OneWay}">
+                            <TextBox x:Name="vrijdag_van" Header="Van"/>
+                            <TextBox x:Name="vrijdag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_zaterdag" Content="Zaterdag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Zau, Mode=OneWay}">
+                            <TextBox x:Name="zaterdag_van" Header="Van"/>
+                            <TextBox x:Name="zaterdag_tot" Header="Tot"/>
+                        </StackPanel>
+                        <CheckBox x:Name="ou_zondag" Content="Zondag" Margin="5" Checked="Days_Checked" Unchecked="Days_Checked"/>
+                        <StackPanel Orientation="Horizontal" Visibility="{x:Bind Zou, Mode=OneWay}">
+                            <TextBox x:Name="zondag_van" Header="Van"/>
+                            <TextBox x:Name="zondag_tot" Header="Tot"/>
+                        </StackPanel>
                     </StackPanel>
-                    <TextBox Width="450"
-                         Name="ou_van"
-                         HorizontalAlignment="Left"
-                         Header="Van"
-                         PlaceholderText="08:00"/>
-                    <TextBlock Text="{x:Bind CompanyOpeningsHourFrom, Mode=TwoWay}" Foreground="Red"/>
-
-                    <TextBox Width="450"
-                         HorizontalAlignment="Left"
-                         Name="ou_tot"
-                         Header="Tot"
-                         PlaceholderText="18:00"/>
-                    <TextBlock Text="{x:Bind CompanyOpeningsHourUntil, Mode=TwoWay}" Foreground="Red"/>
+                    <TextBlock Text="{x:Bind CompanyOpeningHoursError, Mode=TwoWay}" Foreground="Red"/>
 
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Name="cb_Facebook" Content="Facebook"></CheckBox>
