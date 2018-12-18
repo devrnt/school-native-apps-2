@@ -155,19 +155,17 @@ namespace CityApp
                 builder.RegisterType<AccountViewModel>();
                 builder.RegisterType<SettingsViewModel>();
                 builder.RegisterType<OwnerAccountViewModel>();
-
                 builder.RegisterType<NavigationService>()
                         .AsImplementedInterfaces()
                         .SingleInstance();
 
                 _container = builder.Build();
                 _rootPage.InitializeNavigationService(_container.Resolve<INavigationService>());
-
+                _rootPage.NavigateToStartPage();
                 adapter.NavigationFailed += OnNavigationFailed;
 
                 // Place the frame in the current Window
                 Window.Current.Content = _rootPage;
-
                 Window.Current.Activate();
             }
         }

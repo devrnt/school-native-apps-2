@@ -188,6 +188,11 @@
         {
             return d.ToString("d");
         }
+
+        public void NavigateToStartPage()
+        {
+            _navigationService.NavigateToAccountAsync();
+        }
         #endregion
     }
 }
