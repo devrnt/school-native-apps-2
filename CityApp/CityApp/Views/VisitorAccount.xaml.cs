@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using CityApp.Helpers;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
 using Windows.Foundation;
@@ -33,7 +34,7 @@ namespace CityApp.Views
         }
         public void UpdateBindings()
         {
-            UpdateBindings();
+            
         }
     }
 }

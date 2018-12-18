@@ -29,11 +29,11 @@
                 <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="Username" />
                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" Margin="10" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="Password" />
+                <PasswordBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="Password" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding ErrorText, Mode=OneWay}" Foreground="Red"/>
                 <Button Grid.Row="3" Grid.Column="0"  Margin="10" Content="Log In" Command="{Binding LogInCommand}" Style="{StaticResource AccentButtonStyle}">
                     <Button.CommandParameter>
-                        <dm:LogInCredentials Username="{x:Bind Username.Text, Mode=OneWay}" Password="{x:Bind Password.Text, Mode=OneWay}"/>
+                        <dm:LogInCredentials Username="{x:Bind Username.Text, Mode=OneWay}" Password="{x:Bind Password.Password, Mode=OneWay}"/>
                     </Button.CommandParameter>
                 </Button>
                 <Button Grid.Row="3" Grid.Column="1"  Margin="10" Content="Registreer" HorizontalAlignment="Right" Command="{Binding RegisterCommand}"/>
