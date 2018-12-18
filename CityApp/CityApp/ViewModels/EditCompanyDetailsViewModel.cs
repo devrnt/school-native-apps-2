@@ -104,7 +104,7 @@ namespace CityApp.ViewModels
             var company = await _companyService.RemoveCompany(Company.Id);
 
             await _navigationService.NavigateToAccountAsync();
-            AlertService.Toast("Bedrijf verwijderd", $"Het bedrijf {company.Description} succesvol verwijderd");
+            AlertService.Toast("Bedrijf verwijderd", $"Het bedrijf {company.Name} succesvol verwijderd");
         }
     }
 }
