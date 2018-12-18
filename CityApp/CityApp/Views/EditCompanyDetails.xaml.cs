@@ -248,17 +248,17 @@ namespace CityApp.Views
         private async void DeleteDialog(object sender, RoutedEventArgs e)
         {
 
-            ContentDialog noWifiDialog = new ContentDialog()
+            var deleteDialog = new ContentDialog()
             {
-                Title = "Delete",
-                Content = "Zeker dat je deze Company wilt deleten?",
+                Title = "Verwijderen",
+                Content = "Bent u zeker dat u dit bedrijf wil verwijderen",
                 CloseButtonText = "Annuleer",
                 PrimaryButtonText = "Bevestig"
             };
-            ContentDialogResult result = await noWifiDialog.ShowAsync();
+            var result = await deleteDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                ViewModel.DeleteCompany();
+                ViewModel.DeleteCompanyAsync();
             }
         }
     }

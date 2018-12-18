@@ -96,31 +96,31 @@
             <Button Content="Show/Hide" HorizontalAlignment="Center" Click="ShowHideDiscounts"/>
             <StackPanel Visibility="{x:Bind ShowhideDiscounts, Mode=OneWay}">
                 <StackPanel Margin="0,10" Visibility="{x:Bind IsAddDiscountVisible, Mode=OneWay}">
-                <TextBox Width="450" Name="disc_Kortingscode" Header="Kortingscode" Margin="0,10,0,0" PlaceholderText="Typ de kortingscode van de korting hier"/>
-                <TextBlock HorizontalAlignment="Center" Text="PDF bestand" Margin="0, 8, 0,8"/>
+                    <TextBox Width="450" Name="disc_Kortingscode" Header="Kortingscode" Margin="0,10,0,0" PlaceholderText="Typ de kortingscode van de korting hier"/>
+                    <TextBlock HorizontalAlignment="Center" Text="PDF bestand" Margin="0, 8, 0,8"/>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button Content="Blader" Click="disc_Browsepdf"/>
+                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Name="disc_Chosenpdf" Text="Geen bestand gekozen"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button Content="Add" HorizontalAlignment="Center" Click="AddDiscount" Margin="5"/>
+                        <Button Margin="5" Click="CancelAddDiscount">
+                            <FontIcon HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;"  />
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Content="Blader" Click="disc_Browsepdf"/>
-                    <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Name="disc_Chosenpdf" Text="Geen bestand gekozen"/>
+                    <Button Content="New" Click="NewDiscount" Visibility="{x:Bind IsNewDiscountVisible, Mode=OneWay}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Add" HorizontalAlignment="Center" Click="AddDiscount" Margin="5"/>
-                    <Button Margin="5" Click="CancelAddDiscount">
-                        <FontIcon HorizontalAlignment="Center"  FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;"  />
-                    </Button>
-                </StackPanel>
+                <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Discounts, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CouponCode}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <Button Content="New" Click="NewDiscount" Visibility="{x:Bind IsNewDiscountVisible, Mode=OneWay}"/>
-            </StackPanel>
-            <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Discounts, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding CouponCode}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-</StackPanel>
-            <Button Click="DeleteDialog" Content="Delete" Background="Red"/>
+            <Button Click="DeleteDialog" Content="Verwijder" Background="Red" Foreground="White"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

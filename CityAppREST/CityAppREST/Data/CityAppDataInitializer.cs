@@ -42,7 +42,7 @@ namespace CityAppREST.Data
                             new OpeningHours(Days.Vrijdag, new DateTime(2000, 1, 1, 8, 0, 0), new DateTime(2000, 1, 1, 15, 0, 0))
                         },
                         new LeaveOfAbsence(),
-                        new SocialMedia("https://www.jonasdevrient.be","https://www.jonasdevrient.be","https://www.jonasdevrient.be","https://www.jonasdevrient.be"),
+                        new SocialMedia("https://www.facebook.be","https://www.twitter.be","https://www.youtube.be","https://www.google.be"),
                         new List<Promotion> {
                             new Promotion("Korting op uw eerste was"),
                             new Promotion("2 wassen = 3 betalen")
