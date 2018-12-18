@@ -33,12 +33,11 @@
                          Header="Omschrijving"
                          Margin="0,5"
                          PlaceholderText="Typ de omschrijving van het event hier"/>
-                    <TextBlock Text="Birthdate" Margin="10" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Datum" Margin="10" HorizontalAlignment="Center"/>
                     <DatePicker x:Name="event_Date" DateChanged="event_DateChanged" HorizontalAlignment="Center"/>
                     <TextBlock HorizontalAlignment="Center" Text="Foto bestand" Margin="0, 8, 0,8"/>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Button Content="Blader" Click="event_Browsepdf"/>
-                        <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" Name="event_Chosenpdf" Text="Geen bestand gekozen"/>
+                        <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" Name="event_image" PlaceholderText="Online afbeedling url" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Button Content="Add" Click="AddEvent" HorizontalAlignment="Center" Margin="5"/>
