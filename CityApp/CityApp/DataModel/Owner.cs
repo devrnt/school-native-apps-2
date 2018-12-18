@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Windows.System;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace CityApp.DataModel
 {
@@ -24,6 +25,12 @@ namespace CityApp.DataModel
         public Owner(Task<string> task)
         {
             this.task = task;
+        }
+
+        [JsonConstructor]
+        public Owner(int id)
+        {
+            Id = id;
         }
         #endregion
 
