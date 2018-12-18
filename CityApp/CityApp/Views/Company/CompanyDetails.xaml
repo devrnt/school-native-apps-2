@@ -76,11 +76,10 @@
         </StackPanel>
         <StackPanel>
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Social media" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
-            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind ViewModel.Company.SocialMedia.Facebook}"/>
-            <TextBlock Text="{x:Bind ViewModel.Company.SocialMedia.Google}"/>
-            <TextBlock Text="{x:Bind ViewModel.Company.SocialMedia.Twitter}"/>
-            <TextBlock Text="{x:Bind ViewModel.Company.SocialMedia.YouTube}"/>
-
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Facebook}" Content="{x:Bind ViewModel.Company.SocialMedia.Facebook}"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Google}" Content="{x:Bind ViewModel.Company.SocialMedia.Google}"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Twitter}" Content="{x:Bind ViewModel.Company.SocialMedia.Twitter}"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.YouTube}" Content="{x:Bind ViewModel.Company.SocialMedia.YouTube}"/>
         </StackPanel>
 
     </StackPanel>

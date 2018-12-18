@@ -17,7 +17,7 @@ namespace CityApp.DataModel
         }
         public override string ToString()
         {
-            return string.Format("Van: {0} - Tot: {1} [{2}]", Van, Tot, Day);
+            return string.Format("Van: {0} - Tot: {1} [{2}]", Van.Substring(11, 2), Tot.Substring(11, 2), Day);
         }
     }
 }
