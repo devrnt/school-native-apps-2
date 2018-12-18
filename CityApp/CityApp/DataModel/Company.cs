@@ -15,7 +15,7 @@ namespace CityApp.DataModel
         // Use Category enum
         public Categories Categorie { get; set; }
         public Owner Owner { get; set; }
-        public IEnumerable<OpeningHours> OpeningHours { get; set; }
+        public ICollection<OpeningHours> OpeningHours { get; set; }
         public LeaveOfAbsence LeaveOfAbsence { get; set; }
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
@@ -32,7 +32,7 @@ namespace CityApp.DataModel
         #endregion
 
         #region === Constructor ===
-        public Company(int id, string name, string description, string keyWords, Categories categorie, Owner owner, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
+        public Company(int id, string name, string description, string keyWords, Categories categorie, Owner owner, ICollection<Location> locations, ICollection<OpeningHours> openingHours, LeaveOfAbsence leaveOfAbsence, SocialMedia socialMedia, ICollection<Promotion> promotions)
         {
             Id = id;
             Name = name;
@@ -51,7 +51,7 @@ namespace CityApp.DataModel
         public Company(){}
 
         // Used to send the post request to the server
-        public Company(string name, string description, string keyWordsString, Categories categorie, Owner owner, ICollection<Location> locations, IEnumerable<OpeningHours> openingHours, object p, SocialMedia socialMedia, List<Promotion> promotions)
+        public Company(string name, string description, string keyWordsString, Categories categorie, Owner owner, ICollection<Location> locations, ICollection<OpeningHours> openingHours, object p, SocialMedia socialMedia, List<Promotion> promotions)
         {
             Name = name;
             Description = description;

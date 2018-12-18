@@ -35,8 +35,73 @@ namespace CityApp.Views
         public string CompanyPostalError { get; set; }
         public string CompanyStreetError { get; set; }
         public string CompanyNumberError { get; set; }
-        public string CompanyOpeningsHourFrom { get; set; }
-        public string CompanyOpeningsHourUntil { get; set; }
+        public string CompanyOpeningHoursError { get; set; }
+
+        private bool mau;
+        public bool Mau
+        {
+            get { return mau; }
+            set { mau = value; Bindings.Update(); }
+        }
+        private bool diu;
+        public bool Diu
+        {
+            get { return diu; }
+            set { diu = value;
+                Bindings.Update();
+            }
+        }
+        private bool wou;
+        public bool Wou
+        {
+            get { return wou; }
+            set
+            {
+                wou = value;
+                Bindings.Update();
+            }
+        }
+        private bool dou;
+        public bool Dou
+        {
+            get { return dou; }
+            set
+            {
+                dou = value;
+                Bindings.Update();
+            }
+        }
+        private bool vru;
+        public bool Vru
+        {
+            get { return vru; }
+            set
+            {
+                vru = value;
+                Bindings.Update();
+            }
+        }
+        private bool zau;
+        public bool Zau
+        {
+            get { return zau; }
+            set
+            {
+                zau = value;
+                Bindings.Update();
+            }
+        }
+        private bool zou;
+        public bool Zou
+        {
+            get { return zou; }
+            set
+            {
+                zou = value;
+                Bindings.Update();
+            }
+        }
+
 
         public AddCompany()
         {
@@ -84,7 +149,7 @@ namespace CityApp.Views
                 SocialMedia = socialMedia
             };
 
-            this._vm.CreateCompany(company.Name, company.Description, company.KeyWords, company.Categorie, company.Owner, company.Locations, company.OpeningHours, "", company.SocialMedia);
+            this._vm.CreateCompany(company.Name, company.Description, company.KeyWords, company.Categorie, company.Owner, company.Locations, company.OpeningHours.ToList(), "", company.SocialMedia);
         }
 
         private bool IsFormValid()
@@ -99,8 +164,7 @@ namespace CityApp.Views
                 CompanyPostalError,
                 CompanyStreetError,
                 CompanyNumberError,
-                CompanyOpeningsHourFrom,
-                CompanyOpeningsHourUntil
+                CompanyOpeningHoursError
             };
             return errorList.All(error => error.Length == 0);
         }
@@ -172,7 +236,7 @@ namespace CityApp.Views
             {
                 CompanyNumberError = "Nummer mag niet leeg zijn";
             }
-            else if (!int.TryParse(Input_CompanyPostal.Text, out int num))
+            else if (!int.TryParse(Input_CompanyNumber.Text, out int num))
             {
                 CompanyNumberError = "Nummer moet een getal zijn";
             }
@@ -180,68 +244,84 @@ namespace CityApp.Views
             {
                 CompanyNumberError = "";
             }
-            if (ou_van.Text.Length == 0)
-            {
-                CompanyOpeningsHourFrom = "Beginuur mag niet leeg zijn";
+            CompanyOpeningHoursError = "";
+            if (GetOpeningHours().Count == 0) {
+                CompanyOpeningHoursError = "Minstens 1 openingsdag";
             }
-            else
-            {
-                CompanyOpeningsHourFrom = "";
-            }
-            if (ou_tot.Text.Length == 0)
-            {
-                CompanyOpeningsHourUntil = "Einduur mag niet leeg zijn";
-            }
-            else
-            {
-                CompanyOpeningsHourUntil = "";
+            else { 
+                if (ou_maandag.IsChecked == null ? false : ou_maandag.IsChecked == false ? false : true && (String.IsNullOrEmpty(maandag_van.Text)|| String.IsNullOrEmpty(maandag_tot.Text)))
+                {CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_dinsdag.IsChecked == null ? false : ou_dinsdag.IsChecked == false ? false : true && (String.IsNullOrEmpty(dinsdag_van.Text) || String.IsNullOrEmpty(dinsdag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_woensdag.IsChecked == null ? false : ou_woensdag.IsChecked == false ? false : true && (String.IsNullOrEmpty(woensdag_van.Text) || String.IsNullOrEmpty(woensdag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_donderdag.IsChecked == null ? false : ou_donderdag.IsChecked == false ? false : true && (String.IsNullOrEmpty(donderdag_van.Text) || String.IsNullOrEmpty(donderdag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_vrijdag.IsChecked == null ? false : ou_vrijdag.IsChecked == false ? false : true && (String.IsNullOrEmpty(vrijdag_van.Text) || String.IsNullOrEmpty(vrijdag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_zaterdag.IsChecked == null ? false : ou_zaterdag.IsChecked == false ? false : true && (String.IsNullOrEmpty(zaterdag_van.Text) || String.IsNullOrEmpty(zaterdag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
+                if (ou_zondag.IsChecked == null ? false : ou_zondag.IsChecked == false ? false : true && (String.IsNullOrEmpty(zondag_van.Text) || String.IsNullOrEmpty(zondag_tot.Text)))
+                {
+                    CompanyOpeningHoursError = "Elke openingsdag moet een Van en Tot uur hebben";
+                }
             }
             Bindings.Update();
         }
 
         private List<OpeningHours> GetOpeningHours()
         {
-            var openingsHours = new List<OpeningHours>();
-            GetDagen().ForEach(d =>
-            {
-                openingsHours.Add(new OpeningHours(new List<Days>() { d }, ou_van.Text, ou_tot.Text));
-            });
-            return openingsHours;
-        }
-
-        private List<Days> GetDagen()
-        {
-            List<Days> dagen = new List<Days>();
-
-            if (ou_maandag.IsChecked == null ? false : ou_maandag.IsChecked == false ? false : true)
-            {
-                dagen.Add(Days.Maandag);
+            List<OpeningHours> oh = new List<OpeningHours>();
+            if(ou_maandag.IsChecked == null ? false : ou_maandag.IsChecked == false ? false : true){
+                oh.Add(new OpeningHours(Days.Maandag, maandag_van.Text, maandag_tot.Text));
             }
             if (ou_dinsdag.IsChecked == null ? false : ou_dinsdag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Dinsdag);
+                oh.Add(new OpeningHours(Days.Dinsdag, dinsdag_van.Text, dinsdag_tot.Text));
             }
             if (ou_woensdag.IsChecked == null ? false : ou_woensdag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Woensdag);
+                oh.Add(new OpeningHours(Days.Woensdag, woensdag_van.Text, woensdag_tot.Text));
             }
             if (ou_donderdag.IsChecked == null ? false : ou_donderdag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Donderdag);
+                oh.Add(new OpeningHours(Days.Donderdag, donderdag_van.Text, donderdag_tot.Text));
             }
             if (ou_vrijdag.IsChecked == null ? false : ou_vrijdag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Vrijdag);
+                oh.Add(new OpeningHours(Days.Vrijdag, vrijdag_van.Text, vrijdag_tot.Text));
             }
             if (ou_zaterdag.IsChecked == null ? false : ou_zaterdag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Zaterdag);
+                oh.Add(new OpeningHours(Days.Zaterdag, zaterdag_van.Text, zaterdag_tot.Text));
             }
             if (ou_zondag.IsChecked == null ? false : ou_zondag.IsChecked == false ? false : true)
             {
-                dagen.Add(Days.Zondag);
+                oh.Add(new OpeningHours(Days.Zondag, zondag_van.Text, zondag_tot.Text));
             }
-            return dagen;
+            return oh;
+        }
+
+        private void Days_Checked(object sender, RoutedEventArgs e)
+        {
+            Mau = ou_maandag.IsChecked == null ? false : ou_maandag.IsChecked == false ? false : true;
+            Diu = ou_dinsdag.IsChecked == null ? false : ou_dinsdag.IsChecked == false ? false : true;
+            Wou = ou_woensdag.IsChecked == null ? false : ou_woensdag.IsChecked == false ? false : true;
+            Dou = ou_donderdag.IsChecked == null ? false : ou_donderdag.IsChecked == false ? false : true;
+            Vru = ou_vrijdag.IsChecked == null ? false : ou_vrijdag.IsChecked == false ? false : true;
+            Zau = ou_zaterdag.IsChecked == null ? false : ou_zaterdag.IsChecked == false ? false : true;
+            Zou = ou_zondag.IsChecked == null ? false : ou_zondag.IsChecked == false ? false : true;
         }
     }
 }

@@ -5,15 +5,19 @@ namespace CityApp.DataModel
 {
     public class OpeningHours
     {
-        public List<Days> Days;
+        public Days Day;
         public string Van;
         public string Tot;
 
-        public OpeningHours(List<Days> days, string van, string tot)
+        public OpeningHours(Days days, string van, string tot)
         {
-            Days = days;
+            Day = days;
             Van = van;
             Tot = tot;
+        }
+        public override string ToString()
+        {
+            return string.Format("Van: {0} - Tot: {1} [{2}]", Van, Tot, Day);
         }
     }
 }

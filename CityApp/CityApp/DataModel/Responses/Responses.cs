@@ -42,6 +42,7 @@ namespace CityApp.DataModel.Responses
         public SocialMedia SocialMedia { get; set; }
         public ICollection<Promotion> Promotions { get; set; }
         public ICollection<Discount> Discounts { get; set; }
+        public ICollection<Event> Events { get; set; }
         public bool HasPromotion => Promotions == null || Promotions.Count != 0;
     }
 }

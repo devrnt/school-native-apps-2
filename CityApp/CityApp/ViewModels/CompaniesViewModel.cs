@@ -66,9 +66,12 @@ namespace CityApp.ViewModels
         // Then:
         // Task NavigateToWhateverPageAsync() {_navigatinService.NavigateToWhateverPage()}
         // Awesome isn't it?
-        public void ShowCompanyDetails(Company p)
+        public async void ShowCompanyDetails(Company p)
         {
-            _navigationService.NavigateToCompanyDetailsAsync(p);
+            var x = new CompanyService();
+            var company = await x.GetCompany(p.Id);
+            var c = (Company)company;
+            await _navigationService.NavigateToCompanyDetailsAsync(c);
         }
 
         public ObservableCollection<Company> UpdateFilter(Categories categorie, bool shouldHavePromo)
