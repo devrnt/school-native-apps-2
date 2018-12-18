@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="ButtonRevealBorderBrushPointerOver" Color="Transparent"/>
         <SolidColorBrush x:Key="ButtonRevealBorderBrushPressed" Color="Transparent"/>
     </Page.Resources>
-
+    <ScrollViewer>
     <StackPanel>
         <Grid Grid.Row="0" Background="{StaticResource HeaderColor}"
               RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
@@ -53,18 +53,27 @@
             </Grid>
 
         </Grid>
-        <StackPanel>
-            <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Promoties" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
-            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Promotions}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Margin="24, 0, 0, 0" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </StackPanel>
-
-        <StackPanel>
+            <StackPanel>
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Promoties" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
+                <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Promotions}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="24, 0, 0, 0" Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Events" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
+                <ListView ItemsSource="{x:Bind Path=ViewModel.Company.Events}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="24, 0, 0, 0" Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </StackPanel>
+            <StackPanel>
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Openingsuren" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
             <ListView ItemsSource="{x:Bind Path=ViewModel.Company.OpeningHours}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" >
                 <ListView.ItemsPanel>
@@ -83,4 +92,5 @@
         </StackPanel>
 
     </StackPanel>
+    </ScrollViewer>
 </Page>
