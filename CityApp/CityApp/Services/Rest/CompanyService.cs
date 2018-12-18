@@ -73,7 +73,21 @@ namespace CityApp.Services.Rest
             var response = await _httpClient.PostAsync(new Uri($"{_apiUrl}/{companyId}/promotions"), promotionPostReady);
 
             return JsonConvert.DeserializeObject<Promotion>(await response.Content.ReadAsStringAsync());
+        }
 
+        public async Task<Event> AddEvent(int companyId, Event @event)
+        {
+            var token = await StorageService.RetrieveUserToken();
+
+            var eventJson = JsonConvert.SerializeObject(@event);
+            var eventPostReady = new HttpStringContent(eventJson, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var response = await _httpClient.PostAsync(new Uri($"{_apiUrl}/{companyId}/events"), eventPostReady);
+
+            return JsonConvert.DeserializeObject<Event>(await response.Content.ReadAsStringAsync());
         }
     }
 }

@@ -41,11 +41,14 @@ namespace CityApp.ViewModels
             DeletePromotionCommand = new RelayCommand((p) => DeletePromotions());
             DeleteDiscountCommand = new RelayCommand((p) => DeleteDiscounts());
         }
-        public void AddEvent(string t, string d, DateTime date, string i)
+        public async void AddEventAsync(string t, string d, DateTime date, string i)
         {
-            Event e = new Event(t, d, date, i);
-            Events.Add(e);
-            Company.Events.Add(e);
+            var @event = new Event(t, d, date, i);
+
+            var eventResult = await _companyService.AddEvent(Company.Id, @event);
+            Events.Add(eventResult);
+            AlertService.Toast("Event toegevoegd", $"Het event {eventResult.Title} toegevoegd");
+            //Company.Events.Add(@event);
         }
         public async void AddPromotionAsync(String s, Object d)
         {
