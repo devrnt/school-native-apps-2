@@ -6,6 +6,7 @@ Repo made for the group project for the subject Native Apps II: Windows. The mai
 This repo is only meant for experimental purposes. 
 
 #### By
+Group NL6
 * Sam Dhondt
 * Yanis Ouahab
 * Jonas De Vrient
