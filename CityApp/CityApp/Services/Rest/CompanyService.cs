@@ -89,5 +89,17 @@ namespace CityApp.Services.Rest
 
             return JsonConvert.DeserializeObject<Event>(await response.Content.ReadAsStringAsync());
         }
+
+        public async Task<Company> RemoveCompany(int companyId)
+        {
+            var token = await StorageService.RetrieveUserToken();
+
+            _httpClient.DefaultRequestHeaders.Clear();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var response = await _httpClient.DeleteAsync(new Uri($"{_apiUrl}/{companyId}"));
+
+            return JsonConvert.DeserializeObject<Company>(await response.Content.ReadAsStringAsync());
+        }
     }
 }
