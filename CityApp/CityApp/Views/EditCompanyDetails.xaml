@@ -30,7 +30,7 @@
                          PlaceholderText="Typ de title van het event hier"/>
                     <TextBox HorizontalAlignment="Center"
                          x:Name="event_Omschrijving"
-                         Header="Titel"
+                         Header="Omschrijving"
                          Margin="0,5"
                          PlaceholderText="Typ de omschrijving van het event hier"/>
                     <TextBlock Text="Birthdate" Margin="10" HorizontalAlignment="Center"/>
@@ -49,7 +49,7 @@
 
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Button Content="New" Click="NewPromotion" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
+                    <Button Content="New" Click="NewEvent" Visibility="{x:Bind IsNewPromoVisible, Mode=OneWay}"/>
                 </StackPanel>
                 <ListView HorizontalAlignment="Center" ItemsSource="{x:Bind Path=ViewModel.Events, Mode=OneWay}" BorderThickness="2" BorderBrush="Black">
                     <ListView.ItemTemplate>

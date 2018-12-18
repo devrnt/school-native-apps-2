@@ -31,7 +31,7 @@ namespace CityApp.Views
             get { return _isNewEventVisivle; }
             set
             {
-                _isNewPromoVisivle = value;
+                _isNewEventVisivle = value;
                 Bindings.Update();
             }
         }
@@ -124,9 +124,13 @@ namespace CityApp.Views
             this.DataContext = ViewModel;
             IsAddDiscountVisible = false;
             IsAddPromotionVisible = false;
+            IsAddEventVisible = false;
             IsNewPromoVisible = true;
             IsNewDiscountVisible = true;
+            IsNewEventVisible = true;
             ShowhidePromotions = false;
+            ShowhideDiscounts = false;
+            ShowhideEvents = false;
         }
 
         private void ShowHideEvents(object sender, RoutedEventArgs e)
@@ -142,10 +146,10 @@ namespace CityApp.Views
             ShowhideDiscounts = !ShowhideDiscounts;
         }
 
-        private void NewEvents(object sender, RoutedEventArgs e)
+        private void NewEvent(object sender, RoutedEventArgs e)
         {
             IsAddEventVisible = !IsAddEventVisible;
-            IsNewPromoVisible = !IsNewPromoVisible;
+            IsNewEventVisible = !IsNewEventVisible;
         }
         private void NewPromotion(object sender, RoutedEventArgs e)
         {
