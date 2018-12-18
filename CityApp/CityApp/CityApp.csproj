@@ -126,6 +126,7 @@
     <Compile Include="Helpers\VisualHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlertService.cs" />
+    <Compile Include="Services\CalendarService.cs" />
     <Compile Include="Services\IFullscreenPage.cs" />
     <Compile Include="Services\INavigableTo.cs" />
     <Compile Include="Services\Navigation\FrameAdapter.cs" />
