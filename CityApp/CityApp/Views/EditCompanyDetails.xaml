@@ -121,6 +121,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 </StackPanel>
+            <Button Click="DeleteDialog" Content="Delete" Background="Red"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

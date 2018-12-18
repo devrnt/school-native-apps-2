@@ -98,5 +98,10 @@ namespace CityApp.ViewModels
             }
             return Task.FromResult<object>(null);
         }
+
+        public void DeleteCompany()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

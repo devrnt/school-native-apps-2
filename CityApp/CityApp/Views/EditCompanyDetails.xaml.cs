@@ -244,5 +244,22 @@ namespace CityApp.Views
                 Bindings.Update();
             }
         }
+
+        private async void DeleteDialog(object sender, RoutedEventArgs e)
+        {
+
+            ContentDialog noWifiDialog = new ContentDialog()
+            {
+                Title = "Delete",
+                Content = "Zeker dat je deze Company wilt deleten?",
+                CloseButtonText = "Annuleer",
+                PrimaryButtonText = "Bevestig"
+            };
+            ContentDialogResult result = await noWifiDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                ViewModel.DeleteCompany();
+            }
+        }
     }
 }
