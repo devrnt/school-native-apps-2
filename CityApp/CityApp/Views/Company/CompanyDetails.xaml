@@ -45,7 +45,7 @@
                 <StackPanel>
                     <TextBlock x:Name="companyName" Grid.Row="0" Grid.Column="0" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Name}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}"/>
                     <TextBlock x:Name="companyCategory" Grid.Row="1" Grid.Column="0" Style="{ThemeResource TitleTextBlockStyle}" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" Text="{x:Bind Path=ViewModel.Company.Categorie}" />
-                    <TextBlock x:Name="companyDescription" Grid.Row="2" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description}" />
+                    <TextBlock x:Name="companyDescription" Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description}" />
                     <!--<TextBlock x:Name="companyKeywords" Grid.Row="3" Grid.Column="0" FontWeight="Light" Style="{ThemeResource BodyTextStyle}" Margin="0,10,0,0"  Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords}" />-->
                     <!--<TextBlock x:Name="companyOwner" Grid.Row="3" Grid.Column="0" Style="{ThemeResource BodyTextBlockStyle}"  Margin="0,10,0,0" Foreground="{ThemeResource SystemControlForegroundChromeWhiteBrush}" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Owner.Name}" />-->
                     <Button Name="Subscribe_Btn" Visibility="{x:Bind CanSubscribe}" IsEnabled="{x:Bind CanSubscribe}" Content="{x:Bind ViewModel.SubscribeButtonText, Mode=OneWay}" Command="{x:Bind ViewModel.SubscribeCommand}" RequestedTheme="Dark" Style="{StaticResource ButtonRevealStyle}"></Button>
@@ -66,20 +66,20 @@
 
         <StackPanel>
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Openingsuren" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
-            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.OpeningHours}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch">
+            <ListView ItemsSource="{x:Bind Path=ViewModel.Company.OpeningHours}"  Grid.ColumnSpan="2" HorizontalAlignment="Stretch" Grid.Row="2" >
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Margin="24, 0, 0, 0" Orientation="Horizontal"/>
+                        <StackPanel Orientation="Vertical" Margin="24, 0, 0, 0"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
         </StackPanel>
         <StackPanel>
             <TextBlock Style="{ThemeResource SubtitleTextBlockStyle}" FontWeight="Normal" Text="Social media" RelativePanel.Below="TopBorder" Margin="24,16,0,0"/>
-            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Facebook}" Content="{x:Bind ViewModel.Company.SocialMedia.Facebook}"/>
-            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Google}" Content="{x:Bind ViewModel.Company.SocialMedia.Google}"/>
-            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Twitter}" Content="{x:Bind ViewModel.Company.SocialMedia.Twitter}"/>
-            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.YouTube}" Content="{x:Bind ViewModel.Company.SocialMedia.YouTube}"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Facebook}" Content="{x:Bind ViewModel.Company.SocialMedia.Facebook}" Margin="24,16,0,0"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Google}" Content="{x:Bind ViewModel.Company.SocialMedia.Google}" Margin="24,16,0,0"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.Twitter}" Content="{x:Bind ViewModel.Company.SocialMedia.Twitter}" Margin="24,16,0,0"/>
+            <HyperlinkButton NavigateUri="{x:Bind ViewModel.Company.SocialMedia.YouTube}" Content="{x:Bind ViewModel.Company.SocialMedia.YouTube}" Margin="24,16,0,0"/>
         </StackPanel>
 
     </StackPanel>

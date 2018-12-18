@@ -15,7 +15,6 @@
                 <TextBlock x:Name="companyName" HorizontalAlignment="Center" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Name, Mode=OneWay}"/>
                 <TextBlock x:Name="companyCategory" HorizontalAlignment="Center" Style="{ThemeResource TitleTextBlockStyle}" Text="{x:Bind Path=ViewModel.Company.Categorie, Mode=OneWay}" />
                 <TextBlock><Underline>Beschrijving:</Underline></TextBlock>
-                <TextBlock x:Name="companyDescription"  Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.Description, Mode=OneWay}" />
                 <TextBlock><Underline>Sleuterlwoorden:</Underline></TextBlock>
                 <TextBlock x:Name="companyKeywords" Style="{ThemeResource BodyTextBlockStyle}" Margin="0,10,0,0" HorizontalAlignment="Left" FontSize="14" MaxWidth="650" TextWrapping="Wrap" Text="{x:Bind Path=ViewModel.Company.KeyWords, Mode=OneWay}" />
             </StackPanel>
