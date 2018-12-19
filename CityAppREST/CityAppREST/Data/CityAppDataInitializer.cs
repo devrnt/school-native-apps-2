@@ -30,7 +30,7 @@ namespace CityAppREST.Data
                 {
                     new Company(
                         "Swashy",
-                        "Hier kunt u terrecht met al uw vuile was. Op 15min. kunt u terug keren met een vers gewassen was. Was u er vorige keer niet bij, kom dan nu zeker langs met uw was.",
+                        "Hier kunt u terrecht met al uw vuile was. Op 15min. kunt u terug keren met een vers gewassen was.",
                         "was laundry Swashy",
                         Categories.Wasserij,
                         new List<Location> { new Location("Belgium", "Gent", 9000, "Grensstraat", 245) },

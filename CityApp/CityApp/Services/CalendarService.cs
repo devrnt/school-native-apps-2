@@ -12,6 +12,7 @@ namespace CityApp.Services
             //  Maak afspraak voor toe te voegen in de agenda
             var appointment = new Windows.ApplicationModel.Appointments.Appointment();
             appointment.Subject = @event.Title;
+            appointment.Details = @event.Description;
             appointment.StartTime = new DateTimeOffset(@event.Date);
             var appointmentId = await Windows.ApplicationModel.Appointments.AppointmentManager.ShowAddAppointmentAsync(appointment, new Rect());
 

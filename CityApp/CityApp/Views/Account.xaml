@@ -24,12 +24,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Username" Margin="10" 
+                <TextBlock Grid.Row="0" Text="Gebruikersnaam" Margin="0,0,0,16" 
+                   HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="10,10,10,10" x:Name="Username" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Wachtwoord" Margin="-1,0,0,0" 
                    HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="10" Width="150" x:Name="Username" />
-                <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" Margin="10" 
-                   HorizontalAlignment="Left" VerticalAlignment="Center" />
-                <PasswordBox Grid.Row="1" Grid.Column="1" Margin="10" Width="150" x:Name="Password" />
+                <PasswordBox Grid.Row="1" Grid.Column="1" Margin="10,10,10,10" Width="150" x:Name="Password" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding ErrorText, Mode=OneWay}" Foreground="Red"/>
                 <Button Grid.Row="3" Grid.Column="0"  Margin="10" Content="Log In" Command="{Binding LogInCommand}" Style="{StaticResource AccentButtonStyle}">
                     <Button.CommandParameter>

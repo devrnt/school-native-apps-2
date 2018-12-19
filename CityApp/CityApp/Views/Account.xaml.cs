@@ -30,5 +30,10 @@ namespace CityApp.Views
             _vm = new AccountViewModel();
             this.DataContext = _vm;
         }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

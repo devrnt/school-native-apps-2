@@ -1,4 +1,5 @@
-﻿using CityApp.Services;
+﻿using CityApp.DataModel;
+using CityApp.Services;
 using CityApp.Services.Navigation;
 using CityApp.ViewModels;
 using Windows.UI.Xaml.Controls;
@@ -19,6 +20,13 @@ namespace CityApp.Views
         public void UpdateBindings()
         {
             Bindings.Update();
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var @event = (Event)e.ClickedItem;
+            var calendarService = new CalendarService();
+            calendarService.CreateAppointmentAsync(@event);
         }
     }
 }
